@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# اگر فایل یا پوشه واقعی وجود داشت، همان را باز کن
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# همه چیز را بفرست به index.php
+RewriteRule ^ index.php [QSA,L]
