@@ -21,6 +21,7 @@ $router->get('/courses', [PagesController::class, 'courses']);
 $router->get('/offline-courses', [PagesController::class, 'offline_courses']);
 $router->get('/articles', [PagesController::class, 'articles']);
 $router->get('/news', [PagesController::class, 'news']);
+$router->get('/certificates', [PagesController::class, 'certificates']);
 
 // Authentication routes - Registration
 $router->get('/auth/register', [AuthController::class, 'showRegister']);

@@ -23,4 +23,9 @@ class PagesController
   {
     require_once '../app/Views/pages/news.php';
   }
+
+  public function certificates()
+  {
+    require_once '../app/Views/pages/certificates.php';
+  }
 }
