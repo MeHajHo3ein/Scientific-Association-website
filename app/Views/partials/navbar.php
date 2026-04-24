@@ -41,9 +41,6 @@ $isActive = function ($path) use ($currentPath) {
           <a href="/news" class="nav-link custom-a <?= $isActive('/news') ?>">اخبار و اطلاعیه ها</a>
         </li>
         <li class="nav-item">
-          <a href="/events" class="nav-link custom-a <?= $isActive('/events') ?>">رویدادها</a>
-        </li>
-        <li class="nav-item">
           <a href="/certificates" class="nav-link custom-a <?= $isActive('/certificates') ?>">گواهینامه ها</a>
         </li>
         <li class="nav-item">
