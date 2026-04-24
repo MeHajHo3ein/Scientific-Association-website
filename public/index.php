@@ -20,6 +20,7 @@ $router->get('/', [HomeController::class, 'index']);
 $router->get('/courses', [PagesController::class, 'courses']);
 $router->get('/offline-courses', [PagesController::class, 'offline_courses']);
 $router->get('/articles', [PagesController::class, 'articles']);
+$router->get('/news', [PagesController::class, 'news']);
 
 // Authentication routes - Registration
 $router->get('/auth/register', [AuthController::class, 'showRegister']);

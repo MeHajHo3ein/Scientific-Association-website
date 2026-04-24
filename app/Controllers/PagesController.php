@@ -18,4 +18,9 @@ class PagesController
   {
     require_once '../app/Views/pages/articles.php';
   }
+
+  public function news()
+  {
+    require_once '../app/Views/pages/news.php';
+  }
 }
