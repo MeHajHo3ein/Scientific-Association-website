@@ -21,7 +21,7 @@ include '../app/Views/partials/navbar.php';
         href="certificate-view.html"
         class="btn btn-primary rounded-pill "
         type="submit">
-        برسی
+        بررسی
       </a>
     </form>
   </div>
