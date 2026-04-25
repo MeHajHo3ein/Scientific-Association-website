@@ -81,6 +81,7 @@ class AuthController
           'mobile' => $mobile,
           'email' => $email,
           'password' => $hashed_password,
+          'role' => 'student'
         ];
 
         // Create new user record
@@ -156,6 +157,7 @@ class AuthController
               $_SESSION['full_name'] = $user['full_name'];
               $_SESSION['mobile'] = $user['mobile'];
               $_SESSION['email'] = $user['email'];
+              $_SESSION['role'] = $user['role'];
               $_SESSION['show_welcome'] = true;
               redirect('/');
               return;

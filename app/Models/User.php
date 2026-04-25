@@ -14,8 +14,8 @@ class User
   // Insert new user record into database
   public function create($data)
   {
-    $query = "INSERT INTO users (full_name, mobile, email, password)
-                          VALUES (:full_name, :mobile, :email, :password)
+    $query = "INSERT INTO users (full_name, mobile, email, password, role)
+                          VALUES (:full_name, :mobile, :email, :password, :role)
     ";
     $stmt = $this->db->prepare($query);
     return $stmt->execute($data);

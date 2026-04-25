@@ -12,6 +12,7 @@ CREATE TABLE `users` (
   `mobile` varchar(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
+  `role` enum('student','teacher','admin') NOT NULL DEFAULT 'student',
   `student_number` varchar(14) DEFAULT NULL,
   `student_number_updated` tinyint(1) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
