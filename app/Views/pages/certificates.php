@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'انجمن علمی دانشگاه خوارزمی(شهرضا) - گواهی‌نامه';
+$pageTitle = 'انجمن علمی دانشگاه خوارزمی(شهرضا) - گواهی';
 $bodyClass = 'bg-secondary-subtle';
 include '../app/Views/layouts/header.php';
 include '../app/Views/partials/navbar.php';
