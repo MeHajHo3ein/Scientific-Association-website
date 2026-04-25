@@ -34,13 +34,13 @@ class PagesController
     require_once '../app/Views/pages/cult.php';
   }
 
-  public function about_us()
-  {
-    require_once '../app/Views/pages/aboutus.php';
-  }
-
   public function contact_us()
   {
     require_once '../app/Views/pages/contactus.php';
+  }
+
+  public function about_us()
+  {
+    require_once '../app/Views/pages/aboutus.php';
   }
 }

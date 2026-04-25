@@ -47,10 +47,10 @@ $isActive = function ($path) use ($currentPath) {
           <a href="/cult" class="nav-link custom-a <?= $isActive('/cult') ?>">انجمن</a>
         </li>
         <li class="nav-item">
-          <a href="/aboutus" class="nav-link custom-a <?= $isActive('/aboutus') ?>">درباره ما</a>
+          <a href="/contactus" class="nav-link custom-a <?= $isActive('/contactus') ?>">ارتباط با ما</a>
         </li>
         <li class="nav-item">
-          <a href="/contactus" class="nav-link custom-a <?= $isActive('/contactus') ?>">ارتباط با ما</a>
+          <a href="/aboutus" class="nav-link custom-a <?= $isActive('/aboutus') ?>">درباره ما</a>
         </li>
       </ul>
 

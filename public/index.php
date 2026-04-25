@@ -23,8 +23,8 @@ $router->get('/articles', [PagesController::class, 'articles']);
 $router->get('/news', [PagesController::class, 'news']);
 $router->get('/certificates', [PagesController::class, 'certificates']);
 $router->get('/cult', [PagesController::class, 'cult']);
-$router->get('/aboutus', [PagesController::class, 'about_us']);
 $router->get('/contactus', [PagesController::class, 'contact_us']);
+$router->get('/aboutus', [PagesController::class, 'about_us']);
 
 // Authentication routes - Registration
 $router->get('/auth/register', [AuthController::class, 'showRegister']);
