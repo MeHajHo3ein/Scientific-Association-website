@@ -17,7 +17,7 @@ include '../app/Views/partials/navbar.php';
           علمی و برگزاری رویدادهای آموزشی برای دانشجویان و علاقه‌مندان کامپیوتر.
         </p>
         <a href="/courses" class="btn btn-outline-primary rounded-4">مشاهده دوره‌ها</a>
-        <a href="./L-R/register.html" class="btn btn-outline-primary rounded-4 m-3">عضویت در انجمن</a>
+        <a href="/register" class="btn btn-outline-primary rounded-4 m-3">عضویت در انجمن</a>
         <div>
           <span class="text-white mx-2">+۲۰ دوره فعال </span>
           <span class="text-white mx-2">+۳۰۰ عضو</span>
@@ -456,7 +456,7 @@ include '../app/Views/partials/navbar.php';
       </div>
       <div class="d-flex col-lg-6 col-sm-12 align-self-center justify-content-center">
         <a
-          href="./L-R/register.html"
+          href="/register"
           class="btn btn-outline-primary rounded-4 p-2 me-lg-1 m-1">ثبت نام</a>
         <a
           href="/aboutus"
