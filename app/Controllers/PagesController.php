@@ -33,4 +33,9 @@ class PagesController
   {
     require_once '../app/Views/pages/cult.php';
   }
+
+  public function about_us()
+  {
+    require_once '../app/Views/pages/aboutus.php';
+  }
 }
