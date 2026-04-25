@@ -28,4 +28,9 @@ class PagesController
   {
     require_once '../app/Views/pages/certificates.php';
   }
+
+  public function cult()
+  {
+    require_once '../app/Views/pages/cult.php';
+  }
 }
