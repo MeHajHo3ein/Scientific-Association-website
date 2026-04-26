@@ -14,7 +14,7 @@ include '../app/Views/layouts/header.php';
       <h2>این صفحه فقط برای کاربران مجاز در دسترس است.</h2>
       <h2>
         برگرد به صفحه
-        <a href="index.html" class="link-dark text-primary"> اصلی </a>
+        <a href="/" class="link-dark text-primary"> اصلی </a>
       </h2>
     </div>
   </div>

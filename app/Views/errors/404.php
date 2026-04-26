@@ -14,7 +14,7 @@ include '../app/Views/layouts/header.php';
       <h2>صفحه‌ای که دنبالش هستی وجود ندارد.</h2>
       <h2>
         بیا برگردیم به صفحه
-        <a href="index.html" class="link-dark text-primary"> اصلی </a>
+        <a href="/" class="link-dark text-primary"> اصلی </a>
       </h2>
     </div>
   </div>
