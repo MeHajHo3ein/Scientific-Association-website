@@ -339,7 +339,7 @@ include '../app/Views/partials/navbar.php';
       <p>آشنایی با مدرسین دوره‌ها و اساتید مشاور</p>
     </span>
     <a
-      href="/offline-courses"
+      href="/cult"
       class="link-dark text-decoration-none text-sm-center text-primary">
       رفتن به انجمن
     </a>
