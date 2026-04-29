@@ -38,7 +38,7 @@
         <div class="offcanvas-body p-3">
           <ul class="navbar-nav">
             <h5 class="text-light p-3 text-center">پنل مدیریت</h5>
-            <li class="nav-item"><a href="../index.html"
+            <li class="nav-item"><a href="/"
                 class=" text-start btn my-1 btn-outline-light py-2 w-100 active">خانه</a></li>
             <li class="nav-item">
               <button class=" text-start btn my-1 btn-outline-light py-2 w-100 ">ادمین ها</button>
