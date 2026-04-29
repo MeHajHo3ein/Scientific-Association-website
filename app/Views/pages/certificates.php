@@ -9,17 +9,17 @@ include '../app/Views/partials/navbar.php';
 <div class="hero-margin">
   <br />
   <br />
-  <div class="container text-center bg-white shadow-lg p-5 rounded-4 border-5 border-primary border-start ">
+  <div class="container text-center bg-white shadow-lg p-5 rounded-3 border-5 border-primary border-start ">
     <h1>صحت‌سنجی گواهی‌نامه</h1>
     <p>برای بررسی اعتبار گواهی، کد یکتا را وارد کنید. سپس به صفحه نتیجه صحت‌سنجی منتقل می‌شوید.</p>
     <form class="d-flex mx-auto my-3 my-xxl-0 search-box" role="search">
       <input
-        class="form-control rounded-4 mx-4"
+        class="form-control rounded-3 mx-4"
         type="search"
         placeholder="کد گواهی را وارد کنید..." />
       <a
         href="certificate-view.html"
-        class="btn btn-primary rounded-pill "
+        class="btn btn-primary rounded-3 "
         type="submit">
         بررسی
       </a>
@@ -33,36 +33,36 @@ include '../app/Views/partials/navbar.php';
   <h3 class="text py-3">
     دروسی که با قبولی در آن‌ها گواهی صادر می‌شود
   </h3>
-  <div class="card rounded-4 border-0 shadow-sm mt-4">
-    <div class="card-body bg-white border-5 border-primary border-start rounded-4">
+  <div class="card rounded-3 border-0 shadow-sm mt-4">
+    <div class="card-body bg-white border-5 border-primary border-start rounded-3">
       <h4 class="card-title">مبانی برنامه‌نویسی و الگوریتم</h4>
       <div class="d-flex justify-content-between flex-sm-row flex-column">
         <p class="card-text">مدرک معتبر سطح مقدماتی با تمرکز بر منطق برنامه‌نویسی، حل مسئله و
           ساخت پروژه‌های ساده.
         </p>
-        <a href="certificate-test.html" class="btn btn-primary rounded-4"> شروع آزمون</a>
+        <a href="certificate-test.html" class="btn btn-primary rounded-3"> شروع آزمون</a>
       </div>
     </div>
   </div>
-  <div class="card rounded-4 border-0 shadow-sm mt-4">
-    <div class="card-body bg-white border-5 border-primary border-start rounded-4">
+  <div class="card rounded-3 border-0 shadow-sm mt-4">
+    <div class="card-body bg-white border-5 border-primary border-start rounded-3">
       <h4 class="card-title">مبانی برنامه‌نویسی و الگوریتم</h4>
       <div class="d-flex justify-content-between flex-sm-row flex-column">
         <p class="card-text">مدرک معتبر سطح مقدماتی با تمرکز بر منطق برنامه‌نویسی، حل مسئله و
           ساخت پروژه‌های ساده.
         </p>
-        <a href="certificate-test.html" class="btn btn-primary rounded-4"> شروع آزمون</a>
+        <a href="certificate-test.html" class="btn btn-primary rounded-3"> شروع آزمون</a>
       </div>
     </div>
   </div>
-  <div class="card rounded-4 border-0 shadow-sm mt-4">
-    <div class="card-body bg-white border-5 border-primary border-start rounded-4">
+  <div class="card rounded-3 border-0 shadow-sm mt-4">
+    <div class="card-body bg-white border-5 border-primary border-start rounded-3">
       <h4 class="card-title">مبانی برنامه‌نویسی و الگوریتم</h4>
       <div class="d-flex justify-content-between flex-sm-row flex-column">
         <p class="card-text">مدرک معتبر سطح مقدماتی با تمرکز بر منطق برنامه‌نویسی، حل مسئله و
           ساخت پروژه‌های ساده.
         </p>
-        <a href="certificate-test.html" class="btn btn-primary rounded-4"> شروع آزمون</a>
+        <a href="certificate-test.html" class="btn btn-primary rounded-3"> شروع آزمون</a>
       </div>
     </div>
   </div>
