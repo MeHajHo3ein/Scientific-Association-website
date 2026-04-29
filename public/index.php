@@ -9,6 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 use App\Controllers\AuthController;
+use App\Controllers\DashboardController;
 use App\Controllers\HomeController;
 use App\Controllers\PagesController;
 use App\Core\Router;
@@ -39,6 +40,9 @@ $router->post('/auth/login', [AuthController::class, 'login']);
 $router->get('/login', function () {
   redirect('/auth/login');
 });
+
+// Panel
+$router->get('/panel', [DashboardController::class, 'index']);
 
 // Logout route
 $router->get('/logout', [AuthController::class, 'logout']);

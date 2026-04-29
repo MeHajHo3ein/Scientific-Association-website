@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://lib.arvancloud.ir/font-awesome/6.3.0/css/all.css" />
+  <link rel="stylesheet" href="/assets/css/bootstrap.rtl.min.css" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="/assets/css/admin.css" />
+  <link rel="icon" href="/assets/img/ico.png" />
+  <title>پنل مدیریت</title>
+</head>
+
+<body class="bg-secondary-subtle">
+  <!--Side-Bar-Btn-->
+  <nav class="navbar navbar-dark bg-secondary navbar-expand-md d-md-none px-3">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#sidebar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+
+  <div class="container-fluid">
+    <!--    Side-Bar-->
+    <div class="row">
+      <div
+        class="offcanvas-md offcanvas-start bg-secondary text-white"
+        tabindex="-1"
+        id="sidebar">
+        <div class="offcanvas-header d-md-none">
+          <h5 class="offcanvas-title">منو</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+          <ul class="navbar-nav">
+            <h5 class="text-light p-3 text-center">پنل مدیریت</h5>
+            <li class="nav-item"><a href="../index.html"
+                class=" text-start btn my-1 btn-outline-light py-2 w-100 active">خانه</a></li>
+            <li class="nav-item">
+              <button class=" text-start btn my-1 btn-outline-light py-2 w-100 ">ادمین ها</button>
+            </li>
+            <li class="nav-item">
+              <button class=" text-start btn my-1 btn-outline-light py-2 w-100 ">دانشجویان</button>
+            </li>
+            <li class="nav-item">
+              <button class=" text-start btn my-1 btn-outline-light py-2 w-100 ">مدرسین</button>
+            </li>
+            <li class="nav-item">
+              <button class=" text-start btn my-1 btn-outline-light py-2 w-100 ">دوره ها</button>
+            </li>
+            <li class="nav-item">
+              <button class=" text-start btn my-1 btn-outline-light py-2 w-100">مقاله ها</button>
+            </li>
+            <li class="nav-item">
+              <button class=" text-start btn my-1 btn-outline-light py-2 w-100 ">فایل های آموزش آفلاین</button>
+            </li>
+            <li class="nav-item">
+              <button class=" text-start btn my-1 btn-outline-light py-2 borde w-100 disabled">اعلانات</button>
+            </li>
+            <li class="nav-item">
+              <a href="/logout">
+                <button class="btn my-1 btn-danger text-light w-100">خروج</button>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="col-md-10 offset-md-2 p-4">
+    <div class="container">
+      <!--            Student View-->
+      <div class="card my-3 py-3">
+        <div class="card-body py-3">
+          <h3>حسام، خوش اومدی 👋</h3>
+          <p class="h5 text-secondary">در اینجا می‌تونی دوره‌ها، رویدادها و وضعیت فعالیت‌هاتو ببینی.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4  col-md-12">
+          <a class="card text-decoration-none" href="#ActiveCourses">
+            <div class="card-body">
+              <h5 class="text-primary text-center p-3">دوره‌های فعال</h5>
+              <h5 class="text-dark text-center p-3">2</h5>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4  col-md-12">
+          <a class="card text-decoration-none" href="#FutureEvents">
+            <div class="card-body">
+              <h5 class="text-primary text-center p-3">رویدادهای آینده</h5>
+              <h5 class="text-dark text-center p-3">2</h5>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <a class="card text-decoration-none" href="#Certificates">
+            <div class="card-body">
+              <h5 class="text-primary text-center p-3">گواهی‌نامه‌ها</h5>
+              <h5 class="text-dark text-center p-3">2</h5>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <h4 class="mt-5 mb-3 border-bottom border-3 border-primary text-center" id="ActiveCourses">دوره‌های در
+          حال گذراندن</h4>
+        <div class="col-lg-3 col-md-12">
+          <div class="card d-flex p-0 mt-1">
+            <div
+              class="card-body">
+              <img src="/assets/img/logo.png" alt="C-img" class="card-img-top " />
+              <h5 class="card-title">طراحی مدرن Front-End</h5>
+              <p class="card-text">
+                <span>مدرس:</span>
+                <span>حسام</span>
+              </p>
+              <p class="card-text">
+                <span>سطح:</span>
+                <span>متوسط</span>
+              </p>
+              <p class="card-text">
+                <span>مدت دوره:</span>
+                <span>20</span>
+                <span>ساعت</span>
+              </p>
+              <a href="/courses_detail" class="btn btn-outline-primary d-block  ">
+                مشاهده
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3  col-md-12">
+          <div class="card d-flex p-0 mt-1">
+            <div
+              class="card-body">
+              <img src="/assets/img/logo.png" alt="C-img" class="card-img-top " />
+              <h5 class="card-title">طراحی مدرن Front-End</h5>
+              <p class="card-text">
+                <span>مدرس:</span>
+                <span>حسام</span>
+              </p>
+              <p class="card-text">
+                <span>سطح:</span>
+                <span>متوسط</span>
+              </p>
+              <p class="card-text">
+                <span>مدت دوره:</span>
+                <span>20</span>
+                <span>ساعت</span>
+              </p>
+              <a href="/courses_detail" class="btn btn-outline-primary d-block  ">
+                مشاهده
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3  col-md-12">
+          <div class="card d-flex p-0 mt-1">
+            <div
+              class="card-body">
+              <img src="/assets/img/logo.png" alt="C-img" class="card-img-top " />
+              <h5 class="card-title">طراحی مدرن Front-End</h5>
+              <p class="card-text">
+                <span>مدرس:</span>
+                <span>حسام</span>
+              </p>
+              <p class="card-text">
+                <span>سطح:</span>
+                <span>متوسط</span>
+              </p>
+              <p class="card-text">
+                <span>مدت دوره:</span>
+                <span>20</span>
+                <span>ساعت</span>
+              </p>
+              <a href="/courses_detail" class="btn btn-outline-primary d-block  ">
+                مشاهده
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-12">
+          <div class="card d-flex p-0 mt-1">
+            <div
+              class="card-body">
+              <img src="/assets/img/logo.png" alt="C-img" class="card-img-top " />
+              <h5 class="card-title">طراحی مدرن Front-End</h5>
+              <p class="card-text">
+                <span>مدرس:</span>
+                <span>حسام</span>
+              </p>
+              <p class="card-text">
+                <span>سطح:</span>
+                <span>متوسط</span>
+              </p>
+              <p class="card-text">
+                <span>مدت دوره:</span>
+                <span>20</span>
+                <span>ساعت</span>
+              </p>
+              <a href="/courses_detail" class="btn btn-outline-primary d-block  ">
+                مشاهده
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h4 class="mt-5 mb-3 border-bottom border-3 border-primary text-center" id="FutureEvents">
+          رویداد های آینده
+        </h4>
+        <div class="card d-flex p-0 mt-1">
+          <div
+            class="card-body d-flex p-0 mt-1 justify-content-between align-items-center justify-content-center p-3 ">
+            <h5> کارگاه Git & GitHub </h5>
+            <h5 class="text-primary">10/12/1404</h5>
+          </div>
+        </div>
+        <div class="card d-flex p-0 mt-1">
+          <div
+            class="card-body d-flex p-0 mt-1 justify-content-between align-items-center justify-content-center p-3 ">
+            <h5> کارگاه Git & GitHub </h5>
+            <h5 class="text-primary">10/12/1404</h5>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h4 class="mt-5 mb-3 border-bottom border-3 border-primary text-center" id="Certificates">
+          گواهی های کسب شده
+        </h4>
+        <div class="col-lg-4 col-md-12">
+          <div class="card d-flex p-0 mt-1">
+            <div
+              class="card-body">
+              <h5> کارگاه Git & GitHub </h5>
+              <p class="p-2">
+                <span>نمره:</span>
+                <span>89</span>
+              </p>
+              <p class="p-2">
+                <span>تاریخ دریافت:</span>
+                <span>10/2/1404</span>
+              </p>
+              <a href="../certificate-view.html"
+                class="d-block text-decoration-none btn btn-outline-primary my-3">مشاهده</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <div class="card d-flex p-0 mt-1">
+            <div
+              class="card-body">
+              <h5> کارگاه Git & GitHub </h5>
+              <p class="p-2">
+                <span>نمره:</span>
+                <span>89</span>
+              </p>
+              <p class="p-2">
+                <span>تاریخ دریافت:</span>
+                <span>10/2/1404</span>
+              </p>
+              <a href="../certificate-view.html"
+                class="d-block text-decoration-none btn btn-outline-primary my-3">مشاهده</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <div class="card d-flex p-0 mt-1">
+            <div
+              class="card-body">
+              <h5> کارگاه Git & GitHub </h5>
+              <p class="p-2">
+                <span>نمره:</span>
+                <span>89</span>
+              </p>
+              <p class="p-2">
+                <span>تاریخ دریافت:</span>
+                <span>10/2/1404</span>
+              </p>
+              <a href="../certificate-view.html"
+                class="d-block text-decoration-none btn btn-outline-primary my-3">مشاهده</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--   Admin/Teacher View    -->
+      <!--            Admin/Teacher Start-->
+      <!--            <p class="bg-white my-3 p-3 text-dark">-->
+      <!--               <span>حسام رحیمی</span>-->
+      <!--                خوش آمدید به پنل مدیریت انجمن علمی.-->
+      <!--            </p>-->
+      <!--            <p class="bg-white my-3 p-3 text-dark">-->
+      <!--                از منوی سمت راست بخش مورد نظر را انتخاب کنید.-->
+      <!--            </p>-->
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/admin.js"></script>
+  <script src="/assets/js/script.js"></script>
+</body>
+
+</html>
