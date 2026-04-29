@@ -12,7 +12,7 @@
 
 <body class="d-flex align-items-center justify-content-center min-vh-100 bg-light py-5">
   <div
-    class="card shadow-sm border-0 rounded-4 p-4"
+    class="card shadow-sm border-primary rounded-4 p-4"
     style="width: 100%; max-width: 480px">
     <div class="text-center mb-4">
       <div
