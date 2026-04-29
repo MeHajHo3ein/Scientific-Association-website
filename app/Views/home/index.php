@@ -16,8 +16,8 @@ include '../app/Views/partials/navbar.php';
           برگزاری دوره‌های تخصصی برنامه‌نویسی، هوش مصنوعی، وب و شبکه، انتشار مقالات
           علمی و برگزاری رویدادهای آموزشی برای دانشجویان و علاقه‌مندان کامپیوتر.
         </p>
-        <a href="/courses" class="btn btn-outline-primary rounded-4">مشاهده دوره‌ها</a>
-        <a href="/register" class="btn btn-outline-primary rounded-4 m-3">عضویت در انجمن</a>
+        <a href="/courses" class="btn btn-outline-primary rounded-3">مشاهده دوره‌ها</a>
+        <a href="/register" class="btn btn-outline-primary rounded-3 m-3">عضویت در انجمن</a>
         <div>
           <span class="text-white mx-2">+۲۰ دوره فعال </span>
           <span class="text-white mx-2">+۳۰۰ عضو</span>
@@ -25,9 +25,9 @@ include '../app/Views/partials/navbar.php';
         </div>
       </div>
       <div
-        class="bg-white col-lg-6 col-sm-12 rounded-4 justify-content-end py-4 border-start border-primary border-5">
+        class="bg-white col-lg-6 col-sm-12 rounded-3 justify-content-end py-4 border-start border-primary border-5">
         <h3 class="py-2 d-inline-block">دوره در حال ثبت‌نام</h3>
-        <span class="badge bg-success rounded-4">در حال ثبت‌نام</span>
+        <span class="badge bg-success rounded-3">در حال ثبت‌نام</span>
 
         <p>وب دولوپمنت با JavaScript و React</p>
         <p class="mx-2">
@@ -65,7 +65,7 @@ include '../app/Views/partials/navbar.php';
     <div class="row">
       <div class="col-lg-4 col-sm-12">
         <div
-          class="bg-white py-3 rounded-4 mb-3 p-3 border-start border-primary border-5">
+          class="bg-white py-3 rounded-3 mb-3 p-3 border-start border-primary border-5">
           <h5>برنامه‌نویسی پیشرفته با Python</h5>
           <p class="mx-2">
             مدرس:
@@ -79,15 +79,15 @@ include '../app/Views/partials/navbar.php';
             آموزش مفاهیم پیشرفته پایتون، کار با کتابخانه‌ها، تست و معماری نرم‌افزار.
           </p>
           <p class="d-flex justify-content-between">
-            <span class="badge bg-success rounded-4">در حال ثبت‌نام</span>
+            <span class="badge bg-success rounded-3">در حال ثبت‌نام</span>
             <span>رایگان</span>
           </p>
-          <a href="" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
+          <a href="/courses_detail" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12 rounded-4">
+      <div class="col-lg-4 col-sm-12 rounded-3">
         <div
-          class="bg-white py-3 rounded-4 mb-3 p-3 border-start border-primary border-5">
+          class="bg-white py-3 rounded-3 mb-3 p-3 border-start border-primary border-5">
           <h5>برنامه‌نویسی پیشرفته با Python</h5>
           <p class="mx-2">
             مدرس:
@@ -101,16 +101,16 @@ include '../app/Views/partials/navbar.php';
             آموزش مفاهیم پیشرفته پایتون، کار با کتابخانه‌ها، تست و معماری نرم‌افزار.
           </p>
           <p class="d-flex justify-content-between">
-            <span class="badge bg-warning rounded-4">نزدیک به تکمیل ظرفیت</span>
+            <span class="badge bg-warning rounded-3">نزدیک به تکمیل ظرفیت</span>
             <span>رایگان</span>
           </p>
-          <a href="" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
+          <a href="/courses_detail" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
         </div>
       </div>
 
-      <div class="col-lg-4 col-sm-12 rounded-4">
+      <div class="col-lg-4 col-sm-12 rounded-3">
         <div
-          class="bg-white py-3 rounded-4 mb-3 p-3 border-start border-primary border-5">
+          class="bg-white py-3 rounded-3 mb-3 p-3 border-start border-primary border-5">
           <h5>برنامه‌نویسی پیشرفته با Python</h5>
           <p class="mx-2">
             مدرس:
@@ -124,10 +124,10 @@ include '../app/Views/partials/navbar.php';
             آموزش مفاهیم پیشرفته پایتون، کار با کتابخانه‌ها، تست و معماری نرم‌افزار.
           </p>
           <p class="d-flex justify-content-between">
-            <span class="badge bg-primary rounded-4">در حال برگزاری</span>
+            <span class="badge bg-primary rounded-3">در حال برگزاری</span>
             <span>رایگان</span>
           </p>
-          <a href="" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
+          <a href="/courses_detail" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
         </div>
       </div>
     </div>
@@ -148,7 +148,7 @@ include '../app/Views/partials/navbar.php';
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-sm-12">
-        <div class="py-3 rounded-4 mb-3 p-3 border-start border-5">
+        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
           <h5>آشنایی با معماری میکروسرویس‌ها</h5>
           <p class="mx-2">
             <span> مدرس:</span>
@@ -164,11 +164,11 @@ include '../app/Views/partials/navbar.php';
             در این مطلب با مفاهیم اصلی میکروسرویس‌ها، مزایا، چالش‌ها و الگوهای رایج
             آشنا می‌شویم.
           </p>
-          <a href="" class="link-primary text-decoration-none">ادامه مطلب</a>
+          <a href="/articles_detail" class="link-primary text-decoration-none">ادامه مطلب</a>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12 rounded-4">
-        <div class="py-3 rounded-4 mb-3 p-3 border-start border-5">
+      <div class="col-lg-4 col-sm-12 rounded-3">
+        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
           <h5>آشنایی با معماری میکروسرویس‌ها</h5>
           <p class="mx-2">
             <span> مدرس:</span>
@@ -184,11 +184,11 @@ include '../app/Views/partials/navbar.php';
             در این مطلب با مفاهیم اصلی میکروسرویس‌ها، مزایا، چالش‌ها و الگوهای رایج
             آشنا می‌شویم.
           </p>
-          <a href="" class="link-primary text-decoration-none">ادامه مطلب</a>
+          <a href="/articles_detail" class="link-primary text-decoration-none">ادامه مطلب</a>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12 rounded-4">
-        <div class="py-3 rounded-4 mb-3 p-3 border-start border-5">
+      <div class="col-lg-4 col-sm-12 rounded-3">
+        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
           <h5>آشنایی با معماری میکروسرویس‌ها</h5>
           <p class="mx-2">
             <span> مدرس:</span>
@@ -204,7 +204,7 @@ include '../app/Views/partials/navbar.php';
             در این مطلب با مفاهیم اصلی میکروسرویس‌ها، مزایا، چالش‌ها و الگوهای رایج
             آشنا می‌شویم.
           </p>
-          <a href="" class="link-primary text-decoration-none">ادامه مطلب</a>
+          <a href="/articles_detail" class="link-primary text-decoration-none">ادامه مطلب</a>
         </div>
       </div>
     </div>
@@ -226,7 +226,7 @@ include '../app/Views/partials/navbar.php';
     <div class="row">
       <div class="col-lg-4 col-sm-12">
         <div
-          class="py-3 bg-white rounded-4 mb-3 p-3 border-start border-primary border-5">
+          class="py-3 bg-white rounded-3 mb-3 p-3 border-start border-primary border-5">
           <h5>برگزاری کارگاه React برای دانشجویان</h5>
           <p class="mx-2">
             <span> ۱۴۰۳/۰۲/۱۰ </span>
@@ -236,12 +236,11 @@ include '../app/Views/partials/navbar.php';
           <p class="text-justify">
             ثبت‌نام کارگاه فشرده React آغاز شد. ظرفیت محدود است
           </p>
-          <a href="" class="link-primary text-decoration-none">ادامه مطلب</a>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12 rounded-4">
+      <div class="col-lg-4 col-sm-12 rounded-3">
         <div
-          class="py-3 bg-white rounded-4 mb-3 p-3 border-start border-primary border-5">
+          class="py-3 bg-white rounded-3 mb-3 p-3 border-start border-primary border-5">
           <h5>برگزاری کارگاه React برای دانشجویان</h5>
           <p class="mx-2">
             <span> ۱۴۰۳/۰۲/۱۰ </span>
@@ -251,12 +250,11 @@ include '../app/Views/partials/navbar.php';
           <p class="text-justify">
             ثبت‌نام کارگاه فشرده React آغاز شد. ظرفیت محدود است
           </p>
-          <a href="" class="link-primary text-decoration-none">ادامه مطلب</a>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12 rounded-4">
+      <div class="col-lg-4 col-sm-12 rounded-3">
         <div
-          class="py-3 bg-white rounded-4 mb-3 p-3 border-start border-primary border-5">
+          class="py-3 bg-white rounded-3 mb-3 p-3 border-start border-primary border-5">
           <h5>برگزاری کارگاه React برای دانشجویان</h5>
           <p class="mx-2">
             <span> ۱۴۰۳/۰۲/۱۰ </span>
@@ -266,7 +264,6 @@ include '../app/Views/partials/navbar.php';
           <p class="text-justify">
             ثبت‌نام کارگاه فشرده React آغاز شد. ظرفیت محدود است
           </p>
-          <a href="" class="link-primary text-decoration-none">ادامه مطلب</a>
         </div>
       </div>
     </div>
@@ -289,7 +286,7 @@ include '../app/Views/partials/navbar.php';
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-sm-12">
-        <div class="py-3 rounded-4 mb-3 p-3 border-start border-5">
+        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
           <h5>اسلایدهای دوره Python پیشرفته</h5>
           <p class="mx-2">
             <span> نوع:</span>
@@ -301,8 +298,8 @@ include '../app/Views/partials/navbar.php';
           <a href="" class="link-primary text-decoration-none">دانلود</a>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12 rounded-4">
-        <div class="py-3 rounded-4 mb-3 p-3 border-start border-5">
+      <div class="col-lg-4 col-sm-12 rounded-3">
+        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
           <h5>ویدیوی معرفی شبکه‌های عصبی</h5>
           <p class="mx-2">
             <span> نوع:</span>
@@ -314,8 +311,8 @@ include '../app/Views/partials/navbar.php';
           <a href="" class="link-primary text-decoration-none">دانلود</a>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12 rounded-4">
-        <div class="py-3 rounded-4 mb-3 p-3 border-start border-5">
+      <div class="col-lg-4 col-sm-12 rounded-3">
+        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
           <h5>PDF مبانی طراحی وب</h5>
           <p class="mx-2">
             <span> نوع:</span>
@@ -347,7 +344,7 @@ include '../app/Views/partials/navbar.php';
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-sm-12">
-        <div class="py-3 bg-white rounded-4 mb-3 p-3">
+        <div class="py-3 bg-white rounded-3 mb-3 p-3">
           <img src="/assets/img/logo(whit text).png" alt="" class="img-fluid" />
           <h5>دکتر الف</h5>
           <p class="mx-2">
@@ -357,8 +354,8 @@ include '../app/Views/partials/navbar.php';
           <p class="text-justify">email@example.com</p>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12 rounded-4">
-        <div class="py-3 bg-white rounded-4 mb-3 p-3">
+      <div class="col-lg-4 col-sm-12 rounded-3">
+        <div class="py-3 bg-white rounded-3 mb-3 p-3">
           <img src="/assets/img/logo(whit text).png" alt="" class="img-fluid" />
           <h5>مهندس ب</h5>
           <p class="mx-2">
@@ -367,8 +364,8 @@ include '../app/Views/partials/navbar.php';
           <p class="text-justify">linkedin.com/in/sample</p>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12 rounded-4">
-        <div class="py-3 bg-white rounded-4 mb-3 p-3">
+      <div class="col-lg-4 col-sm-12 rounded-3">
+        <div class="py-3 bg-white rounded-3 mb-3 p-3">
           <img src="/assets/img/logo(whit text).png" alt="" class="img-fluid" />
           <h5>مهندس ب</h5>
           <p class="mx-2">
@@ -389,13 +386,13 @@ include '../app/Views/partials/navbar.php';
       <p>رویدادهای پیش رو و مهم انجمن</p>
     </span>
     <a
-      href="/events"
+      href="/news/#events"
       class="link-dark text-decoration-none text-sm-center text-primary">جزئیات همه رویدادها</a>
   </div>
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-sm-12">
-        <div class="py-3 rounded-4 mb-3 p-3 border-start border-5">
+        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
           <h5>کارگاه Git و GitHub</h5>
           <p class="mx-2">
             <span> نوع:</span>
@@ -409,8 +406,8 @@ include '../app/Views/partials/navbar.php';
           </p>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12 rounded-4">
-        <div class="py-3 rounded-4 mb-3 p-3 border-start border-5">
+      <div class="col-lg-4 col-sm-12 rounded-3">
+        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
           <h5>کارگاه Git و GitHub</h5>
           <p class="mx-2">
             <span> نوع:</span>
@@ -424,8 +421,8 @@ include '../app/Views/partials/navbar.php';
           </p>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12 rounded-4">
-        <div class="py-3 rounded-4 mb-3 p-3 border-start border-5">
+      <div class="col-lg-4 col-sm-12 rounded-3">
+        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
           <h5>کارگاه Git و GitHub</h5>
           <p class="mx-2">
             <span> نوع:</span>
@@ -457,10 +454,10 @@ include '../app/Views/partials/navbar.php';
       <div class="d-flex col-lg-6 col-sm-12 align-self-center justify-content-center">
         <a
           href="/register"
-          class="btn btn-outline-primary rounded-4 p-2 me-lg-1 m-1">ثبت نام</a>
+          class="btn btn-outline-primary rounded-3 p-2 me-lg-1 m-1">ثبت نام</a>
         <a
-          href="/aboutus"
-          class="btn btn-outline-warning rounded-4 p-2 me-lg-1 m-1">سؤالات متداول</a>
+          href="/cult/#faq"
+          class="btn btn-outline-warning rounded-3 p-2 me-lg-1 m-1">سؤالات متداول</a>
       </div>
     </div>
   </div>
