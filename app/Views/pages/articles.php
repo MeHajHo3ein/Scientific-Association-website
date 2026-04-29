@@ -18,8 +18,8 @@ include '../app/Views/partials/navbar.php';
 
 <!--Main-->
 <div class="container">
-  <div class="card border-0 shadow-sm rounded-4">
-    <div class="card-body bg-white border-start border-primary border-5 rounded-4">
+  <div class="card border-0 shadow-sm rounded-3">
+    <div class="card-body bg-white border-start border-primary border-5 rounded-3">
       <h3 class="card-title py-2">آینده برنامه‌نویسی وب در عصر هوش مصنوعی</h3>
       <p class="card-subtitle text-secondary py-2">
         <span>نویسنده:</span>
@@ -37,7 +37,7 @@ include '../app/Views/partials/navbar.php';
   <br>
   <div class="row">
     <div class="col-lg-6 col-sm-12">
-      <div class="card border-0 shadow-sm rounded-4">
+      <div class="card border-0 shadow-sm rounded-3">
         <div class="card-body bg-white dotted">
           <h4 class="card-title py-2">آشنایی با ساختار داده‌ها</h4>
           <p class="card-subtitle text-secondary py-2">
@@ -53,7 +53,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-6 col-sm-12">
-      <div class="card border-0 shadow-sm rounded-4">
+      <div class="card border-0 shadow-sm rounded-3">
         <div class="card-body bg-white dotted">
           <h4 class="card-title py-2">آشنایی با ساختار داده‌ها</h4>
           <p class="card-subtitle text-secondary py-2">
