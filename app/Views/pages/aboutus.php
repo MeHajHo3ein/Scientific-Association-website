@@ -10,7 +10,7 @@ include '../app/Views/partials/navbar.php';
   <br />
   <br />
   <div
-    class="container bg-white shadow-lg p-5 rounded-4 border-5 border-primary border-start">
+    class="container bg-white shadow-lg p-5 rounded-3 border-5 border-primary border-start">
     <h4 class="text-primary">معرفی انجمن</h4>
     <p>
       انجمن علمی کامپیوتر یک نهاد دانشجویی مستقل و رسمی است که با هدف ارتقای دانش،
@@ -36,7 +36,7 @@ include '../app/Views/partials/navbar.php';
     <h4 class="text-primary mt-5">ارزش‌های ما</h4>
     <div class="row">
       <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card border-2 px-2 py-2 rounded-4">
+        <div class="card border-2 px-2 py-2 rounded-3">
           <h5 class="text-primary card-title p-2">دانش‌محوری</h5>
           <p class="card-text p-2">
             تمام فعالیت‌ها بر محور ارتقای علمی دانشجویان طراحی می‌شوند.
@@ -44,7 +44,7 @@ include '../app/Views/partials/navbar.php';
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card border-2 px-2 py-2 rounded-4">
+        <div class="card border-2 px-2 py-2 rounded-3">
           <h5 class="text-primary card-title p-2">همکاری و کار تیمی</h5>
           <p class="card-text p-2">
             روحیه همکاری دوستی میان اعضا از اولویت‌های انجمن است.
@@ -52,7 +52,7 @@ include '../app/Views/partials/navbar.php';
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card border-2 px-2 py-2 rounded-4">
+        <div class="card border-2 px-2 py-2 rounded-3">
           <h5 class="text-primary card-title p-2">نوآوری</h5>
           <p class="card-text p-2">
             تشویق دانشجویان به خلق ایده‌های تازه و کارهای خلاقانه.
@@ -64,19 +64,19 @@ include '../app/Views/partials/navbar.php';
     <h4 class="text-primary mt-5">کمیته‌ها و حوزه‌های فعالیت</h4>
     <div class="row">
       <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card border-2 px-2 py-2 rounded-4">
+        <div class="card border-2 px-2 py-2 rounded-3">
           <h5 class="text-primary card-title p-2">کمیته آموزش</h5>
           <p class="card-text p-2">برگزاری دوره‌ها، کارگاه‌ها و کلاس‌های تخصصی.</p>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card border-2 px-2 py-2 rounded-4">
+        <div class="card border-2 px-2 py-2 rounded-3">
           <h5 class="text-primary card-title p-2">کمیته پژوهش</h5>
           <p class="card-text p-2">حمایت از پروژه‌های علمی و فعالیت‌های تحقیقاتی.</p>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card border-2 px-2 py-2 rounded-4">
+        <div class="card border-2 px-2 py-2 rounded-3">
           <h5 class="text-primary card-title p-2">کمیته فناوری</h5>
           <p class="card-text p-2">اجرای پروژه‌های دانشجویی.</p>
         </div>
