@@ -8,7 +8,7 @@ $isActive = function ($path) use ($currentPath) {
 <nav class="navbar navbar-expand-xxl fixed-top bg-white border-bottom shadow-lg<?= isset($navbarRounded) ? ' ' . $navbarRounded : '' ?>">
   <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center" href="/">
-      <img src="/assets/img/logo.png" alt="logo" height="60" class="me-2 rounded-4" />
+      <img src="/assets/img/logo.png" alt="logo" height="60" class="me-2 rounded-3" />
       <h5>انجمن علمی کامپیوتر</h5>
     </a>
 
@@ -68,19 +68,19 @@ $isActive = function ($path) use ($currentPath) {
       <!-- Displays user info if logged in -->
       <?php if (isset($_SESSION['user_id'])): ?>
         <a
-          href="/dashboard"
-          class="btn btn-outline-dark rounded-4 d-block p-2 me-lg-1 m-1">داشبورد</a>
+          href="/panel"
+          class="btn btn-outline-dark rounded-3 d-block p-2 me-lg-1 m-1">داشبورد</a>
         <a
           href="/logout"
-          class="btn btn-outline-danger rounded-4 d-block p-2 me-lg-1 m-1">خروج</a>
+          class="btn btn-outline-danger rounded-3 d-block p-2 me-lg-1 m-1">خروج</a>
       <?php else: ?>
-        <a href="/login" class="btn btn-outline-primary rounded-4 d-block p-2 me-lg-1 m-1">ورود</a>
+        <a href="/login" class="btn btn-outline-primary rounded-3 d-block p-2 me-lg-1 m-1">ورود</a>
         <a href="/register" class="btn btn-outline-primary rounded-4 d-block p-2 me-lg-1 m-1">ثبت نام</a>
       <?php endif; ?>
 
       <a
-        href="user-dashboard.html"
-        class="btn btn-outline-primary rounded-4 d-block p-2 me-lg-1 m-1 position-relative">
+        href="/panel"
+        class="btn btn-outline-primary rounded-3 d-block p-2 me-lg-1 m-1 position-relative">
         <i class="fa fa-bell"></i>
         <!-- Badge -->
         <span
