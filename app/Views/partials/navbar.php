@@ -75,7 +75,7 @@ $isActive = function ($path) use ($currentPath) {
           class="btn btn-outline-danger rounded-3 d-block p-2 me-lg-1 m-1">خروج</a>
       <?php else: ?>
         <a href="/login" class="btn btn-outline-primary rounded-3 d-block p-2 me-lg-1 m-1">ورود</a>
-        <a href="/register" class="btn btn-outline-primary rounded-4 d-block p-2 me-lg-1 m-1">ثبت نام</a>
+        <a href="/register" class="btn btn-outline-primary rounded-3 d-block p-2 me-lg-1 m-1">ثبت نام</a>
       <?php endif; ?>
 
       <a

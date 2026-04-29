@@ -1,0 +1,22 @@
+.offcanvas-md {
+  width: 250px !important;
+}
+
+/* Sidebar fixed for desktop */
+@media (min-width: 768px) {
+  .offcanvas-md {
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 250px !important;
+    visibility: visible !important;
+    transform: none !important;
+    z-index: 1030;
+  }
+}
+
+/* Main content margin for RTL */
+.offset-md-2 {
+  margin-right: 16.666667% !important;
+}
