@@ -15,10 +15,10 @@ include '../app/Views/partials/navbar.php';
     <p>تمام دوره‌های آموزشی در حوزه برنامه‌نویسی، وب، شبکه و هوش مصنوعی</p>
   </div>
   <div class="container d-flex justify-content-center">
-    <a href="#network" class="btn btn-outline-primary mx-2 rounded-4">شبکه</a>
-    <a href="#webdev" class="btn btn-outline-primary mx-2 rounded-4">توسعه وب</a>
-    <a href="#ai" class="btn btn-outline-primary mx-2 rounded-4">هوش مصنوعی</a>
-    <a href="#prog" class="btn btn-outline-primary mx-2 rounded-4">برنامه نویسی</a>
+    <a href="#network" class="btn btn-outline-primary mx-2 rounded-3">شبکه</a>
+    <a href="#webdev" class="btn btn-outline-primary mx-2 rounded-3">توسعه وب</a>
+    <a href="#ai" class="btn btn-outline-primary mx-2 rounded-3">هوش مصنوعی</a>
+    <a href="#prog" class="btn btn-outline-primary mx-2 rounded-3">برنامه نویسی</a>
   </div>
   <br />
 </div>
@@ -28,9 +28,9 @@ include '../app/Views/partials/navbar.php';
   <h4 id="webdev" class="my-3">توسعه وب</h4>
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-4" />
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -42,7 +42,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-primary rounded-4">در حال برگزاری</span>
+            <span class="badge bg-primary rounded-3">در حال برگزاری</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -51,17 +51,18 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-4" />
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -73,7 +74,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-danger rounded-4">ظرفیت تکمیل</span>
+            <span class="badge bg-danger rounded-3">ظرفیت تکمیل</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -82,17 +83,18 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-4" />
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -104,7 +106,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-warning rounded-4">نزدیک به تکمیل ظرفیت</span>
+            <span class="badge bg-warning rounded-3">نزدیک به تکمیل ظرفیت</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -113,17 +115,18 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-6 ol-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-4" />
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -135,7 +138,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-success rounded-4">در حال ثبت‌نام</span>
+            <span class="badge bg-success rounded-3">در حال ثبت‌نام</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -144,8 +147,9 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
@@ -156,8 +160,9 @@ include '../app/Views/partials/navbar.php';
   <h4 id="network" class="my-3">شبکه</h4>
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -169,7 +174,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-primary rounded-4">در حال برگزاری</span>
+            <span class="badge bg-primary rounded-3">در حال برگزاری</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -178,16 +183,18 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -199,7 +206,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-danger rounded-4">ظرفیت تکمیل</span>
+            <span class="badge bg-danger rounded-3">ظرفیت تکمیل</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -208,17 +215,18 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top" />
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -230,7 +238,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-warning rounded-4">نزدیک به تکمیل ظرفیت</span>
+            <span class="badge bg-warning rounded-3">نزدیک به تکمیل ظرفیت</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -239,16 +247,18 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-6 ol-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -260,7 +270,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-success rounded-4">در حال ثبت‌نام</span>
+            <span class="badge bg-success rounded-3">در حال ثبت‌نام</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -269,8 +279,9 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
@@ -281,8 +292,9 @@ include '../app/Views/partials/navbar.php';
   <h4 id="ai" class="my-3">هوش مصنوعی</h4>
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -294,7 +306,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-primary rounded-4">در حال برگزاری</span>
+            <span class="badge bg-primary rounded-3">در حال برگزاری</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -303,16 +315,18 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -324,7 +338,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-danger rounded-4">ظرفیت تکمیل</span>
+            <span class="badge bg-danger rounded-3">ظرفیت تکمیل</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -333,16 +347,18 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -354,7 +370,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-warning rounded-4">نزدیک به تکمیل ظرفیت</span>
+            <span class="badge bg-warning rounded-3">نزدیک به تکمیل ظرفیت</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -363,16 +379,18 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-6 ol-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -384,7 +402,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-success rounded-4">در حال ثبت‌نام</span>
+            <span class="badge bg-success rounded-3">در حال ثبت‌نام</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -393,8 +411,9 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
@@ -405,8 +424,9 @@ include '../app/Views/partials/navbar.php';
   <h4 id="prog" class="my-3">برنامه نویسی</h4>
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -418,7 +438,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-primary rounded-4">در حال برگزاری</span>
+            <span class="badge bg-primary rounded-3">در حال برگزاری</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -427,16 +447,18 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -448,7 +470,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-danger rounded-4">ظرفیت تکمیل</span>
+            <span class="badge bg-danger rounded-3">ظرفیت تکمیل</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -457,16 +479,18 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -478,7 +502,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-warning rounded-4">نزدیک به تکمیل ظرفیت</span>
+            <span class="badge bg-warning rounded-3">نزدیک به تکمیل ظرفیت</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -487,16 +511,18 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-6 ol-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-4">
-        <div class="card-body border-start border-primary border-5 rounded-4">
+      <div class="card shadow d-flex m-2 p-0 rounded-3">
+        <div class="card-body border-start border-primary border-5 rounded-3">
+          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
           <p class="card-text">
             <span>مدرس:</span>
@@ -508,7 +534,7 @@ include '../app/Views/partials/navbar.php';
           </p>
           <p class="card-text">
             <span>وضعیت:</span>
-            <span class="badge bg-success rounded-4">در حال ثبت‌نام</span>
+            <span class="badge bg-success rounded-3">در حال ثبت‌نام</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -517,8 +543,9 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>مدت دوره:</span>
             <span>20</span>
+            <span>ساعت</span>
           </p>
-          <a href="courses-detail.html" class="btn btn-primary rounded-4">
+          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
             مشاهده جزئیات
           </a>
         </div>
