@@ -18,8 +18,9 @@ include '../app/Views/partials/navbar.php';
 
 <!--Main-->
 <div class="container">
+  <h3 class="my-3">استادان عضو انجمن</h3>
   <div
-    class="row rounded-4 border-5 bg-white p-4 shadow-sm border-start border-primary align-items-center">
+    class="row rounded-3 border-5 bg-white p-4 shadow-sm border-start border-primary align-items-center">
     <div class="col-lg-6 col-sm-12 text-center">
       <h2>نام : حسام رحیمی</h2>
       <p class="h5">سن : 20</p>
@@ -36,13 +37,13 @@ include '../app/Views/partials/navbar.php';
       <img
         src="/assets/img/logo(whit%20text).png"
         alt="T-IMG"
-        class="rounded-4 w-50 h-100" />
+        class="rounded-3 w-50 h-100" />
     </div>
   </div>
   <div class="row mt-5">
     <h4>برترین دانشجویان انجمن</h4>
     <div class="col-lg-4 col-sm-12">
-      <div class="m-5 p-5 bg-white border-5 border-primary border-start rounded-4">
+      <div class="m-5 p-5 bg-white border-5 border-primary border-start rounded-3">
         <img
           src="/assets/img/logo(whit%20text).png"
           class="img-thumbnail border-0"
@@ -56,7 +57,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-4 col-sm-12">
-      <div class="m-5 p-5 bg-white border-5 border-primary border-start rounded-4">
+      <div class="m-5 p-5 bg-white border-5 border-primary border-start rounded-3">
         <img
           src="/assets/img/logo(whit%20text).png"
           class="img-thumbnail border-0"
@@ -70,7 +71,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-4 col-sm-12">
-      <div class="m-5 p-5 bg-white border-5 border-primary border-start rounded-4">
+      <div class="m-5 p-5 bg-white border-5 border-primary border-start rounded-3">
         <img
           src="/assets/img/logo(whit%20text).png"
           class="img-thumbnail border-0"
@@ -87,7 +88,7 @@ include '../app/Views/partials/navbar.php';
 </div>
 
 <!-- Q and A -->
-<h2 class="h2 text-center text-dark m-4 pt-5">سوالات متداول</h2>
+<h2 class="h2 text-center text-dark m-4 pt-5" id="faq">سوالات متداول</h2>
 <div class="container mb-5">
   <div class="accordion m-1" id="accordion-1">
     <div class="accordion-item">
