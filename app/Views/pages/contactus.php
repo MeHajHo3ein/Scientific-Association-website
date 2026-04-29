@@ -20,7 +20,7 @@ include '../app/Views/partials/navbar.php';
 <div class="container">
   <div class="row">
     <div class="col-lg-6 col-md-12 mt-1">
-      <div class="bg-white p-5 rounded-4 w-100 h-100">
+      <div class="bg-white p-5 rounded-3 w-100 h-100">
         <h4 class="text-primary">اطلاعات تماس</h4>
         <h5 class="">ایمیل رسمی:</h5>
         <p class="h4 text-secondary">cs.science.association@university.ac.ir</p>
@@ -40,7 +40,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-6 col-md-12 mt-1">
-      <div class="bg-white p-5 rounded-4 w-100 h-100">
+      <div class="bg-white p-5 rounded-3 w-100 h-100">
         <form class="d-block mx-auto search-box">
           <h4 class="text-primary">ارسال پیام</h4>
           <input
@@ -60,7 +60,7 @@ include '../app/Views/partials/navbar.php';
             class="form-control form rounded-2 mt-4 text-dark"
             placeholder="متن پیام خود را وارد کنید...">
               </textarea>
-          <button class="btn btn-primary rounded-4 mt-4 w-100" type="submit">
+          <button class="btn btn-primary rounded-3 mt-4 w-100" type="submit">
             ارسال
           </button>
         </form>
