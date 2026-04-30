@@ -49,6 +49,12 @@ include '../app/Views/partials/navbar.php';
   </div>
 </div>
 
+<!-- Popup -->
+<p class="alert alert-success alert-dismissible show fade hero-margin fixed-top">
+  لطفا با رفتن به این <a href="/panel" class="alert-link">صفحه</a> اطلاعات خود را کامل کنید.
+  <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
+</p>
+
 <!-- Starting Courses -->
 <div class="bg-secondary-subtle py-5">
   <div class="container d-flex justify-content-between">
