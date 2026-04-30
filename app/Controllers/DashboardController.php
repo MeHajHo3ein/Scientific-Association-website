@@ -6,6 +6,9 @@ class DashboardController
 {
   public function index()
   {
+    if (!isset($_SESSION['user_id'])) {
+      redirect('/');
+    }
     require_once '../app/Views/dashboard/index.php';
   }
 }
