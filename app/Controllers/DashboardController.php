@@ -11,4 +11,9 @@ class DashboardController
     }
     require_once '../app/Views/dashboard/index.php';
   }
+
+  public function showCreateCourse()
+  {
+    require_once '../app/Views/dashboard/create-course.php';
+  }
 }

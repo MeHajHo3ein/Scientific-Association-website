@@ -43,6 +43,7 @@ $router->get('/login', function () {
 
 // Panel
 $router->get('/panel', [DashboardController::class, 'index']);
+$router->get('/panel/course/create', [DashboardController::class, 'showCreateCourse']);
 
 // Logout route
 $router->get('/logout', [AuthController::class, 'logout']);
