@@ -372,9 +372,9 @@
       description: 'در این بخش با ساختار دوره و اهداف کلی آن آشنا می‌شوید.'
     });
   </script>
-  <script src="../src/js/bootstrap.bundle.min.js"></script>
-  <script src="../src/js/admin.js"></script>
-  <script src="../src/js/script.js"></script>
+  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/admin.js"></script>
+  <script src="/assets/js/script.js"></script>
 </body>
 
 </html>
