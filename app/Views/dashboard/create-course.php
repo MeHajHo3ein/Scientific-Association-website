@@ -59,9 +59,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
       <!-- معرفی -->
       <div class="form-group">
         <label for="description">معرفی و توضیحات دوره</label>
-        <textarea class="C-textarea" id="description" name="description"
-          placeholder="توضیح کلی درباره دوره، اهداف، مخاطبین و...">
-                    </textarea>
+        <textarea class="C-textarea" id="description" name="description" placeholder="توضیح کلی درباره دوره، اهداف، مخاطبین و..."></textarea>
       </div>
       <!-- پیش‌نیازها -->
       <div class="form-group">
