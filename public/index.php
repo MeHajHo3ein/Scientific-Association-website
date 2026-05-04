@@ -44,10 +44,31 @@ $router->get('/login', function () {
 // Panel
 $router->get('/panel', [DashboardController::class, 'index']);
 
-// Student Panel
-$router->get('/panel/courses', [DashboardController::class, 'studentCourses']);
-$router->get('/panel/certificates', [DashboardController::class, 'studentCertificates']);
-$router->get('/panel/notifications', [DashboardController::class, 'studentNotifications']);
+// Panel - Courses (*** All Roles ***)
+$router->get('/panel/courses', [DashboardController::class, 'courses']);
+
+// Panel - Notifications (*** All Roles ***)
+$router->get('/panel/notifications', [DashboardController::class, 'notifications']);
+
+// Panel - Articles (*** Teacher & Admin ***)
+$router->get('/panel/articles', [DashboardController::class, 'articles']);
+
+// Panel - Offline Courses (*** Teacher & Admin ***)
+$router->get('/panel/offline-courses', [DashboardController::class, 'offlineCourses']);
+
+// Panel - Create Course (*** Teacher & Admin ***)
+$router->get('/panel/courses/create', [DashboardController::class, 'showCreateCourse']);
+
+// Panel - Create Article (*** Teacher & Admin ***)
+$router->get('/panel/articles/create', [DashboardController::class, 'showCreateArticle']);
+
+// Panel - Admin (*** Admin ***)
+$router->get('/panel/students', [DashboardController::class, 'students']);
+$router->get('/panel/teachers', [DashboardController::class, 'teachers']);
+$router->get('/panel/admins', [DashboardController::class, 'admins']);
+
+// Panel - Certificates (*** Student ***)
+$router->get('/panel/certificates', [DashboardController::class, 'certificates']);
 
 // Logout route
 $router->get('/logout', [AuthController::class, 'logout']);
