@@ -66,7 +66,9 @@
             </button>
           </li>
           <li class="nav-item">
-            <button class="btn my-1 btn-danger text-light w-100">خروج</button>
+            <a href="/logout">
+              <button class="btn my-1 btn-danger text-light w-100">خروج</button>
+            </a>
           </li>
         </ul>
       </div>
