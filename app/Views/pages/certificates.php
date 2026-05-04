@@ -40,7 +40,7 @@ include '../app/Views/partials/navbar.php';
         <p class="card-text">مدرک معتبر سطح مقدماتی با تمرکز بر منطق برنامه‌نویسی، حل مسئله و
           ساخت پروژه‌های ساده.
         </p>
-        <a href="certificate-test.html" class="btn btn-primary rounded-3"> شروع آزمون</a>
+        <a href="certificate-test.html" class="btn btn-outline-primary border-1 rounded-3"> شروع آزمون</a>
       </div>
     </div>
   </div>
@@ -51,7 +51,7 @@ include '../app/Views/partials/navbar.php';
         <p class="card-text">مدرک معتبر سطح مقدماتی با تمرکز بر منطق برنامه‌نویسی، حل مسئله و
           ساخت پروژه‌های ساده.
         </p>
-        <a href="certificate-test.html" class="btn btn-primary rounded-3"> شروع آزمون</a>
+        <a href="certificate-test.html" class="btn btn-outline-primary border-1 rounded-3"> شروع آزمون</a>
       </div>
     </div>
   </div>
@@ -62,7 +62,7 @@ include '../app/Views/partials/navbar.php';
         <p class="card-text">مدرک معتبر سطح مقدماتی با تمرکز بر منطق برنامه‌نویسی، حل مسئله و
           ساخت پروژه‌های ساده.
         </p>
-        <a href="certificate-test.html" class="btn btn-primary rounded-3"> شروع آزمون</a>
+        <a href="certificate-test.html" class="btn btn-outline-primary border-1 rounded-3"> شروع آزمون</a>
       </div>
     </div>
   </div>
