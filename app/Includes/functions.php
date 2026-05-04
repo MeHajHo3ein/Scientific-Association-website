@@ -24,3 +24,49 @@ function redirect($url)
   header("Location: $url");
   exit;
 }
+
+function isActiveRoute($route)
+{
+  $currentUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+  $currentUri = rtrim($currentUri, '/');
+  if (empty($currentUri)) {
+    $currentUri = '/';
+  }
+  return $currentUri === $route;
+}
+
+function getBackButtonText()
+{
+  $currentUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+  $currentUri = rtrim($currentUri, '/');
+  if (empty($currentUri)) {
+    $currentUri = '/';
+  }
+
+  if ($currentUri === '/panel') {
+    return 'برگشت به صفحه اصلی';
+  }
+
+  $panelPages = ['/panel/courses', '/panel/certificates', '/panel/notifications'];
+  if (in_array($currentUri, $panelPages)) {
+    return 'بازگشت به صفحه قبلی';
+  }
+
+  return 'برگشت به صفحه اصلی';
+}
+
+function getBackButtonUrl()
+{
+  $currentUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+  $currentUri = rtrim($currentUri, '/');
+  if (empty($currentUri)) {
+    $currentUri = '/';
+  }
+
+  $panelPages = ['/panel/courses', '/panel/certificates', '/panel/notifications'];
+  if (in_array($currentUri, $panelPages)) {
+    return '/panel';
+  }
+
+  return '/';
+}
