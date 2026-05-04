@@ -47,7 +47,18 @@ function getBackButtonText()
     return 'برگشت به صفحه اصلی';
   }
 
-  $panelPages = ['/panel/courses', '/panel/certificates', '/panel/notifications'];
+  $panelPages = [
+    '/panel/courses',
+    '/panel/courses/create',
+    '/panel/certificates',
+    '/panel/notifications',
+    '/panel/articles',
+    '/panel/articles/create',
+    '/panel/offline-courses',
+    '/panel/students',
+    '/panel/teachers',
+    '/panel/admins',
+  ];
   if (in_array($currentUri, $panelPages)) {
     return 'بازگشت به صفحه قبلی';
   }
@@ -63,7 +74,18 @@ function getBackButtonUrl()
     $currentUri = '/';
   }
 
-  $panelPages = ['/panel/courses', '/panel/certificates', '/panel/notifications'];
+  $panelPages = [
+    '/panel/courses',
+    '/panel/courses/create',
+    '/panel/certificates',
+    '/panel/notifications',
+    '/panel/articles',
+    '/panel/articles/create',
+    '/panel/offline-courses',
+    '/panel/students',
+    '/panel/teachers',
+    '/panel/admins',
+  ];
   if (in_array($currentUri, $panelPages)) {
     return '/panel';
   }
