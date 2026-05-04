@@ -6,10 +6,7 @@ class DashboardController
 {
   public function index()
   {
-    if (!isset($_SESSION['user_id'])) {
-      redirect('/');
-    }
-
+    $this->checkAuth();
     $role = $_SESSION['role'] ?? 'student';
 
     switch ($role) {
@@ -25,24 +22,135 @@ class DashboardController
     }
   }
 
-  // Student Pages
-  public function studentCourses()
+  // Courses
+  public function courses()
   {
-    require_once '../app/Views/dashboard/student/courses.php';
+    $this->checkAuth();
+    $role = $_SESSION['role'] ?? 'student';
+
+    switch ($role) {
+      case 'admin':
+        require_once '../app/Views/dashboard/admin/courses.php';
+        break;
+      case 'teacher':
+        require_once '../app/Views/dashboard/teacher/courses.php';
+        break;
+      default:
+        require_once '../app/Views/dashboard/student/courses.php';
+        break;
+    }
   }
 
-  public function studentCertificates()
+  // Notifications
+  public function notifications()
   {
+    $this->checkAuth();
+    $role = $_SESSION['role'] ?? 'student';
+
+    switch ($role) {
+      case 'admin':
+        require_once '../app/Views/dashboard/admin/notifications.php';
+        break;
+      case 'teacher':
+        require_once '../app/Views/dashboard/teacher/notifications.php';
+        break;
+      default:
+        require_once '../app/Views/dashboard/student/notifications.php';
+        break;
+    }
+  }
+
+  // Student-only pages
+  public function certificates()
+  {
+    $this->checkAuth();
     require_once '../app/Views/dashboard/student/certificates.php';
   }
 
-  public function studentNotifications()
+  // Teacher-only pages
+  public function articles()
   {
-    require_once '../app/Views/dashboard/student/notifications.php';
+    $this->checkAuth();
+    $role = $_SESSION['role'] ?? 'teacher';
+
+    switch ($role) {
+      case 'admin':
+        require_once '../app/Views/dashboard/admin/articles.php';
+        break;
+      default:
+        require_once '../app/Views/dashboard/teacher/articles.php';
+        break;
+    }
+  }
+
+  public function offlineCourses()
+  {
+    $this->checkAuth();
+    $role = $_SESSION['role'] ?? 'teacher';
+
+    switch ($role) {
+      case 'admin':
+        require_once '../app/Views/dashboard/admin/offline-courses.php';
+        break;
+      default:
+        require_once '../app/Views/dashboard/teacher/offline-courses.php';
+        break;
+    }
   }
 
   public function showCreateCourse()
   {
-    require_once '../app/Views/dashboard/create-course.php';
+    $this->checkAuth();
+    $role = $_SESSION['role'] ?? 'teacher';
+
+    switch ($role) {
+      case 'admin':
+        require_once '../app/Views/dashboard/admin/create-course.php';
+        break;
+      default:
+        require_once '../app/Views/dashboard/teacher/create-course.php';
+        break;
+    }
+  }
+
+  public function showCreateArticle()
+  {
+    $this->checkAuth();
+    $role = $_SESSION['role'] ?? 'teacher';
+
+    switch ($role) {
+      case 'admin':
+        require_once '../app/Views/dashboard/admin/create-article.php';
+        break;
+      default:
+        require_once '../app/Views/dashboard/teacher/create-article.php';
+        break;
+    }
+  }
+
+  // Admin-only pages
+  public function students()
+  {
+    $this->checkAuth();
+    require_once '../app/Views/dashboard/admin/students.php';
+  }
+
+  public function teachers()
+  {
+    $this->checkAuth();
+    require_once '../app/Views/dashboard/admin/teachers.php';
+  }
+
+  public function admins()
+  {
+    $this->checkAuth();
+    require_once '../app/Views/dashboard/admin/admins.php';
+  }
+
+  private function checkAuth()
+  {
+    if (!isset($_SESSION['user_id'])) {
+      redirect('/');
+    }
   }
 }
