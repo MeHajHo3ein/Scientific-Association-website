@@ -45,7 +45,7 @@ include '../app/Views/partials/navbar.php';
             <span>هزینه:</span>
             <span>رایگان</span>
           </p>
-          <a href="" class="btn btn-primary rounded-3">
+          <a href="" class="btn btn-outline-primary border-1">
             دانلود
           </a>
           <!--                </div>-->
@@ -78,7 +78,7 @@ include '../app/Views/partials/navbar.php';
             <span>هزینه:</span>
             <span>رایگان</span>
           </p>
-          <a href="" class="btn btn-primary rounded-3">
+          <a href="" class="btn btn-outline-primary border-1">
             دانلود
           </a>
           <!--                </div>-->
@@ -111,7 +111,7 @@ include '../app/Views/partials/navbar.php';
             <span>هزینه:</span>
             <span>رایگان</span>
           </p>
-          <a href="" class="btn btn-primary rounded-3">
+          <a href="" class="btn btn-outline-primary border-1">
             دانلود
           </a>
           <!--                </div>-->
@@ -146,7 +146,7 @@ include '../app/Views/partials/navbar.php';
             <span>هزینه:</span>
             <span>رایگان</span>
           </p>
-          <a href="" class="btn btn-primary rounded-3">
+          <a href="" class="btn btn-outline-primary border-1">
             دانلود
           </a>
           <!--                </div>-->
@@ -179,7 +179,7 @@ include '../app/Views/partials/navbar.php';
             <span>هزینه:</span>
             <span>رایگان</span>
           </p>
-          <a href="" class="btn btn-primary rounded-3">
+          <a href="" class="btn btn-outline-primary border-1">
             دانلود
           </a>
           <!--                </div>-->
@@ -212,7 +212,7 @@ include '../app/Views/partials/navbar.php';
             <span>هزینه:</span>
             <span>رایگان</span>
           </p>
-          <a href="" class="btn btn-primary rounded-3">
+          <a href="" class="btn btn-outline-primary border-1">
             دانلود
           </a>
           <!--                </div>-->
