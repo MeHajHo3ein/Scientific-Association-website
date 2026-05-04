@@ -28,7 +28,7 @@ include '../app/Views/partials/navbar.php';
   <h4 id="webdev" class="my-3">توسعه وب</h4>
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -60,7 +60,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -92,7 +92,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -124,7 +124,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-3 col-md-6 ol-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -160,7 +160,7 @@ include '../app/Views/partials/navbar.php';
   <h4 id="network" class="my-3">شبکه</h4>
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -192,7 +192,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -224,7 +224,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -256,7 +256,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-3 col-md-6 ol-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -292,7 +292,7 @@ include '../app/Views/partials/navbar.php';
   <h4 id="ai" class="my-3">هوش مصنوعی</h4>
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -324,7 +324,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -356,7 +356,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -388,7 +388,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-3 col-md-6 ol-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -424,7 +424,7 @@ include '../app/Views/partials/navbar.php';
   <h4 id="prog" class="my-3">برنامه نویسی</h4>
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -456,7 +456,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -488,7 +488,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
@@ -520,7 +520,7 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
     <div class="col-lg-3 col-md-6 ol-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3">
+      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
         <div class="card-body border-start border-primary border-5 rounded-3">
           <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
           <h5 class="card-title">طراحی مدرن Front-End</h5>
