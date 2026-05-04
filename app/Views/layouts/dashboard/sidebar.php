@@ -28,48 +28,46 @@
             <h5 class="text-light p-3 text-center">پنل مدیریت</h5>
             <li class="nav-item">
               <a
-                href="/"
-                class="text-start btn my-1 btn-outline-light py-2 w-100 active">برگشت</a>
+                href="<?= getBackButtonUrl(); ?>"
+                class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel') ? 'active' : ''; ?>"><?= getBackButtonText(); ?></a>
             </li>
             <li class="nav-item">
-              <button class="text-start btn my-1 btn-outline-light py-2 w-100">
-                ادمین ها
-              </button>
-            </li>
-            <li class="nav-item">
-              <button class="text-start btn my-1 btn-outline-light py-2 w-100">
+              <a href="/panel/students" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/students') ? 'active' : ''; ?>">
                 دانشجویان
-              </button>
-            </li>
-            <li class="nav-item">
-              <button class="text-start btn my-1 btn-outline-light py-2 w-100">
-                مدرسین
-              </button>
-            </li>
-            <li class="nav-item">
-              <button class="text-start btn my-1 btn-outline-light py-2 w-100">
-                دوره ها
-              </button>
-            </li>
-            <li class="nav-item">
-              <button class="text-start btn my-1 btn-outline-light py-2 w-100">
-                مقاله ها
-              </button>
-            </li>
-            <li class="nav-item">
-              <button class="text-start btn my-1 btn-outline-light py-2 w-100">
-                فایل های آموزش آفلاین
-              </button>
-            </li>
-            <li class="nav-item">
-              <button class="text-start btn my-1 btn-outline-light py-2 borde w-100">
-                اعلانات
-              </button>
-            </li>
-            <li class="nav-item">
-              <a href="/logout">
-                <button class="btn my-1 btn-danger text-light w-100">خروج</button>
               </a>
+            </li>
+            <li class="nav-item">
+              <a href="/panel/teachers" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/teachers') ? 'active' : ''; ?>">
+                استادان
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/panel/admins" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/admins') ? 'active' : ''; ?>">
+                ادمین ها
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/panel/courses" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/courses') ? 'active' : ''; ?>">
+                دوره ها
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/panel/articles" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/articles') ? 'active' : ''; ?>">
+                مقالات
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/panel/offline-courses" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/offline-courses') ? 'active' : ''; ?>">
+                فایل های قابل دانلود
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/panel/notifications" class="text-start btn my-1 btn-outline-light py-2 borde w-100 <?= isActiveRoute('/panel/notifications') ? 'active' : ''; ?>">
+                اعلانات
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/logout" class="btn my-1 btn-danger text-light w-100">خروج</a>
             </li>
           </ul>
         <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] === 'teacher'): ?>
@@ -77,33 +75,23 @@
             <h5 class="text-light p-3 text-center">پنل مدیریت</h5>
             <li class="nav-item">
               <a
-                href="/"
-                class="text-start btn my-1 btn-outline-light py-2 w-100 active">برگشت</a>
+                href="<?= getBackButtonUrl(); ?>"
+                class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel') ? 'active' : ""; ?>"><?= getBackButtonText(); ?></a>
             </li>
             <li class="nav-item">
-              <button class="text-start btn my-1 btn-outline-light py-2 w-100">
-                دوره ها
-              </button>
+              <a href="/panel/courses" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/courses') ? 'active' : ""; ?>">دوره ها</a>
             </li>
             <li class="nav-item">
-              <button class="text-start btn my-1 btn-outline-light py-2 w-100">
-                مقاله ها
-              </button>
+              <a href="/panel/articles" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/articles') ? 'active' : ''; ?>">مقالات</a>
             </li>
             <li class="nav-item">
-              <button class="text-start btn my-1 btn-outline-light py-2 w-100">
-                فایل های قابل دانلود
-              </button>
+              <a href="/panel/offline-courses" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/offline-courses') ? 'active' : ""; ?>">فایل های قابل دانلود</a>
             </li>
             <li class="nav-item">
-              <button class="text-start btn my-1 btn-outline-light py-2 borde w-100">
-                اعلانات
-              </button>
+              <a href="/panel/notifications" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/notifications') ? 'active' : ''; ?>">اعلانات</a>
             </li>
             <li class="nav-item">
-              <a href="/logout">
-                <button class="btn my-1 btn-danger text-light w-100">خروج</button>
-              </a>
+              <a href="/logout" class="btn my-1 btn-danger text-light w-100">خروج</a>
             </li>
           </ul>
         <?php else: ?>
