@@ -49,12 +49,18 @@
 
       <!-- Username field -->
       <div class="mb-3">
-        <label for="username" class="form-label fw-medium">شماره موبایل یا ایمیلتان را وارد کنید</label>
+        <label for="username" class="form-label fw-medium">ایمیل یا شماره تلفن</label>
         <div class="input-group">
           <span class="input-group-text bg-white">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-              <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="text-secondary"
+              viewBox="0 0 16 16">
+              <path
+                d="M3.654 1.328a.678.678 0 0 1 .737-.166l2.522 1.01c.329.132.525.464.475.806l-.5 3.479a.678.678 0 0 1-.743.58l-1.635-.163a11.72 11.72 0 0 0 5.058 5.058l.163-1.635a.678.678 0 0 1 .58-.743l3.479-.5a.678.678 0 0 1 .806.475l1.01 2.522a.678.678 0 0 1-.166.737l-1.29 1.29c-.733.733-1.826.98-2.747.623a17.478 17.478 0 0 1-6.482-4.03 17.478 17.478 0 0 1-4.03-6.482c-.357-.921-.11-2.014.623-2.747l1.29-1.29z" />
             </svg>
           </span>
           <input
@@ -62,9 +68,10 @@
             class="form-control rounded-end-2"
             id="username"
             name="username"
+            placeholder="example@gmail.com/09xxxxxxxxx"
             required />
-          <div class="invalid-feedback">لطفاً یک ایمیل یا شماره موبایل معتبر وارد کنید.</div>
-          <div class="valid-feedback">ایمیل یا شماره موبایل معتبر است.</div>
+          <div class="invalid-feedback">لطفاً یک ایمیل یا شماره تلفن معتبر وارد کنید.</div>
+          <div class="valid-feedback">ایمیل یا شماره تلفن معتبر است.</div>
         </div>
       </div>
       <!-- Password -->
@@ -88,6 +95,7 @@
             class="form-control border-end-0"
             id="password"
             name="password"
+            placeholder="حداقل ۸ کاراکتر"
             required
             minlength="8" />
           <button
@@ -109,6 +117,7 @@
                 d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
             </svg>
           </button>
+          <div class="invalid-feedback">رمز عبور باید حداقل ۸ کاراکتر باشد.</div>
         </div>
       </div>
       <!-- Submit -->
