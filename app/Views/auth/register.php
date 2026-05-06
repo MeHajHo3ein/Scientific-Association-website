@@ -76,39 +76,9 @@
           <div class="valid-feedback">نام معتبر است.</div>
         </div>
       </div>
-      <!-- Mobile -->
-      <div class="mb-3">
-        <label for="mobile" class="form-label fw-medium">شماره موبایل</label>
-        <div class="input-group">
-          <span class="input-group-text bg-white">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="text-secondary"
-              viewBox="0 0 16 16">
-              <path
-                d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
-              <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-            </svg>
-          </span>
-          <input
-            type="tel"
-            class="form-control rounded-end-2 D-left"
-            id="mobile"
-            name="mobile"
-            placeholder="۰۹xxxxxxxxx"
-            required
-            maxlength="11"
-            value="<?= isset($mobile) ? htmlspecialchars($mobile) : ''; ?>" />
-          <div class="invalid-feedback">لطفاً یک شماره موبایل معتبر وارد کنید.</div>
-          <div class="valid-feedback">شماره موبایل معتبر است.</div>
-        </div>
-      </div>
       <!-- Email -->
       <div class="mb-3">
-        <label for="email" class="form-label fw-medium">آدرس ایمیل</label>
+        <label for="email" class="form-label fw-medium">ایمیل</label>
         <div class="input-group">
           <span class="input-group-text bg-white">
             <svg
@@ -132,6 +102,36 @@
             required />
           <div class="invalid-feedback">لطفاً یک ایمیل معتبر وارد کنید.</div>
           <div class="valid-feedback">ایمیل معتبر است.</div>
+        </div>
+      </div>
+      <!-- Mobile -->
+      <div class="mb-3">
+        <label for="mobile" class="form-label fw-medium">شماره تلفن</label>
+        <div class="input-group">
+          <span class="input-group-text bg-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="text-secondary"
+              viewBox="0 0 16 16">
+              <path
+                d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
+              <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+            </svg>
+          </span>
+          <input
+            type="tel"
+            class="form-control rounded-end-2 D-left"
+            id="mobile"
+            name="mobile"
+            placeholder="09xxxxxxxxx"
+            required
+            maxlength="11"
+            value="<?= isset($mobile) ? htmlspecialchars($mobile) : ''; ?>" />
+          <div class="invalid-feedback">لطفاً یک شماره موبایل معتبر وارد کنید.</div>
+          <div class="valid-feedback">شماره موبایل معتبر است.</div>
         </div>
       </div>
       <!-- Password -->
@@ -187,8 +187,55 @@
         </div>
         <div class="invalid-feedback d-block small" id="passwordError"></div>
       </div>
+      <!-- Confirm Password -->
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label fw-medium">تکرار رمز عبور</label>
+        <div class="input-group">
+          <span class="input-group-text bg-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="text-secondary"
+              viewBox="0 0 16 16">
+              <path
+                d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+            </svg>
+          </span>
+          <input
+            type="password"
+            class="form-control border-end-0"
+            id="confirmPassword"
+            placeholder="رمز عبور را دوباره وارد کنید"
+            required />
+          <button
+            class="input-group-text toggle-password bg-white"
+            type="button"
+            id="toggleConfirmPassword"
+            aria-label="نمایش رمز">
+            <svg
+              id="eyeIconConfirm"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="text-secondary"
+              viewBox="0 0 16 16">
+              <path
+                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+              <path
+                d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+            </svg>
+          </button>
+        </div>
+        <div class="invalid-feedback" id="confirmPasswordError">
+          رمزهای عبور مطابقت ندارند.
+        </div>
+        <div class="valid-feedback">رمز عبور مطابقت دارد.</div>
+      </div>
       <!-- Terms -->
-      <div class="mb-4">
+      <!-- <div class="mb-4">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="terms" name="terms" required />
           <label class="form-check-label small text-muted" for="terms">
@@ -197,7 +244,7 @@
           </label>
           <div class="invalid-feedback">باید قوانین را بپذیرید.</div>
         </div>
-      </div>
+      </div> -->
       <!-- Submit -->
       <button
         type="submit"

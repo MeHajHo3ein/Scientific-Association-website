@@ -1,14 +1,18 @@
 const form = document.getElementById("registerForm");
 const fullNameInput = document.getElementById("fullName");
-const mobileInput = document.getElementById("mobile");
 const emailInput = document.getElementById("email");
+const mobileInput = document.getElementById("mobile");
 const passwordInput = document.getElementById("password");
-const termsCheckbox = document.getElementById("terms");
+const confirmPasswordInput = document.getElementById("confirmPassword");
+// const termsCheckbox = document.getElementById("terms");
 const toggleBtn = document.getElementById("togglePassword");
+const toggleConfirmBtn = document.getElementById("toggleConfirmPassword");
 const eyeIcon = document.getElementById("eyeIcon");
+const eyeIconConfirm = document.getElementById("eyeIconConfirm");
 const strengthFill = document.getElementById("strengthFill");
 const strengthLabel = document.getElementById("strengthLabel");
 const passwordError = document.getElementById("passwordError");
+const confirmPasswordError = document.getElementById("confirmPasswordError");
 const submitBtn = document.getElementById("submitBtn");
 
 const eyeOpen = `<path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>`;
@@ -20,6 +24,12 @@ toggleBtn.addEventListener("click", () => {
   const isPass = passwordInput.type === "password";
   passwordInput.type = isPass ? "text" : "password";
   eyeIcon.innerHTML = isPass ? eyeClosed : eyeOpen;
+});
+
+toggleConfirmBtn.addEventListener("click", () => {
+  const isPass = confirmPasswordInput.type === "password";
+  confirmPasswordInput.type = isPass ? "text" : "password";
+  eyeIconConfirm.innerHTML = isPass ? eyeClosed : eyeOpen;
 });
 
 passwordInput.addEventListener("input", () => {
@@ -51,13 +61,43 @@ passwordInput.addEventListener("input", () => {
   strengthFill.className = `strength-fill ${lvl.cls}`;
   strengthLabel.textContent = `قدرت رمز: ${lvl.label}`;
   strengthLabel.className = `small ${lvl.labelCls}`;
+
+  validateConfirmPassword();
 });
+
+confirmPasswordInput.addEventListener("input", validateConfirmPassword);
+
+function validateConfirmPassword() {
+  if (!confirmPasswordInput.value) {
+    confirmPasswordInput.classList.remove("is-valid", "is-invalid");
+    confirmPasswordError.style.display = "none";
+    return;
+  }
+
+  const match = passwordInput.value === confirmPasswordInput.value;
+  confirmPasswordInput.classList.toggle("is-valid", match);
+  confirmPasswordInput.classList.toggle("is-invalid", !match);
+
+  if (!match) {
+    confirmPasswordInput.textContent = "رمزهای عبور مطابقت ندارند";
+    confirmPasswordError.style.display = "block";
+  } else {
+    confirmPasswordError.style.display = "none";
+  }
+}
 
 fullNameInput.addEventListener("blur", () => {
   if (!fullNameInput.value) return;
   const ok = fullNameInput.value.length >= 3;
   fullNameInput.classList.toggle("is-valid", ok);
   fullNameInput.classList.toggle("is-invalid", !ok);
+});
+
+emailInput.addEventListener("blur", () => {
+  if (!emailInput.value) return;
+  const ok = /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(emailInput.value);
+  emailInput.classList.toggle("is-valid", ok);
+  emailInput.classList.toggle("is-invalid", !ok);
 });
 
 mobileInput.addEventListener("blur", () => {
@@ -69,13 +109,6 @@ mobileInput.addEventListener("blur", () => {
 
 mobileInput.addEventListener("input", (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, "");
-});
-
-emailInput.addEventListener("blur", () => {
-  if (!emailInput.value) return;
-  const ok = /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(emailInput.value);
-  emailInput.classList.toggle("is-valid", ok);
-  emailInput.classList.toggle("is-invalid", !ok);
 });
 
 form.addEventListener("submit", (e) => {
@@ -93,17 +126,17 @@ form.addEventListener("submit", (e) => {
     fullNameInput.classList.remove("is-invalid");
   }
 
-  // Mobile
-  const mobileOk = /^09[0-9]{9}$/.test(mobileInput.value);
-  mobileInput.classList.toggle("is-valid", mobileOk);
-  mobileInput.classList.toggle("is-invalid", !mobileOk);
-  if (!mobileOk) valid = false;
-
   // Email
   const emailOk = /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(emailInput.value);
   emailInput.classList.toggle("is-valid", emailOk);
   emailInput.classList.toggle("is-invalid", !emailOk);
   if (!emailOk) valid = false;
+
+  // Mobile
+  const mobileOk = /^09[0-9]{9}$/.test(mobileInput.value);
+  mobileInput.classList.toggle("is-valid", mobileOk);
+  mobileInput.classList.toggle("is-invalid", !mobileOk);
+  if (!mobileOk) valid = false;
 
   // Password
   if (passwordInput.value.length < 8) {
@@ -116,13 +149,33 @@ form.addEventListener("submit", (e) => {
     passwordInput.classList.remove("is-invalid");
   }
 
-  // Terms
-  if (!termsCheckbox.checked) {
-    termsCheckbox.classList.add("is-invalid");
+  // Confirm Password
+  if (!confirmPasswordInput.value) {
+    confirmPasswordInput.classList.add("is-invalid");
+    confirmPasswordInput.classList.remove("is-valid");
+    confirmPasswordError.textContent = "تکرار رمز عبور الزامی است.";
+    confirmPasswordError.style.display = "block";
     valid = false;
   } else {
-    termsCheckbox.classList.remove("is-invalid");
+    const match = passwordInput.value === confirmPasswordInput.value;
+    confirmPasswordInput.classList.toggle("is-valid", match);
+    confirmPasswordInput.classList.toggle("is-invalid", !match);
+    if (!match) {
+      confirmPasswordError.textContent = "رمزهای عبور مطابقت ندارند.";
+      confirmPasswordError.style.display = "block";
+      valid = false;
+    } else {
+      confirmPasswordError.style.display = "none";
+    }
   }
+
+  // Terms
+  // if (!termsCheckbox.checked) {
+  //   termsCheckbox.classList.add("is-invalid");
+  //   valid = false;
+  // } else {
+  //   termsCheckbox.classList.remove("is-invalid");
+  // }
 
   if (valid) {
     isSubmitting = true;
