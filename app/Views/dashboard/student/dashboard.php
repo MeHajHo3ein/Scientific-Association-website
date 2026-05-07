@@ -69,7 +69,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
               type="email"
               class="form-control rounded-end-2"
               id="email"
-              placeholder="example@email.com"
+              placeholder="example@gmail.com"
               required />
             <div class="invalid-feedback">لطفاً یک ایمیل معتبر وارد کنید.</div>
             <div class="valid-feedback">ایمیل معتبر است.</div>
@@ -92,10 +92,11 @@ include '../app/Views/layouts/dashboard/sidebar.php';
               </svg>
             </span>
             <input
-              type="number"
+              type="tel"
               class="form-control rounded-end-2"
               id="phon-number"
-              placeholder="09131234567"
+              placeholder="09xxxxxxxxx"
+              maxlength="11"
               required />
             <div class="invalid-feedback">لطفاً یک شماره معتبر وارد کنید.</div>
             <div class="valid-feedback">شماره معتبر است.</div>
