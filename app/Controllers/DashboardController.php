@@ -2,11 +2,31 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
+
 class DashboardController
 {
+  private $userModel;
+  public function __construct()
+  {
+    $this->userModel = new User();
+  }
+
   public function index()
   {
     $this->checkAuth();
+
+    $user = $this->userModel->findById($_SESSION['user_id']);
+    if (!$user) {
+      session_destroy();
+      redirect('/auth/login');
+    }
+
+    $_SESSION['full_name'] = $user['full_name'];
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['mobile'] = $user['mobile'];
+    $_SESSION['role'] = $user['role'];
+
     $role = $_SESSION['role'] ?? 'student';
 
     switch ($role) {

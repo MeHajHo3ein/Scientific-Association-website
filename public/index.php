@@ -12,6 +12,7 @@ use App\Controllers\AuthController;
 use App\Controllers\DashboardController;
 use App\Controllers\HomeController;
 use App\Controllers\PagesController;
+use App\Controllers\ProfileController;
 use App\Core\Router;
 
 $router = new Router();
@@ -66,6 +67,8 @@ $router->get('/panel/articles/create', [DashboardController::class, 'showCreateA
 $router->get('/panel/students', [DashboardController::class, 'students']);
 $router->get('/panel/teachers', [DashboardController::class, 'teachers']);
 $router->get('/panel/admins', [DashboardController::class, 'admins']);
+
+$router->post('/panel/update-profile', [ProfileController::class, 'update']);
 
 // Panel - Certificates (*** Student ***)
 $router->get('/panel/certificates', [DashboardController::class, 'certificates']);
