@@ -33,6 +33,14 @@ class ProfileController
       }
     }
 
+    // Check if student has already updated
+    if ($_SESSION['role'] === 'student') {
+      if ($this->userModel->hasUpdatedProfile($userId)) {
+        $_SESSION['warning'] = 'شما قبلاً اطلاعات خود را ویرایش کرده‌اید و تنها <strong>یک بار</strong> می‌توانید تغییر دهید.';
+        redirect('/panel');
+      }
+    }
+
     $errors = [];
 
     // Validate full name
