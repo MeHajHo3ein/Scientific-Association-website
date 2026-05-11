@@ -2,6 +2,9 @@
 $pageTitle = 'پنل شخصی';
 include '../app/Views/layouts/dashboard/header.php';
 include '../app/Views/layouts/dashboard/sidebar.php';
+
+$isTeacher = (isset($_SESSION['role']) && $_SESSION['role'] === 'teacher');
+$isTeacherUpdated = ($isTeacher && isset($_SESSION['profile_updated']) && $_SESSION['profile_updated'] == 1);
 ?>
 
 <!-- Main Content -->
@@ -9,7 +12,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
   <div class="container">
     <!--Hero-->
     <p class="bg-white my-3 p-3 text-dark">
-      <span>حسام رحیمی</span>
+      <span><?= htmlspecialchars($_SESSION['full_name'] ?? "کاربر"); ?></span>
       خوش آمدید به پنل مدیریت انجمن علمی.
     </p>
     <p class="bg-white my-3 p-3 text-dark">
@@ -20,7 +23,60 @@ include '../app/Views/layouts/dashboard/sidebar.php';
       <div class="text-center mb-4">
         <h4 class="fw-bold text-dark mb-1">اطلاعات حساب کاربری</h4>
       </div>
-      <form id="registerForm" novalidate>
+
+      <!-- *** Alert *** -->
+      <!-- Success -->
+      <?php if (isset($_SESSION['success'])): ?>
+        <div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+          <?= $_SESSION['success']; ?>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php unset($_SESSION['success']); ?>
+      <?php endif; ?>
+
+      <!-- Error -->
+      <?php if (isset($_SESSION['error'])): ?>
+        <div id="myAlert" class="alert alert-danger alert-dismissible fade show" role="alert">
+          <?= $_SESSION['error']; ?>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php unset($_SESSION['error']); ?>
+      <?php endif; ?>
+
+      <!-- Info -->
+      <?php if (isset($_SESSION['info'])): ?>
+        <div id="myAlert" class="alert alert-info alert-dismissible fade show" role="alert">
+          <?= $_SESSION['info']; ?>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php unset($_SESSION['info']); ?>
+      <?php endif; ?>
+
+      <!-- Warning -->
+      <?php if (isset($_SESSION['warning'])): ?>
+        <div id="myAlert" class="alert alert-info alert-dismissible fade show" role="alert">
+          <?= $_SESSION['warning']; ?>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <?php endif; ?>
+
+      <!-- Only Teacher - Before update -->
+      <?php if ($isTeacher && !$isTeacherUpdated): ?>
+        <div id="myAlert" class="alert alert-info alert-dismissible fade show" role="alert">
+          شما فقط <strong> یک دفعه</strong> می توانید اطلاعات خود را تغییر دهید.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <?php endif; ?>
+
+      <!-- Only Teacher - After update -->
+      <?php if ($isTeacherUpdated && !isset($_SESSION['success']) && !isset($_SESSION['warning'])): ?>
+        <div id="myAlert" class="alert alert-info alert-dismissible fade show" role="alert">
+          شما قبلاً اطلاعات خود را ویرایش کرده‌اید. امکان ویرایش مجدد وجود ندارد.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <?php endif; ?>
+
+      <form id="registerForm" action="/panel/update-profile" method="POST" novalidate>
         <!-- Full Name -->
         <div class="mb-3">
           <label for="fullName" class="form-label fw-medium">نام و نام خانوادگی</label>
@@ -37,9 +93,12 @@ include '../app/Views/layouts/dashboard/sidebar.php';
               type="text"
               class="form-control rounded-end-2"
               id="fullName"
+              name="fullName"
               placeholder="نام کامل خود را وارد کنید"
+              value="<?= htmlspecialchars($_SESSION['full_name'] ?? "کاربر"); ?>"
               required
-              minlength="3">
+              minlength="3"
+              <?= $isTeacherUpdated ? 'disabled' : ''; ?> />
             <div class="invalid-feedback">نام باید حداقل ۳ کاراکتر باشد.</div>
             <div class="valid-feedback">نام معتبر است.</div>
           </div>
@@ -60,15 +119,18 @@ include '../app/Views/layouts/dashboard/sidebar.php';
               type="email"
               class="form-control rounded-end-2"
               id="email"
+              name="email"
               placeholder="example@gmail.com"
-              required>
+              value="<?= htmlspecialchars($_SESSION['email']); ?>"
+              required
+              <?= $isTeacherUpdated ? 'disabled' : ''; ?> />
             <div class="invalid-feedback">لطفاً یک ایمیل معتبر وارد کنید.</div>
             <div class="valid-feedback">ایمیل معتبر است.</div>
           </div>
         </div>
         <!--Phone Number-->
         <div class="mb-3">
-          <label for="phon-number" class="form-label fw-medium">شماره تلفن</label>
+          <label for="mobile" class="form-label fw-medium">شماره تلفن</label>
           <div class="input-group">
             <span class="input-group-text bg-white">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -81,10 +143,13 @@ include '../app/Views/layouts/dashboard/sidebar.php';
             <input
               type="tel"
               class="form-control rounded-end-2"
-              id="phon-number"
+              id="mobile"
+              name="mobile"
               placeholder="09xxxxxxxxx"
+              value="<?= htmlspecialchars($_SESSION['mobile']); ?>"
               maxlength="11"
-              required>
+              required
+              <?= $isTeacherUpdated ? 'disabled' : ''; ?> />
             <div class="invalid-feedback">لطفاً یک شماره معتبر وارد کنید.</div>
             <div class="valid-feedback">شماره معتبر است.</div>
           </div>
@@ -105,9 +170,10 @@ include '../app/Views/layouts/dashboard/sidebar.php';
               type="password"
               class="form-control border-end-0"
               id="password"
+              name="password"
               placeholder="حداقل ۸ کاراکتر"
-              required
-              minlength="8">
+              minlength="8"
+              <?= $isTeacherUpdated ? 'disabled' : ''; ?> />
             <button class="input-group-text toggle-password bg-white" type="button" id="togglePassword"
               aria-label="نمایش رمز">
               <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -128,15 +194,23 @@ include '../app/Views/layouts/dashboard/sidebar.php';
           <div class="invalid-feedback d-block small" id="passwordError"></div>
         </div>
         <!-- Submit -->
-        <button type="submit" class="btn btn-primary w-100 fw-semibold py-2" id="submitBtn">
-          ثبت‌تغییرات
-        </button>
+        <?php if (!$isTeacherUpdated): ?>
+          <button type="submit" class="btn btn-primary w-100 fw-semibold py-2" id="submitBtn">
+            ثبت‌تغییرات
+          </button>
+        <?php else: ?>
+          <button type="button" class="btn btn-secondary w-100 fw-semibold py-2" style="cursor: not-allowed;">
+            امکان ویرایش وجود ندارد
+          </button>
+        <?php endif; ?>
       </form>
     </div>
 
   </div>
 </div>
 </div>
+
+<script src="/assets/js/dashboard-profile.js"></script>
 
 <?php
 include '../app/Views/layouts/dashboard/footer.php';
