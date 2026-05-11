@@ -173,7 +173,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
 </div>
 </div>
 
-<script src="/assets/js/register.js"></script>
+<script src="/assets/js/dashboard-profile.js"></script>
 
 <?php
 include '../app/Views/layouts/dashboard/footer.php';
