@@ -93,7 +93,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
               id="email"
               name="email"
               placeholder="example@gmail.com"
-              value="<?= htmlspecialchars($_SESSION['email'] ?? "کاربر"); ?>"
+              value="<?= htmlspecialchars($_SESSION['email']); ?>"
               required>
             <div class="invalid-feedback">لطفاً یک ایمیل معتبر وارد کنید.</div>
             <div class="valid-feedback">ایمیل معتبر است.</div>
@@ -117,7 +117,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
               id="mobile"
               name="mobile"
               placeholder="09xxxxxxxxx"
-              value="<?= htmlspecialchars($_SESSION['mobile'] ?? "کاربر"); ?>"
+              value="<?= htmlspecialchars($_SESSION['mobile']); ?>"
               maxlength="11"
               required>
             <div class="invalid-feedback">لطفاً یک شماره معتبر وارد کنید.</div>
