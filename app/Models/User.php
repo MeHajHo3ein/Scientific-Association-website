@@ -57,6 +57,24 @@ class User
     ]);
   }
 
+  // Mark profile as updated
+  public function markProfileAsUpdated($id)
+  {
+    $query = "UPDATE users SET profile_updated = 1 WHERE id = :id";
+    $stmt = $this->db->prepare($query);
+    return $stmt->execute([':id' => $id]);
+  }
+
+  // Check if user has already updated profile
+  public function hasUpdatedProfile($id)
+  {
+    $query = "SELECT profile_updated FROM users WHERE id = :id";
+    $stmt = $this->db->prepare($query);
+    $stmt->execute([':id' => $id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result && $result['profile_updated'] == 1;
+  }
+
   // Check if email is already exist
   public function isEmailExist($email, $userId)
   {
