@@ -26,6 +26,7 @@ class DashboardController
     $_SESSION['email'] = $user['email'];
     $_SESSION['mobile'] = $user['mobile'];
     $_SESSION['role'] = $user['role'];
+    $_SESSION['profile_updated'] = $user['profile_updated'] ?? 0;
 
     $role = $_SESSION['role'] ?? 'student';
 
