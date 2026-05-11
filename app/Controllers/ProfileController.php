@@ -25,6 +25,14 @@ class ProfileController
     $password = $_POST['password'] ?? '';
     $userId = $_SESSION['user_id'];
 
+    // Check if teacher has already updated
+    if ($_SESSION['role'] === 'teacher') {
+      if ($this->userModel->hasUpdatedProfile($userId)) {
+        $_SESSION['warning'] = 'شما قبلاً اطلاعات خود را ویرایش کرده‌اید و تنها <strong>یک بار</strong> می‌توانید تغییر دهید.';
+        redirect('/panel');
+      }
+    }
+
     $errors = [];
 
     // Validate full name
@@ -145,10 +153,14 @@ class ProfileController
       }
 
       if ($profileUpdated && $passwordUpdated) {
+        // Mark profile as updated
+        $this->userModel->markProfileAsUpdated($userId);
+
         // Update session with new data
         $_SESSION['full_name'] = $full_name;
         $_SESSION['email'] = $email;
         $_SESSION['mobile'] = $mobile;
+        $_SESSION['profile_updated'] = 1;
 
         // Build success message with details
         $messages = [];
