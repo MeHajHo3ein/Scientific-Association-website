@@ -77,8 +77,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
           class="C-textarea"
           id="description"
           name="description"
-          placeholder="توضیح کلی درباره دوره، اهداف، مخاطبین و...">
-              </textarea>
+          placeholder="توضیح کلی درباره دوره، اهداف، مخاطبین و..."></textarea>
       </div>
       <!-- پیش‌نیازها -->
       <div class="form-group">

@@ -22,8 +22,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
       <div class="form-group">
         <label for="description">معرفی و توضیحات مقاله</label>
         <textarea class="C-textarea" id="description" name="description"
-          placeholder="توضیح کلی درباره مقاله">
-                    </textarea>
+          placeholder="توضیح کلی درباره مقاله"></textarea>
       </div>
       <!-- سرفصل‌ها -->
       <div class="form-group">
