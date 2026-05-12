@@ -53,6 +53,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
                   type="text"
                   class="form-control rounded-end-2"
                   id="fullName"
+                  name="fullName"
                   placeholder="نام کامل خود را وارد کنید"
                   required
                   minlength="3">
@@ -76,6 +77,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
                   type="email"
                   class="form-control rounded-end-2"
                   id="email"
+                  name="email"
                   placeholder="example@gmail.com"
                   required>
                 <div class="invalid-feedback">لطفاً یک ایمیل معتبر وارد کنید.</div>
@@ -84,7 +86,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
             </div>
             <!--phone number-->
             <div class="mb-3">
-              <label for="phonenumber" class="form-label fw-medium">شماره تلفن</label>
+              <label for="mobile" class="form-label fw-medium">شماره تلفن</label>
               <div class="input-group">
                 <span class="input-group-text bg-white">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -97,7 +99,8 @@ include '../app/Views/layouts/dashboard/sidebar.php';
                 <input
                   type="tel"
                   class="form-control rounded-end-2"
-                  id="phonenumber"
+                  id="mobile"
+                  name="mobile"
                   placeholder="09xxxxxxxxx"
                   maxlength="11"
                   required>
@@ -121,6 +124,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
                   type="password"
                   class="form-control"
                   id="password"
+                  name="password"
                   placeholder="حداقل ۸ کاراکتر"
                   required
                   minlength="8">
@@ -168,6 +172,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
                   type="text"
                   class="form-control rounded-end-2"
                   id="fullName"
+                  name="fullName"
                   placeholder="نام کامل خود را وارد کنید"
                   required
                   minlength="3">
@@ -191,6 +196,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
                   type="email"
                   class="form-control rounded-end-2"
                   id="email"
+                  name="email"
                   placeholder="example@gmail.com"
                   required>
                 <div class="invalid-feedback">لطفاً یک ایمیل معتبر وارد کنید.</div>
@@ -199,7 +205,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
             </div>
             <!--phone number-->
             <div class="mb-3">
-              <label for="phonenumber" class="form-label fw-medium">شماره تلفن</label>
+              <label for="mobile" class="form-label fw-medium">شماره تلفن</label>
               <div class="input-group">
                 <span class="input-group-text bg-white">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -212,7 +218,8 @@ include '../app/Views/layouts/dashboard/sidebar.php';
                 <input
                   type="tel"
                   class="form-control rounded-end-2"
-                  id="phonenumber"
+                  id="mobile"
+                  name="mobile"
                   placeholder="09xxxxxxxxx"
                   maxlength="11"
                   required>
@@ -236,6 +243,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
                   type="password"
                   class="form-control"
                   id="password"
+                  name="password"
                   placeholder="حداقل ۸ کاراکتر"
                   required
                   minlength="8">
