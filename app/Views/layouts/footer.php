@@ -1,6 +1,6 @@
   <!-- Toast Container -->
   <?php if (isset($showToasts) && $showToasts): ?>
-    <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div class="toast-container position-fixed top-0 start-0 p-3">
       <!-- Login success toast -->
       <?php if (isset($_SESSION['show_welcome']) && $_SESSION['show_welcome']): ?>
         <div id="loginToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
