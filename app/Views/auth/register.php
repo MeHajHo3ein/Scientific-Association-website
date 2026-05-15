@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/assets/css/bootstrap.rtl.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
   <link href="/assets/img/ico.png" rel="icon" />
   <title>ثبت‌نام</title>
 </head>

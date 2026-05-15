@@ -1,0 +1,447 @@
+:root {
+  --Custom-Black: #000000;
+  --Custom-Blue: #0d6efd;
+  --Custom-White: #fff;
+}
+
+/* Font */
+@font-face {
+  font-family: "Vazir";
+  src:
+    url("../fonts/Vazir.woff2") format("woff2"),
+    url("../fonts/Vazir.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "VazirBold";
+  src:
+    url("../fonts/Vazir-Bold.woff2") format("woff2"),
+    url("../fonts/Vazir-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Body & Html*/
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  direction: rtl;
+  box-sizing: border-box;
+  margin: 0%;
+  font-family: "Vazir", sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* h1~5 */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "VazirBold", sans-serif;
+}
+
+/* Text Selection  */
+::selection {
+  background-color: var(--Custom-Blue);
+  color: var(--Custom-White);
+}
+
+/* Scroll-Bar Effect */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--Custom-Blue) rgba(0, 0, 0, 0);
+}
+
+/* Chrome */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--Custom-Blue);
+}
+
+/* Hamber Menu */
+/* فقط برای صفحه‌های موبایل */
+@media (max-width: 1491px) {
+  .custom-toggler {
+    border: none;
+    padding: 8px;
+  }
+
+  .custom-toggler:focus {
+    box-shadow: none;
+  }
+
+  /* حذف آیکون پیش‌فرض بوت‌استرپ */
+  .custom-toggler .navbar-toggler-icon {
+    display: none;
+  }
+
+  /* ساخت آیکون کاستوم */
+  .custom-toggler .toggler-icon {
+    width: 28px;
+    height: 3px;
+    background-color: var(--Custom-Black);
+    display: block;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .custom-toggler .toggler-icon::before,
+  .custom-toggler .toggler-icon::after {
+    content: "";
+    width: 28px;
+    height: 3px;
+    background-color: var(--Custom-Black);
+    position: absolute;
+    left: 0;
+    transition: all 0.3s ease;
+  }
+
+  .custom-toggler .toggler-icon::before {
+    top: -8px;
+  }
+
+  .custom-toggler .toggler-icon::after {
+    top: 8px;
+  }
+
+  /* حالت فعال هنگام باز شدن منو */
+  .custom-toggler.active .toggler-icon {
+    background-color: transparent;
+  }
+
+  .custom-toggler.active .toggler-icon::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .custom-toggler.active .toggler-icon::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+}
+
+/* Text Justify */
+.text-justify {
+  text-align: justify;
+}
+
+/* Direction left */
+.D-left {
+  direction: ltr;
+}
+
+/* Links */
+.custom-a {
+  position: relative;
+  font-size: medium;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--Custom-Black);
+  opacity: 0.75;
+  transition:
+    opacity 0.3s ease,
+    color 0.3s ease;
+}
+
+.custom-a:hover {
+  opacity: 1;
+  color: var(--Custom-Blue);
+}
+
+.custom-a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background: var(--Custom-Blue);
+  border-radius: 5px;
+
+  transform: translateY(10px);
+  opacity: 0;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.custom-a:hover::after {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.custom-a-active {
+  color: var(--Custom-Blue);
+  opacity: 1;
+}
+
+.custom-a-active::after {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Hero Section */
+.hero-margin {
+  margin-top: 5.3rem;
+}
+
+/* Search Bar Styling */
+.search-box input {
+  border: 2px solid #d0d0d0;
+  transition: 0.2s ease;
+  min-width: 200px;
+}
+
+.search-box input:focus {
+  border-color: var(--Custom-Blue);
+  box-shadow: none;
+}
+
+.search-box button {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (max-width: 1399px) {
+  .search-box {
+    width: 100%;
+  }
+
+  .search-box input {
+    width: 100%;
+  }
+}
+
+/*Login*/
+.toggle-password {
+  cursor: pointer;
+  border-right: 0;
+}
+
+.strength-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: #dee2e6;
+  overflow: hidden;
+}
+
+.strength-fill {
+  height: 100%;
+  border-radius: 2px;
+  width: 0%;
+  transition:
+    width 0.3s,
+    background-color 0.3s;
+}
+
+/*Teachers Icon*/
+.Teachers-icon {
+  width: 7rem;
+  height: 7rem;
+}
+
+.dotted {
+  border: 0.2rem dashed var(--Custom-Blue);
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-radius: 1rem;
+}
+
+.badge-size {
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
+}
+
+/*Certificate test*/
+.option-item {
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+.option-item:hover {
+  border-color: #0d6efd;
+  background-color: #f8f9ff;
+}
+
+.option-item.active {
+  border-color: #0d6efd;
+  background-color: #e7f1ff;
+  font-weight: 600;
+}
+
+/*certificate view*/
+.certificate-container {
+  background: white;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.certificate-border {
+  border: 15px solid;
+  border-image: linear-gradient(45deg, #f39c12, #e67e22) 1;
+  padding: 60px 80px;
+  position: relative;
+  background: white;
+}
+
+.certificate-border::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 3px solid #3498db;
+  pointer-events: none;
+}
+
+.certificate-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+
+.certificate-text {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin-bottom: 40px;
+  line-height: 1.8;
+}
+
+.certificate-main {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #34495e;
+  line-height: 2;
+  margin-bottom: 50px;
+}
+
+.highlight-name {
+  color: #3498db;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.highlight-course {
+  color: #e67e22;
+  font-weight: 700;
+}
+
+.info-label {
+  color: #3498db;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.info-value {
+  color: #2c3e50;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.signatures {
+  margin-top: 80px;
+}
+
+.signature-line {
+  border-top: 2px solid #2c3e50;
+  margin: 0 auto 10px;
+  width: 200px;
+}
+
+.signature-label {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 0.95rem;
+}
+
+.certificate-footer {
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid #ecf0f1;
+}
+
+.footer-text {
+  color: #95a5a6;
+  font-size: 0.9rem;
+  margin: 5px 0;
+}
+
+#downloadBtn {
+  background: linear-gradient(45deg, #3498db, #2980b9);
+  border: none;
+  padding: 15px 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+  transition: all 0.3s ease;
+}
+
+#downloadBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.6);
+}
+
+/*Search page*/
+/* ظریف‌تر کردن کارت‌ها */
+.card-body {
+  padding: 0.9rem 1rem;
+}
+
+/* نمایش/مخفی‌سازی سریع */
+.d-none {
+  display: none !important;
+}
+
+/*01 Bros*/
+.Bros {
+  background-color: #000000;
+}
+
+#network,
+#webdev,
+#ai,
+#prog,
+#ActiveCourses,
+#FutureEvents,
+#Certificates,
+#news,
+#events,
+#announcement,
+#faq {
+  scroll-margin-top: 100px;
+}
