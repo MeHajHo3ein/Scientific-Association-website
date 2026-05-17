@@ -44,9 +44,6 @@
 
     <!-- Login form -->
     <form action="/auth/login" id="loginForm" method="POST" novalidate>
-      <!-- CSRF Token -->
-      <input type="hidden" name="csrf_token" value="<?= $csrfToken ?? ''; ?>">
-
       <!-- Username field -->
       <div class="mb-3">
         <label for="username" class="form-label fw-medium">ایمیل یا شماره تلفن</label>

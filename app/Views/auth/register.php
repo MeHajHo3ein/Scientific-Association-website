@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/assets/css/bootstrap.rtl.min.css" />
+  <link rel="stylesheet" href="/assets/vss/bootstrap.rtl.min.css" />
   <link rel="stylesheet" href="/assets/css/style.css" />
   <link href="/assets/img/ico.png" rel="icon" />
   <title>ثبت‌نام</title>
@@ -44,9 +44,6 @@
 
     <!-- Registration form -->
     <form action="/auth/register" id="registerForm" method="POST" novalidate>
-      <!-- CSRF Token -->
-      <input type="hidden" name="csrf_token" value="<?= $csrfToken ?? ''; ?>">
-
       <!-- Full Name -->
       <div class="mb-3">
         <label for="fullName" class="form-label fw-medium">نام و نام خانوادگی</label>

@@ -25,14 +25,3 @@ CREATE TABLE `users` (
   KEY `idx_email` (`email`),
   KEY `idx_student_number` (`student_number`)
 );
-
--- Create Table csrf_tokens
-CREATE TABLE `csrf_tokens` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `token` varchar(64) NOT NULL,
-  `expires_at` datetime NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `token` (`token`),
-  KEY `idx_expires_at` (`expires_at`)
-)

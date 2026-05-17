@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 require_once '../app/Includes/functions.php';
 
-use App\Models\CSRF;
 use App\Models\Database;
 use App\Models\User;
 use PDO;
@@ -27,8 +26,6 @@ class AuthController
   public function showRegister()
   {
     $this->checkAuth();
-    $csrf = new CSRF();
-    $csrfToken = $csrf->generateToken();
     require_once '../app/Views/auth/register.php';
   }
 
@@ -36,8 +33,6 @@ class AuthController
   public function showLogin()
   {
     $this->checkAuth();
-    $csrf = new CSRF();
-    $csrfToken = $csrf->generateToken();
     require_once '../app/Views/auth/login.php';
   }
 
@@ -45,12 +40,6 @@ class AuthController
   public function register()
   {
     if ($this->isPost()) {
-      $csrf = new CSRF();
-      if (!$csrf->validateToken($_POST['csrf_token'] ?? '')) {
-        $_SESSION['error'] = 'خطای امنیتی! لطفاً صفحه را رفرش کنید.';
-        $this->sendRegisterPage();
-      }
-
       $full_name = trim($_POST['fullName'] ?? '');
       $mobile = trim($_POST['mobile'] ?? '');
       $email = trim($_POST['email'] ?? '');
@@ -120,12 +109,6 @@ class AuthController
   public function login()
   {
     if ($this->isPost()) {
-      $csrf = new CSRF();
-      if (!$csrf->validateToken($_POST['csrf_token'] ?? '')) {
-        $_SESSION['error'] = 'خطای امنیتی! لطفاً صفحه را رفرش کنید.';
-        $this->sendRegisterPage();
-      }
-
       $username = trim($_POST['username'] ?? '');
       $password = $_POST['password'];
 
