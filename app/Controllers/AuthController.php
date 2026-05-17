@@ -45,6 +45,41 @@ class AuthController
       $email = trim($_POST['email'] ?? '');
       $password = $_POST['password'] ?? '';
 
+      $errors = [];
+
+      if (empty($full_name) || strlen($full_name) < 3) {
+        $errors['fullName'] = 'نام باید حداقل ۳ کاراکتر باشد.';
+      }
+
+      if (empty($email)) {
+        $errors['email'] = 'ایمیل را وارد کنید.';
+      } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) || !preg_match('/@gmail\.com$/', $email)) {
+        $errors['email'] = 'لطفاً یک ایمیل معتبر وارد کنید.';
+      }
+
+      if (empty($mobile)) {
+        $errors['mobile'] = 'شماره موبایل را وارد کنید.';
+      } elseif (!preg_match('/^09[0-9]{9}$/', $mobile)) {
+        $errors['mobile'] = 'لطفاً یک شماره تلفن معتبر وارد کنید.';
+      }
+
+      if (empty($password)) {
+        $errors['password'] = 'رمز عبور را وارد کنید.';
+      } elseif (strlen($password) < 8) {
+        $errors['password'] = 'رمز عبور باید حداقل ۸ کاراکتر باشد.';
+      }
+
+      if (!empty($errors)) {
+        $_SESSION['register_errors'] = $errors;
+        $_SESSION['register_data'] = [
+          'full_name' => $full_name,
+          'mobile' => $mobile,
+          'email' => $email
+        ];
+        $this->sendRegisterPage();
+        return;
+      }
+
       try {
         $database = new Database();
         $db = $database->getConnection();
@@ -58,8 +93,13 @@ class AuthController
         ]);
 
         if ($stmt->rowCount() > 0) {
-          $_SESSION['error'] = "کاربری با این شماره موبایل یا ایمیل قبلاً ثبت‌نام کرده است.";
-          require_once '../app/Views/auth/register.php';
+          $_SESSION['register_errors']['general'] = "کاربری با این شماره تلفن یا ایمیل قبلاً ثبت‌نام کرده است.";
+          $_SESSION['register_data'] = [
+            'full_name' => $full_name,
+            'mobile' => $mobile,
+            'email' => $email
+          ];
+          $this->sendRegisterPage();
           return;
         }
 
@@ -95,12 +135,12 @@ class AuthController
           $_SESSION['registered_name'] = $full_name;
           redirect('/');
         } else {
-          $_SESSION['error'] = 'خطا در ثبت‌نام. لطفاً مجدداً تلاش کنید.';
-          require_once '../app/Views/auth/register.php';
+          $_SESSION['register_errors']['general'] = 'خطا در ثبت‌نام. لطفاً مجدداً تلاش کنید.';
+          $this->sendRegisterPage();
         }
       } catch (PDOException $e) {
-        $_SESSION['error'] = 'خطای دیتابیس: ' . $e->getMessage();
-        require_once '../app/Views/auth/register.php';
+        $_SESSION['register_errors']['general'] = 'خطای دیتابیس: ' . $e->getMessage();
+        $this->sendRegisterPage();
       }
     }
   }
@@ -110,10 +150,32 @@ class AuthController
   {
     if ($this->isPost()) {
       $username = trim($_POST['username'] ?? '');
-      $password = $_POST['password'];
+      $password = $_POST['password'] ?? '';
 
-      // Detect if input is mobile number or email
+      $errors = [];
+
+      if (empty($username)) {
+        $errors['username'] = 'لطفاً ایمیل یا شماره تلفن خود را وارد کنید.';
+      } else {
+        $input_type = detectedInputType($username);
+        if (!$input_type) {
+          $errors['username'] = 'لطفاً یک ایمیل یا شماره تلفن معتبر وارد کنید.';
+        }
+      }
+
+      if (empty($password)) {
+        $errors['password'] = 'رمز عبور را وارد کنید.';
+      }
+
+      if (!empty($errors)) {
+        $_SESSION['login_errors'] = $errors;
+        $_SESSION['login_data'] = ['username' => $username];
+        $this->sendLoginPage();
+        return;
+      }
+
       $input_type = detectedInputType($username);
+
       if ($input_type) {
         try {
           $database = new Database();
@@ -145,15 +207,17 @@ class AuthController
               redirect('/');
               return;
             } else {
-              $_SESSION['error'] = 'رمز عبور اشتباه است.';
+              $_SESSION['login_errors']['password'] = 'رمز عبور اشتباه است.';
+              $_SESSION['login_data'] = ['username' => $username];
               $this->sendLoginPage();
             }
           } else {
-            $_SESSION['error'] = 'کاربری با این مشخصات پیدا نشد.';
+            $_SESSION['login_errors']['username'] = 'کاربری با این مشخصات پیدا نشد.';
+            $_SESSION['login_data'] = ['username' => $username];
             $this->sendLoginPage();
           }
         } catch (PDOException $e) {
-          $_SESSION['error'] = 'خطای دیتابیس : ' . $e->getMessage();
+          $_SESSION['login_errors']['username'] = 'خطای دیتابیس: ' . $e->getMessage();
           $this->sendLoginPage();
         }
       }
@@ -174,7 +238,7 @@ class AuthController
     }
   }
 
-  // Redirect to registration page
+  // Redirect to register page
   private function sendRegisterPage()
   {
     redirect('/auth/register');

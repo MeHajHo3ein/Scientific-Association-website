@@ -33,15 +33,6 @@
       <p class="text-muted small mb-0">اطلاعات خود را وارد کنید</p>
     </div>
 
-    <!-- Display error message if exists in session -->
-    <?php if (isset($_SESSION['error'])): ?>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <?= htmlspecialchars($_SESSION['error']) ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-      <?php unset($_SESSION['error']); ?>
-    <?php endif; ?>
-
     <!-- Login form -->
     <form action="/auth/login" id="loginForm" method="POST" novalidate>
       <!-- Username field -->
@@ -62,13 +53,15 @@
           </span>
           <input
             type="text"
-            class="form-control rounded-end-2"
+            class="form-control rounded-end-2 <?= isset($_SESSION['login_errors']['username']) ? 'is-invalid' : ''; ?>"
             id="username"
             name="username"
             placeholder="example@gmail.com/09xxxxxxxxx"
-            required />
-          <div class="invalid-feedback">لطفاً یک ایمیل یا شماره تلفن معتبر وارد کنید.</div>
-          <div class="valid-feedback">ایمیل یا شماره تلفن معتبر است.</div>
+            required
+            value="<?= isset($_SESSION['login_data']['username']) ? htmlspecialchars($_SESSION['login_data']['username']) : ''; ?>" />
+          <div class="invalid-feedback">
+            <?= isset($_SESSION['login_errors']['username']) ? htmlspecialchars($_SESSION['login_errors']['username']) : 'لطفاً یک ایمیل یا شماره تلفن معتبر وارد کنید.' ?>
+          </div>
         </div>
       </div>
       <!-- Password -->
@@ -89,7 +82,7 @@
           </span>
           <input
             type="password"
-            class="form-control border-end-0"
+            class="form-control border-end-0 <?= isset($_SESSION['login_errors']['password']) ? 'is-invalid' : ''; ?>"
             id="password"
             name="password"
             placeholder="حداقل ۸ کاراکتر"
@@ -114,7 +107,9 @@
                 d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
             </svg>
           </button>
-          <div class="invalid-feedback">رمز عبور باید حداقل ۸ کاراکتر باشد.</div>
+          <div class="invalid-feedback">
+            <?= isset($_SESSION['login_errors']['password']) ? htmlspecialchars($_SESSION['login_errors']['password']) : 'رمز عبور باید حداقل 8 کاراکتر باشد.' ?>
+          </div>
         </div>
       </div>
       <!-- Submit -->
@@ -131,6 +126,12 @@
       <a href="/register" class="text-primary text-decoration-none fw-medium">ثبت‌نام کنید</a>
     </p>
   </div>
+
+  <?php if (isset($_SESSION['login_errors']) || isset($_SESSION['login_data'])): ?>
+    <?php unset($_SESSION['login_errors']); ?>
+    <?php unset($_SESSION['login_data']); ?>
+  <?php endif; ?>
+
   <script src="/assets/js/bootstrap.bundle.min.js"></script>
   <script src="/assets/js/script.js"></script>
 </body>
