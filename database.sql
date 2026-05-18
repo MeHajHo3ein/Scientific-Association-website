@@ -13,15 +13,11 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `role` enum('student','teacher','admin') NOT NULL DEFAULT 'student',
-  `student_number` varchar(14) DEFAULT NULL,
-  `student_number_updated` tinyint(1) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `profile_updated` TINYINT(1) DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mobile` (`mobile`),
   UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `student_number` (`student_number`),
   KEY `idx_mobile` (`mobile`),
-  KEY `idx_email` (`email`),
-  KEY `idx_student_number` (`student_number`)
+  KEY `idx_email` (`email`)
 );
