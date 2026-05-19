@@ -32,7 +32,7 @@
                 class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel') ? 'active' : ''; ?>"><?= getBackButtonText(); ?></a>
             </li>
             <li class="nav-item">
-              <a href="/panel/students" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/students') ? 'active' : ''; ?>">
+              <a href="/panel/students" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= (isActiveRoute('/panel/students') || isActiveRoute('/panel/students/create') || strpos($_SERVER['REQUEST_URI'], '/panel/students/edit/') === 0) ? 'active' : ''; ?>">
                 دانشجویان
               </a>
             </li>

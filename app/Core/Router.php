@@ -28,20 +28,25 @@ class Router
     }
 
     // Execute matching route or show 404
-    if (isset($this->routes[$method][$uri])) {
-      $action = $this->routes[$method][$uri];
+    foreach ($this->routes[$method] as $route => $action) {
+      $pattern = preg_replace('/\{[a-zA-Z]+\}/', '([^/]+)', $route);
+      $pattern = '#^' . $pattern . '$#';
 
-      if (is_callable($action)) {
-        $action();
-      } elseif (is_array($action)) {
-        [$controllerClass, $methodName] = $action;
-        $controller = new $controllerClass();
-        $controller->$methodName();
+      if (preg_match($pattern, $uri, $matches)) {
+        array_shift($matches);
+
+        if (is_callable($action)) {
+          $action(...$matches);
+        } elseif (is_array($action)) {
+          [$controllerClass, $methodName] = $action;
+          $controller = new $controllerClass();
+          $controller->$methodName(...$matches);
+        }
+        return;
       }
-    } else {
-      // Route not found - show 404 page
-      http_response_code(404);
-      require_once '../app/Views/errors/404.php';
     }
+    // Route not found - show 404 page
+    http_response_code(404);
+    require_once '../app/Views/errors/404.php';
   }
 }

@@ -13,6 +13,7 @@ use App\Controllers\DashboardController;
 use App\Controllers\HomeController;
 use App\Controllers\PagesController;
 use App\Controllers\ProfileController;
+use App\Controllers\StudentManagementController;
 use App\Core\Router;
 
 $router = new Router();
@@ -64,7 +65,13 @@ $router->get('/panel/courses/create', [DashboardController::class, 'showCreateCo
 $router->get('/panel/articles/create', [DashboardController::class, 'showCreateArticle']);
 
 // Panel - Admin (*** Admin ***)
-$router->get('/panel/students', [DashboardController::class, 'students']);
+$router->get('/panel/students', [StudentManagementController::class, 'index']);
+$router->get('/panel/students/create', [StudentManagementController::class, 'showCreateForm']);
+$router->post('/panel/students/store', [StudentManagementController::class, 'store']);
+$router->get('/panel/students/edit/{id}', [StudentManagementController::class, 'showEditForm']);
+$router->post('/panel/students/update/{id}', [StudentManagementController::class, 'update']);
+$router->get('/panel/students/delete/{id}', [StudentManagementController::class, 'deleteStudent']);
+
 $router->get('/panel/teachers', [DashboardController::class, 'teachers']);
 $router->get('/panel/admins', [DashboardController::class, 'admins']);
 

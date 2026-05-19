@@ -56,9 +56,16 @@ function getBackButtonText()
     '/panel/articles/create',
     '/panel/offline-courses',
     '/panel/students',
+    '/panel/students/create',
+    '/panel/students/edit',
     '/panel/teachers',
     '/panel/admins',
   ];
+
+  if (strpos($currentUri, '/panel/students/edit/') === 0) {
+    return 'بازگشت به صفحه قبلی';
+  }
+
   if (in_array($currentUri, $panelPages)) {
     return 'بازگشت به صفحه قبلی';
   }
@@ -86,6 +93,16 @@ function getBackButtonUrl()
     '/panel/teachers',
     '/panel/admins',
   ];
+
+  if ($currentUri === '/panel/students/create') {
+    return '/panel/students';
+  }
+
+  if (strpos($currentUri, '/panel/students/edit/') === 0) {
+    return '/panel/students';
+  }
+
+
   if (in_array($currentUri, $panelPages)) {
     return '/panel';
   }
