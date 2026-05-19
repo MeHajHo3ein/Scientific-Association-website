@@ -1,0 +1,102 @@
+<?php
+
+namespace App\Models;
+
+use PDO;
+
+class TeacherManagement
+{
+  private $db;
+
+  public function __construct()
+  {
+    $this->db = Database::getInstance()->getConnection();
+  }
+
+  // Get all teachers
+  public function getAllTeachers()
+  {
+    $query = "SELECT * FROM users WHERE role = 'teacher' ORDER BY id DESC";
+    $stmt = $this->db->prepare($query);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // Get teacher by id
+  public function getTeacherById($id)
+  {
+    $query = "SELECT * FROM users WHERE id = :id AND role = 'teacher'";
+    $stmt = $this->db->prepare($query);
+    $stmt->execute([':id' => $id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+
+  // Create teacher
+  public function createTeacher($data)
+  {
+    $query = "INSERT INTO users (full_name, mobile, email, password, role)
+            VALUES (:full_name, :mobile, :email, :password, 'teacher')";
+    $stmt = $this->db->prepare($query);
+    return $stmt->execute($data);
+  }
+
+  // Edir teacher
+  public function editTeacher($id, $data)
+  {
+    $query = "UPDATE users SET full_name = :full_name, mobile = :mobile, email = :email WHERE id = :id AND role = 'teacher'";
+    $stmt = $this->db->prepare($query);
+    return $stmt->execute(array_merge($data, [':id' => $id]));
+  }
+
+  // Edit password (optional)
+  public function editPassword($id, $password)
+  {
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $query = "UPDATE users SET password = :password WHERE id = :id AND role = 'teacher'";
+    $stmt = $this->db->prepare($query);
+    return $stmt->execute([
+      ':password' => $hashed_password,
+      ':id' => $id,
+    ]);
+  }
+
+  // Delete teacher
+  public function deleteTeacher($id)
+  {
+    $query = "DELETE FROM users WHERE id = :id AND role = 'teacher'";
+    $stmt = $this->db->prepare($query);
+    return $stmt->execute([':id' => $id]);
+  }
+
+  // Is email exist
+  public function isEmailExist($email, $userId = null)
+  {
+    $query = "SELECT id FROM users WHERE email = :email";
+    if ($userId) {
+      $query .= ' AND id != :id';
+    }
+    $stmt = $this->db->prepare($query);
+    $params = [':email' => $email];
+    if ($userId) {
+      $params[':id'] = $userId;
+    }
+    $stmt->execute($params);
+    return $stmt->rowCount() > 0;
+  }
+
+  // Is mobile exist
+  public function isMobileExist($mobile, $userId = null)
+  {
+    $query = "SELECT id FROM users WHERE mobile = :mobile";
+    if ($userId) {
+      $query .= ' AND id != :id';
+    }
+    $stmt = $this->db->prepare($query);
+    $params = [':mobile' => $mobile];
+    if ($userId) {
+      $params[':id'] = $userId;
+    }
+    $stmt->execute($params);
+    return $stmt->rowCount() > 0;
+  }
+}
