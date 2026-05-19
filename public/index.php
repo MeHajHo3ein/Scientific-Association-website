@@ -14,6 +14,7 @@ use App\Controllers\HomeController;
 use App\Controllers\PagesController;
 use App\Controllers\ProfileController;
 use App\Controllers\StudentManagementController;
+use App\Controllers\TeacherManagementController;
 use App\Core\Router;
 
 $router = new Router();
@@ -72,7 +73,9 @@ $router->get('/panel/students/edit/{id}', [StudentManagementController::class, '
 $router->post('/panel/students/update/{id}', [StudentManagementController::class, 'update']);
 $router->get('/panel/students/delete/{id}', [StudentManagementController::class, 'deleteStudent']);
 
-$router->get('/panel/teachers', [DashboardController::class, 'teachers']);
+$router->get('/panel/teachers', [TeacherManagementController::class, 'index']);
+
+// $router->get('/panel/teachers', [DashboardController::class, 'teachers']);
 $router->get('/panel/admins', [DashboardController::class, 'admins']);
 
 $router->post('/panel/update-profile', [ProfileController::class, 'update']);
