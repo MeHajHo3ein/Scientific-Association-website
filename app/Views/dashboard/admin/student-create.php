@@ -97,7 +97,6 @@ unset($_SESSION['errors'], $_SESSION['old_input']);
     </form>
   </div>
 </div>
-</div>
 
 <?php
 include '../app/Views/layouts/dashboard/footer.php';
