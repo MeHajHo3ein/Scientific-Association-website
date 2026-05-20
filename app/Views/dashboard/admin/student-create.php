@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'پنل شخصی - دانشجویان';
+$pageTitle = 'پنل شخصی - افزودن دانشجو';
 include '../app/Views/layouts/dashboard/header.php';
 include '../app/Views/layouts/dashboard/sidebar.php';
 
