@@ -59,6 +59,7 @@ function getBackButtonText()
     '/panel/students/create',
     '/panel/students/edit',
     '/panel/teachers',
+    '/panel/teachers/create',
     '/panel/admins',
   ];
 
@@ -102,6 +103,9 @@ function getBackButtonUrl()
     return '/panel/students';
   }
 
+  if ($currentUri === '/panel/teachers/create') {
+    return '/panel/teachers';
+  }
 
   if (in_array($currentUri, $panelPages)) {
     return '/panel';

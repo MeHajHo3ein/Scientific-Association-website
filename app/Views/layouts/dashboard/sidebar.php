@@ -37,7 +37,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/panel/teachers" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/teachers') ? 'active' : ''; ?>">
+              <a href="/panel/teachers" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/teachers') || isActiveRoute('/panel/teachers/create') ? 'active' : ''; ?>">
                 استادان
               </a>
             </li>
