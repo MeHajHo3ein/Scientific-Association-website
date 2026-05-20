@@ -16,7 +16,7 @@ class TeacherManagement
   // Get all teachers
   public function getAllTeachers()
   {
-    $query = "SELECT * FROM users WHERE role = 'teacher' ORDER BY id DESC";
+    $query = "SELECT * FROM users WHERE role = 'teacher' ORDER BY id ASC";
     $stmt = $this->db->prepare($query);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -16,7 +16,7 @@ class StudentManagement
   // Get all students
   public function getAllStudents()
   {
-    $query = "SELECT * FROM users WHERE role = 'student' ORDER BY id DESC";
+    $query = "SELECT * FROM users WHERE role = 'student' ORDER BY id ASC";
     $stmt = $this->db->prepare($query);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
