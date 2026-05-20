@@ -74,6 +74,8 @@ $router->post('/panel/students/update/{id}', [StudentManagementController::class
 $router->get('/panel/students/delete/{id}', [StudentManagementController::class, 'deleteStudent']);
 
 $router->get('/panel/teachers', [TeacherManagementController::class, 'index']);
+$router->get('/panel/teachers/create', [TeacherManagementController::class, 'showCreateForm']);
+$router->post('/panel/teachers/store', [TeacherManagementController::class, 'store']);
 
 // $router->get('/panel/teachers', [DashboardController::class, 'teachers']);
 $router->get('/panel/admins', [DashboardController::class, 'admins']);
