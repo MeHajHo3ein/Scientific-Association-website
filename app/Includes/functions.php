@@ -60,10 +60,15 @@ function getBackButtonText()
     '/panel/students/edit',
     '/panel/teachers',
     '/panel/teachers/create',
+    '/panel/teachers/edit',
     '/panel/admins',
   ];
 
   if (strpos($currentUri, '/panel/students/edit/') === 0) {
+    return 'بازگشت به صفحه قبلی';
+  }
+
+  if (strpos($currentUri, '/panel/teachers/edit/') === 0) {
     return 'بازگشت به صفحه قبلی';
   }
 
@@ -104,6 +109,10 @@ function getBackButtonUrl()
   }
 
   if ($currentUri === '/panel/teachers/create') {
+    return '/panel/teachers';
+  }
+
+  if (strpos($currentUri, '/panel/teachers/edit/') === 0) {
     return '/panel/teachers';
   }
 
