@@ -48,7 +48,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
             <td><?= htmlspecialchars($teacher['mobile']); ?></td>
             <td><?= htmlspecialchars($teacher['email']); ?></td>
             <td class="">
-              <a href="./Teacher-Edit.html" class="btn btn-primary">ویرایش</a>
+              <a href="/panel/teachers/edit/<?= $teacher['id'] ?>" class="btn btn-primary">ویرایش</a>
               <button class="btn btn-danger">حذف</button>
             </td>
           </tr>
