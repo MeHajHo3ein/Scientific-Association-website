@@ -79,6 +79,7 @@ $router->get('/panel/teachers/create', [TeacherManagementController::class, 'sho
 $router->post('/panel/teachers/store', [TeacherManagementController::class, 'store']);
 $router->get('/panel/teachers/edit/{id}', [TeacherManagementController::class, 'showEditForm']);
 $router->post('/panel/teachers/update/{id}', [TeacherManagementController::class, 'update']);
+$router->get('/panel/teachers/delete/{id}', [TeacherManagementController::class, 'deleteTeacher']);
 
 // $router->get('/panel/teachers', [DashboardController::class, 'teachers']);
 $router->get('/panel/admins', [DashboardController::class, 'admins']);
