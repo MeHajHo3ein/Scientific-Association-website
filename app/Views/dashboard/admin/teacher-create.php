@@ -35,7 +35,7 @@ unset($_SESSION['errors'], $_SESSION['old_input']);
     <form class="form-control" action="/panel/teachers/store" method="POST">
       <div class="row">
         <div class="col-md-6">
-          <label class="form-label" for="name">نام و نام خانوادگی</label>
+          <label class="form-label" for="full_name">نام و نام خانوادگی</label>
           <input
             type="text"
             class="C-input text-start"
