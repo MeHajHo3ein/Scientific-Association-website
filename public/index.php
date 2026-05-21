@@ -8,6 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
+use App\Controllers\AdminManagementController;
 use App\Controllers\AuthController;
 use App\Controllers\DashboardController;
 use App\Controllers\HomeController;
@@ -65,7 +66,7 @@ $router->get('/panel/courses/create', [DashboardController::class, 'showCreateCo
 // Panel - Create Article (*** Teacher & Admin ***)
 $router->get('/panel/articles/create', [DashboardController::class, 'showCreateArticle']);
 
-// Panel - Admin (*** Admin ***)
+// Panel - Admin (*** Student ***)
 $router->get('/panel/students', [StudentManagementController::class, 'index']);
 $router->get('/panel/students/create', [StudentManagementController::class, 'showCreateForm']);
 $router->post('/panel/students/store', [StudentManagementController::class, 'store']);
@@ -81,8 +82,13 @@ $router->get('/panel/teachers/edit/{id}', [TeacherManagementController::class, '
 $router->post('/panel/teachers/update/{id}', [TeacherManagementController::class, 'update']);
 $router->get('/panel/teachers/delete/{id}', [TeacherManagementController::class, 'deleteTeacher']);
 
-// $router->get('/panel/teachers', [DashboardController::class, 'teachers']);
-$router->get('/panel/admins', [DashboardController::class, 'admins']);
+// Panel - Admin (*** Admin ***)
+$router->get('/panel/admins', [AdminManagementController::class, 'index']);
+$router->get('/panel/admins/create', [AdminManagementController::class, 'showCreateForm']);
+$router->post('/panel/admins/store', [AdminManagementController::class, 'store']);
+$router->get('/panel/admins/edit/{id}', [AdminManagementController::class, 'showEditForm']);
+$router->post('/panel/admins/update/{id}', [AdminManagementController::class, 'update']);
+$router->get('/panel/admins/delete/{id}', [AdminManagementController::class, 'deleteAdmin']);
 
 $router->post('/panel/update-profile', [ProfileController::class, 'update']);
 

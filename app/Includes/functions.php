@@ -62,6 +62,8 @@ function getBackButtonText()
     '/panel/teachers/create',
     '/panel/teachers/edit',
     '/panel/admins',
+    '/panel/admins/create',
+    '/panel/admins/edit',
   ];
 
   if (strpos($currentUri, '/panel/students/edit/') === 0) {
@@ -69,6 +71,10 @@ function getBackButtonText()
   }
 
   if (strpos($currentUri, '/panel/teachers/edit/') === 0) {
+    return 'بازگشت به صفحه قبلی';
+  }
+
+  if (strpos($currentUri, '/panel/admins/edit/') === 0) {
     return 'بازگشت به صفحه قبلی';
   }
 
@@ -100,6 +106,7 @@ function getBackButtonUrl()
     '/panel/admins',
   ];
 
+  // For Students
   if ($currentUri === '/panel/students/create') {
     return '/panel/students';
   }
@@ -108,12 +115,22 @@ function getBackButtonUrl()
     return '/panel/students';
   }
 
+  // For Teachers
   if ($currentUri === '/panel/teachers/create') {
     return '/panel/teachers';
   }
 
   if (strpos($currentUri, '/panel/teachers/edit/') === 0) {
     return '/panel/teachers';
+  }
+
+  // For Admins
+  if ($currentUri === '/panel/admins/create') {
+    return '/panel/admins';
+  }
+
+  if (strpos($currentUri, '/panel/admins/edit/') === 0) {
+    return '/panel/admins';
   }
 
   if (in_array($currentUri, $panelPages)) {
