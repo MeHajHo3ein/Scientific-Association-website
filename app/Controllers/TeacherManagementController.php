@@ -178,4 +178,26 @@ class TeacherManagementController
 
     redirect('/panel/teachers');
   }
+
+  // Delete teacher
+  public function deleteTeacher($id)
+  {
+    $student = $this->teacherModel->getTeacherById($id);
+    if (!$student) {
+      $_SESSION['error'] = 'استاد یافت نشد.';
+      redirect('/panel/teachers');
+    }
+
+    try {
+      if ($this->teacherModel->deleteTeacher($id)) {
+        $_SESSION['success'] = 'کاربر ' .  htmlspecialchars($student['full_name']) . ' با موفقیت حذف شد.';
+      } else {
+        $_SESSION['error'] = 'خطا در حذف استاد.';
+      }
+    } catch (PDOException $e) {
+      $_SESSION['error'] = 'خطای دیتابیس : ' . $e->getMessage();
+    }
+
+    redirect('/panel/teachers');
+  }
 }
