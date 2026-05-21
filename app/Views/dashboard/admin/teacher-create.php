@@ -42,7 +42,7 @@ unset($_SESSION['errors'], $_SESSION['old_input']);
             id="full_name"
             name="full_name"
             placeholder="ممد جعفرزاده"
-            min="3"
+            minlength="3"
             value="<?= htmlspecialchars($old_input['full_name'] ?? ''); ?>"
             required />
         </div>

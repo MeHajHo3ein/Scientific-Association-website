@@ -42,7 +42,7 @@ if (!$student) {
       <div class="row">
         <div class=" col-md-6">
           <label class="form-label" for="full_name">نام و نام خانوادگی</label>
-          <input type="text" class="C-input text-start" id="full_name" name="full_name" placeholder="ممد جعفرزاده" min="3" value="<?= htmlspecialchars($old_input['full_name'] ?? $student['full_name']); ?>" required />
+          <input type="text" class="C-input text-start" id="full_name" name="full_name" placeholder="ممد جعفرزاده" minlength="3" value="<?= htmlspecialchars($old_input['full_name'] ?? $student['full_name']); ?>" required />
         </div>
         <div class=" col-md-6">
           <label class="form-label" for="mobile">شماره تلفن</label>

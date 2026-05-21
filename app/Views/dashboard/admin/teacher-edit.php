@@ -48,6 +48,7 @@ if (!$teacher) {
             id="full_name"
             name="full_name"
             placeholder="ممد جعفرزاده"
+            minlength="3"
             value="<?= htmlspecialchars($old_input['full_name'] ?? $teacher['full_name']); ?>"
             required />
         </div>
