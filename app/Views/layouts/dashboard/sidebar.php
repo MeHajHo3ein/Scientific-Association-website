@@ -52,7 +52,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/panel/articles" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/articles') ? 'active' : ''; ?>">
+              <a href="/panel/articles" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/articles') || isActiveRoute('/panel/articles/create') ? 'active' : ''; ?>">
                 مقالات
               </a>
             </li>

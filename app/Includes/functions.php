@@ -133,6 +133,11 @@ function getBackButtonUrl()
     return '/panel/admins';
   }
 
+  // For Articles
+  if ($currentUri === '/panel/articles/create') {
+    return '/panel/articles';
+  }
+
   if (in_array($currentUri, $panelPages)) {
     return '/panel';
   }
