@@ -4,10 +4,26 @@ include '../app/Views/layouts/dashboard/header.php';
 include '../app/Views/layouts/dashboard/sidebar.php';
 ?>
 
+<?php if (isset($_SESSION['success'])): ?>
+  <div id="myAlert" class="alert alert-success alert-dismissible fixed-top m-3 fade show" role="alert">
+    <?= $_SESSION['success']; ?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <?php unset($_SESSION['success']); ?>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['error'])): ?>
+  <div id="myAlert" class="alert alert-danger alert-dismissible fixed-top m-3 fade show" role="alert">
+    <?= $_SESSION['error']; ?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <?php unset($_SESSION['error']); ?>
+<?php endif; ?>
+
 <!-- Main Content -->
 <div class="col-md-10 offset-md-2 p-4">
   <h3 class="text-primary">مقالات بارگزاری شده</h3>
-  <a href="/panel/articles/create" href="Article-Create.html" class="btn btn-primary d-block w-100 my-1">افزودن</a>
+  <a href="/panel/articles/create" class="btn btn-primary d-block w-100 my-1">افزودن</a>
   <div class="container overflow-auto">
     <!--            <div id="addarticles" class="modal fade show">-->
     <!--                <form class="form-control container">-->
@@ -61,24 +77,23 @@ include '../app/Views/layouts/dashboard/sidebar.php';
         <th>تاریخ انتشار</th>
         <th>عملیات</th>
       </tr>
-      <tr>
-        <td>1</td>
-        <td>فرانت اند در آینده</td>
-        <td>ممد</td>
-        <td>1405/01/12</td>
-        <td class="">
-          <button class="btn btn-danger">حذف</button>
-        </td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>فرانت اند در آینده</td>
-        <td>ممد</td>
-        <td>1405/01/12</td>
-        <td class="">
-          <button class="btn btn-danger">حذف</button>
-        </td>
-      </tr>
+      <?php if (empty($articles)): ?>
+        <tr>
+          <td colspan="6" class="text-center">هیچ مقاله ای یافت نشد.</td>
+        </tr>
+      <?php else: ?>
+        <?php foreach ($articles as $index => $article): ?>
+          <tr>
+            <td><?= $index + 1 ?></td>
+            <td><?= htmlspecialchars($article['title']); ?></td>
+            <td><?= htmlspecialchars($article['author_name']); ?></td>
+            <td><?= toJalali($article['created_at'], 'Y/m/d'); ?></td>
+            <td class="">
+              <a href="/panel/articles/delete/<?= $article['id'] ?>" class="btn btn-danger" onclick="return confirm('آیا از حذف این مقاله مطمئن هستید؟');">حذف</a>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </table>
 
   </div>
