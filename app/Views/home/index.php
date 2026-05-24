@@ -147,66 +147,28 @@ include '../app/Views/partials/navbar.php';
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-lg-4 col-sm-12">
-        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
-          <h5>آشنایی با معماری میکروسرویس‌ها</h5>
-          <p class="mx-2">
-            <span> مدرس:</span>
-            <span>دکتر الف</span>
-            |
-            <span class=""> تاریخ:</span>
-            <span> ۱۴۰۳/۰۲/۱۰ </span>
-            |
-            <span class=""> دسته:</span>
-            <span>وب</span>
-          </p>
-          <p class="text-justify">
-            در این مطلب با مفاهیم اصلی میکروسرویس‌ها، مزایا، چالش‌ها و الگوهای رایج
-            آشنا می‌شویم.
-          </p>
-          <a href="/articles_detail" class="link-primary text-decoration-none">ادامه مطلب</a>
+      <?php if (empty($homeArticles)): ?>
+        <div class="col-12">
+          <div class="text-center">هنوز مقاله‌ای منتشر نشده است.</div>
         </div>
-      </div>
-      <div class="col-lg-4 col-sm-12 rounded-3">
-        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
-          <h5>آشنایی با معماری میکروسرویس‌ها</h5>
-          <p class="mx-2">
-            <span> مدرس:</span>
-            <span>دکتر الف</span>
-            |
-            <span> تاریخ:</span>
-            <span> ۱۴۰۳/۰۲/۱۰ </span>
-            |
-            <span> دسته:</span>
-            <span>وب</span>
-          </p>
-          <p class="text-justify">
-            در این مطلب با مفاهیم اصلی میکروسرویس‌ها، مزایا، چالش‌ها و الگوهای رایج
-            آشنا می‌شویم.
-          </p>
-          <a href="/articles_detail" class="link-primary text-decoration-none">ادامه مطلب</a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-12 rounded-3">
-        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
-          <h5>آشنایی با معماری میکروسرویس‌ها</h5>
-          <p class="mx-2">
-            <span> مدرس:</span>
-            <span>دکتر الف</span>
-            |
-            <span> تاریخ:</span>
-            <span> ۱۴۰۳/۰۲/۱۰ </span>
-            |
-            <span> دسته:</span>
-            <span>وب</span>
-          </p>
-          <p class="text-justify">
-            در این مطلب با مفاهیم اصلی میکروسرویس‌ها، مزایا، چالش‌ها و الگوهای رایج
-            آشنا می‌شویم.
-          </p>
-          <a href="/articles_detail" class="link-primary text-decoration-none">ادامه مطلب</a>
-        </div>
-      </div>
+      <?php else: ?>
+        <?php foreach ($homeArticles as $article): ?>
+          <div class="col-lg-4 col-sm-12">
+            <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
+              <h5><?= htmlspecialchars($article['title']) ?></h5>
+              <p class="mx-2">
+                <span>نویسنده: <?= htmlspecialchars($article['author_name']) ?></span>
+                |
+                <span>تاریخ: <?= toJalali($article['created_at'], 'Y/m/d') ?></span>
+              </p>
+              <p class="text-justify">
+                <?= htmlspecialchars(mb_substr($article['summary'] ?? $article['content'], 0, 100)) ?>...
+              </p>
+              <a href="/articles/<?= urlencode($article['slug']) ?>" class="link-primary text-decoration-none">ادامه مطلب</a>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
   </div>
 </div>
