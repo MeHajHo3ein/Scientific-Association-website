@@ -144,3 +144,57 @@ function getBackButtonUrl()
 
   return '/';
 }
+
+function toPersianNumber($number)
+{
+  $persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  $number = max(1, ceil($number));
+  return str_replace(range(0, 9), $persianDigits, (string)$number);
+}
+
+function toJalali($date, $format = 'Y/m/d')
+{
+  $timestamp = strtotime($date);
+
+  $jalaliMonths = [
+    'فروردین',
+    'اردیبهشت',
+    'خرداد',
+    'تیر',
+    'مرداد',
+    'شهریور',
+    'مهر',
+    'آبان',
+    'آذر',
+    'دی',
+    'بهمن',
+    'اسفند'
+  ];
+
+  $year = date('Y', $timestamp);
+  $month = date('n', $timestamp);
+  $day = date('j', $timestamp);
+
+  $jalaliYear = $year - 621;
+  $jalaliMonth = $month;
+  $jalaliDay = $day;
+
+  if ($jalaliMonth > 6) {
+    $jalaliDay--;
+  }
+
+  $persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+
+  $persianYear = str_replace(array_keys($persianDigits), array_values($persianDigits), (string)$jalaliYear);
+  $persianMonth = str_replace(array_keys($persianDigits), array_values($persianDigits), str_pad($jalaliMonth, 2, '0', STR_PAD_LEFT));
+  $persianDay = str_replace(array_keys($persianDigits), array_values($persianDigits), str_pad($jalaliDay, 2, '0', STR_PAD_LEFT));
+
+  if ($format == 'Y/m/d') {
+    return $persianYear . '/' . $persianMonth . '/' . $persianDay;
+  } elseif ($format == 'd F Y') {
+    $persianDayNum = str_replace(array_keys($persianDigits), array_values($persianDigits), (string)$jalaliDay);
+    return $persianDayNum . ' ' . $jalaliMonths[$jalaliMonth - 1] . ' ' . $persianYear;
+  }
+
+  return $persianYear . '/' . $persianMonth . '/' . $persianDay;
+}
