@@ -9,6 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 use App\Controllers\AdminManagementController;
+use App\Controllers\ArticleController;
 use App\Controllers\AuthController;
 use App\Controllers\DashboardController;
 use App\Controllers\HomeController;
@@ -24,7 +25,7 @@ $router = new Router();
 $router->get('/', [HomeController::class, 'index']);
 $router->get('/courses', [PagesController::class, 'courses']);
 $router->get('/offline-courses', [PagesController::class, 'offline_courses']);
-$router->get('/articles', [PagesController::class, 'articles']);
+$router->get('/articles', [ArticleController::class, 'index']);
 $router->get('/news', [PagesController::class, 'news']);
 $router->get('/certificates', [PagesController::class, 'certificates']);
 $router->get('/cult', [PagesController::class, 'cult']);
@@ -55,16 +56,20 @@ $router->get('/panel/courses', [DashboardController::class, 'courses']);
 $router->get('/panel/notifications', [DashboardController::class, 'notifications']);
 
 // Panel - Articles (*** Teacher & Admin ***)
-$router->get('/panel/articles', [DashboardController::class, 'articles']);
+$router->get('/articles/{slug}', [ArticleController::class, 'show']);
+$router->get('/articles', [ArticleController::class, 'index']);
+
+// Panel - Create Article (*** Teacher & Admin ***)
+$router->get('/panel/articles', [ArticleController::class, 'adminIndex']);
+$router->get('/panel/articles/create', [ArticleController::class, 'showCreateForm']);
+$router->post('/panel/articles/store', [ArticleController::class, 'store']);
+$router->get('/panel/articles/delete/{id}', [ArticleController::class, 'delete']);
 
 // Panel - Offline Courses (*** Teacher & Admin ***)
 $router->get('/panel/offline-courses', [DashboardController::class, 'offlineCourses']);
 
 // Panel - Create Course (*** Teacher & Admin ***)
 $router->get('/panel/courses/create', [DashboardController::class, 'showCreateCourse']);
-
-// Panel - Create Article (*** Teacher & Admin ***)
-$router->get('/panel/articles/create', [DashboardController::class, 'showCreateArticle']);
 
 // Panel - Admin (*** Student ***)
 $router->get('/panel/students', [StudentManagementController::class, 'index']);
