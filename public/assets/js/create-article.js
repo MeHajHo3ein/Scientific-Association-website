@@ -5,35 +5,28 @@ const addSectionBtn = document.getElementById("addSectionBtn");
 
 let sectionCounter = 0;
 
-function addSection(
-  data = {
-    title: "",
-    description: "",
-  },
-) {
-  sectionCounter++;
-  const id = "section-" + sectionCounter;
-
+function addSection(data = { title: "", description: "" }) {
   const wrapper = document.createElement("div");
   wrapper.className = "dynamic-item";
   wrapper.dataset.type = "section";
 
   wrapper.innerHTML = `
-        <div class="dynamic-item-header">
+        <div class="dynamic-item-header d-flex justify-content-between">
             <span>ریزعنوان</span>
             <button type="button" class="btn btn-danger btn-sm js-remove">حذف</button>
         </div>
         <div class="form-group">
             <label>ریزعنوان</label>
-            <input class="C-input" type="text" class="js-section-title" value="${data.title}">
+            <input class="C-input js-section-title" type="text" name="sections[${sectionCounter}][title]" value="${data.title.replace(/"/g, "&quot;")}">
         </div>
         <div class="form-group">
-            <label> توضیحات</label>
-            <textarea class="js-section-desc C-textarea" >${data.description}</textarea>
+            <label>توضیحات</label>
+            <textarea class="js-section-desc C-textarea" name="sections[${sectionCounter}][description]">${data.description.replace(/"/g, "&quot;")}</textarea>
         </div>
     `;
 
   sectionsList.appendChild(wrapper);
+  sectionCounter++;
 }
 
 addSectionBtn.addEventListener("click", () => {
@@ -47,45 +40,22 @@ sectionsList.addEventListener("click", (e) => {
   }
 });
 
-/* -------- Form Submit & Data Collect -------- */
-
 const courseForm = document.getElementById("courseForm");
-const outputDebug = document.getElementById("outputDebug");
-const saveDraftBtn = document.getElementById("saveDraftBtn");
 
-function collectFormData(status = "published") {
-  const formData = new FormData(courseForm);
-
-  // سرفصل‌ها
-  sectionsList.querySelectorAll(".dynamic-item").forEach((item) => {
-    const titleInput = item.querySelector(".js-section-title");
-    const descInput = item.querySelector(".js-section-desc");
+if (courseForm) {
+  courseForm.addEventListener("submit", function (e) {
+    const titleInput = document.getElementById("title");
     const title = titleInput?.value.trim() || "";
-    const description = descInput?.value.trim() || "";
-    if (title !== "" || description !== "") {
-      data.syllabus.push({
-        title,
-        description,
-      });
+
+    if (!title) {
+      e.preventDefault();
+      alert("عنوان مقاله الزامی است.");
+      return;
+    }
+
+    const submitBtn = this.querySelector('button[type="submit"]');
+    if (submitBtn && !submitBtn.disabled) {
+      submitBtn.disabled = true;
     }
   });
-
-  return data;
 }
-
-courseForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const data = collectFormData("published");
-
-  // نمونه ساده از Validation
-  if (!data.title) {
-    alert("نام دوره الزامی است.");
-  }
-});
-
-addPrerequisite("آشنایی مقدماتی با کامپیوتر");
-addSection({
-  title: "معرفی دوره",
-  description: "در این بخش با ساختار دوره و اهداف کلی آن آشنا می‌شوید.",
-});
