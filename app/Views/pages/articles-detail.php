@@ -1,8 +1,10 @@
 <?php
-$pageTitle = htmlspecialchars($article['title']) . ' - انجمن علمی دانشگاه خوارزمی(شهرضا)';
+$pageTitle = 'انجمن علمی دانشگاه خوارزمی(شهرضا) - مقالات';
 $bodyClass = 'bg-secondary-subtle';
 include '../app/Views/layouts/header.php';
 include '../app/Views/partials/navbar.php';
+
+$article = $article ?? [];
 ?>
 
 <!--Main-->
@@ -17,7 +19,7 @@ include '../app/Views/partials/navbar.php';
       --
       <span>زمان مطالعه:</span>
       <?php
-      $readTimeRaw = strlen($article['content']) / 300;  // هر ۳۰۰ کاراکتر = ۱ دقیقه
+      $readTimeRaw = strlen($article['content']) / 300;
       $readTime = max(1, ceil($readTimeRaw));
       ?>
       <span><?= toPersianNumber($readTime) ?> دقیقه</span>
