@@ -73,21 +73,20 @@ $isActive = function ($path) use ($currentPath) {
         <a
           href="/logout"
           class="btn btn-outline-danger rounded-3 d-block p-2 me-lg-1 m-1">خروج</a>
+        <a
+          href="/panel"
+          class="btn btn-outline-primary rounded-3 d-block p-2 me-lg-1 m-1 position-relative">
+          <i class="fa fa-bell"></i>
+          <!-- Badge -->
+          <span
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            0
+          </span>
+        </a>
       <?php else: ?>
         <a href="/login" class="btn btn-outline-primary rounded-3 d-block p-2 me-lg-1 m-1">ورود</a>
         <a href="/register" class="btn btn-outline-primary rounded-3 d-block p-2 me-lg-1 m-1">ثبت نام</a>
       <?php endif; ?>
-
-      <a
-        href="/panel"
-        class="btn btn-outline-primary rounded-3 d-block p-2 me-lg-1 m-1 position-relative">
-        <i class="fa fa-bell"></i>
-        <!-- Badge -->
-        <span
-          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-          0
-        </span>
-      </a>
     </div>
   </div>
 </nav>
