@@ -49,26 +49,40 @@ class ArticleController
   // Show articles in admin panel
   public function adminIndex()
   {
-    $this->checkAdminAuth();
+    $this->checkAuth();
     $articles = $this->articleModel->getAllArticles();
-    require_once '../app/Views/dashboard/admin/articles.php';
+    $role = $_SESSION['role'] ?? 'teacher';
+
+    switch ($role) {
+      case 'admin':
+        require_once '../app/Views/dashboard/admin/articles.php';
+        break;
+      default:
+        require_once '../app/Views/dashboard/teacher/articles.php';
+        break;
+    }
   }
 
   // Show create article form 
   public function showCreateForm()
   {
-    $this->checkAdminAuth();
-    require_once '../app/Views/dashboard/admin/create-article.php';
+    $this->checkAuth();
+    $role = $_SESSION['role'] ?? 'teacher';
+
+    switch ($role) {
+      case 'admin':
+        require_once '../app/Views/dashboard/admin/create-article.php';
+        break;
+      default:
+        require_once '../app/Views/dashboard/teacher/create-article.php';
+        break;
+    }
   }
 
   // Store new article
   public function store()
   {
-    $this->checkAdminAuth();
-
-    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-      redirect('/panel/articles');
-    }
+    $this->checkAuth();
 
     $title = trim($_POST['title'] ?? '');
     $summary = trim($_POST['summary'] ?? '');
@@ -153,6 +167,13 @@ class ArticleController
   {
     if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
       redirect('/auth/login');
+    }
+  }
+
+  private function checkAuth()
+  {
+    if (!isset($_SESSION['user_id'])) {
+      redirect('/');
     }
   }
 }
