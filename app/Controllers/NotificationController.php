@@ -40,9 +40,11 @@ class NotificationController
     } elseif ($role === 'teacher') {
       $notifications = $this->notificationModel->getAllNotifications();
       require_once '../app/Views/dashboard/teacher/notifications.php';
-    } else {
+    } elseif ($role === 'admin') {
       $notifications = $this->notificationModel->getAllNotifications();
       require_once '../app/Views/dashboard/admin/notifications.php';
+    } else {
+      show403();
     }
   }
 
@@ -54,6 +56,11 @@ class NotificationController
     }
 
     $role = $_SESSION['role'] ?? 'teacher';
+
+    if ($role !== 'admin' && $role !== 'teacher') {
+      show403();
+    }
+
     switch ($role) {
       case 'admin':
         require_once '../app/Views/dashboard/admin/notification-create.php';
@@ -69,6 +76,12 @@ class NotificationController
   {
     if (!isset($_SESSION['user_id'])) {
       redirect('/');
+    }
+
+    $role = $_SESSION['role'] ?? 'student';
+
+    if ($role !== 'admin' && $role !== 'teacher') {
+      show403();
     }
 
     $title = trim($_POST['title'] ?? '');
@@ -115,6 +128,12 @@ class NotificationController
   {
     if (!isset($_SESSION['user_id']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'teacher')) {
       redirect('/');
+    }
+
+    $role = $_SESSION['role'] ?? 'student';
+
+    if ($role !== 'admin' && $role !== 'teacher') {
+      show403();
     }
 
     $notification = $this->notificationModel->getById($id);

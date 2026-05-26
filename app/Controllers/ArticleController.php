@@ -49,7 +49,7 @@ class ArticleController
   // Show articles in admin panel
   public function adminIndex()
   {
-    $this->checkAuth();
+    $this->checkAdminOrTeacherAuth();
     $articles = $this->articleModel->getAllArticles();
     $role = $_SESSION['role'] ?? 'teacher';
 
@@ -66,7 +66,7 @@ class ArticleController
   // Show create article form 
   public function showCreateForm()
   {
-    $this->checkAuth();
+    $this->checkAdminOrTeacherAuth();
     $role = $_SESSION['role'] ?? 'teacher';
 
     switch ($role) {
@@ -82,7 +82,7 @@ class ArticleController
   // Store new article
   public function store()
   {
-    $this->checkAuth();
+    $this->checkAdminOrTeacherAuth();
 
     $title = trim($_POST['title'] ?? '');
     $summary = trim($_POST['summary'] ?? '');
@@ -166,14 +166,19 @@ class ArticleController
   private function checkAdminAuth()
   {
     if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-      redirect('/auth/login');
+      show403();
     }
   }
 
-  private function checkAuth()
+  private function checkAdminOrTeacherAuth()
   {
     if (!isset($_SESSION['user_id'])) {
       redirect('/');
+    }
+
+    $role = $_SESSION['role'] ?? 'student';
+    if ($role !== 'admin' && $role !== 'teacher') {
+      show403();
     }
   }
 }

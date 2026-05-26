@@ -12,7 +12,7 @@ class AdminManagementController
   public function __construct()
   {
     if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-      redirect('/auth/login');
+      show403();
     }
 
     $this->adminModel = new AdminManagement();
