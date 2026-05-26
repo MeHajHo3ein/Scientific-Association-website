@@ -4,62 +4,58 @@ include '../app/Views/layouts/dashboard/header.php';
 include '../app/Views/layouts/dashboard/sidebar.php';
 ?>
 
+<?php if (isset($_SESSION['success'])): ?>
+  <div id="myAlert" class="alert alert-success alert-dismissible fixed-top m-3 fade show" role="alert">
+    <?= $_SESSION['success']; ?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <?php unset($_SESSION['success']); ?>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['error'])): ?>
+  <div id="myAlert" class="alert alert-danger alert-dismissible fixed-top m-3 fade show" role="alert">
+    <?= $_SESSION['error']; ?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <?php unset($_SESSION['error']); ?>
+<?php endif; ?>
 
 <!-- Main Content -->
 <div class="col-md-10 offset-md-2 p-4">
+  <h3 class="text-primary">اعلانات</h3>
+  <a href="/panel/notifications/create" class="btn btn-primary w-100 d-block my-1">
+    افزودن
+  </a>
   <div class="container">
-    <h3 class="text-primary">فایل های بارگزاری شده</h3>
-    <!-- Modal -->
-    <button class="btn btn-primary w-100" onclick="openModal('addnotif')">
-      افزودن
-    </button>
-    <div id="addnotif" class="modal">
-      <form class="form-control container">
-        <label class="form-label">عنوان پیام</label>
-        <input class="d-block w-100" type="text">
-        <label class="form-label">متن پیام</label>
-        <input class="d-block w-100" type="text">
-        <button type="submit" class="btn btn-success w-100 fw-semibold py-2 mt-5" id="submitBtn">
-          ثبت‌
-        </button>
-        <button
-          class="btn btn-danger my-1 w-100"
-          onclick="closeModal('addnotif')">
-          بستن
-        </button>
-      </form>
-    </div>
-    <!--Main Content-->
-    <div class="bg-white p-4 border-3 border-primary border-start my-4">
-      <div class="d-flex justify-content-between">
-        <h3>عنوان</h3>
-        <span class="text-primary">1404/10/2</span>
-      </div>
-      <p class="d-block">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum optio quas quis quod repellat! Ab
-        animi perspiciatis reiciendis tenetur? Deserunt.
-      </p>
-      <button class="btn btn-outline-primary border-1" onclick="openModal('editnotif')">ویرایش</button>
-      <button class="btn btn-outline-danger border-1">حذف</button>
-      <div id="editnotif" class="modal">
-        <form class="form-control container">
-          <label class="form-label">عنوان پیام</label>
-          <input class="d-block w-100" type="text">
-          <label class="form-label">متن پیام</label>
-          <input class="d-block w-100" type="text">
-          <button type="submit" class="btn btn-success w-100 fw-semibold py-2 mt-5" id="submitBtn">
-            ثبت‌
-          </button>
-          <button
-            class="btn btn-danger my-1 w-100"
-            onclick="closeModal('editnotif')">
-            بستن
-          </button>
-        </form>
-      </div>
-    </div>
+    <table class="table table-bordered table-hover table-striped">
+      <tr>
+        <th>شماره</th>
+        <th>عنوان</th>
+        <th>متن</th>
+        <th>تاریخ انتشار</th>
+        <th>عملیات</th>
+      </tr>
+      <?php if (empty($notifications)): ?>
+        <tr>
+          <td colspan="5" class="text-center">هیچ اعلانی یافت نشد.</td>
+        </tr>
+      <?php else: ?>
+        <?php foreach ($notifications as $index => $notification): ?>
+          <tr>
+            <td><?= $index + 1 ?></td>
+            <td><?= htmlspecialchars($notification['title']) ?></td>
+            <td><?= htmlspecialchars(mb_substr($notification['message'], 0, 100)) ?></td>
+            <td><?= toJalali($notification['created_at'], 'Y/m/d') ?></td>
+            <td class="">
+              <a href="/panel/notifications/delete/<?= $notification['id'] ?>"
+                class="btn btn-danger btn-sm"
+                onclick="return confirm('آیا از حذف این اعلان مطمئن هستید؟')">حذف</a>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      <?php endif; ?>
+    </table>
   </div>
-</div>
 </div>
 
 <?php
