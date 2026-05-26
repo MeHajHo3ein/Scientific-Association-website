@@ -13,6 +13,7 @@ use App\Controllers\ArticleController;
 use App\Controllers\AuthController;
 use App\Controllers\DashboardController;
 use App\Controllers\HomeController;
+use App\Controllers\NotificationController;
 use App\Controllers\PagesController;
 use App\Controllers\ProfileController;
 use App\Controllers\StudentManagementController;
@@ -53,7 +54,11 @@ $router->get('/panel', [DashboardController::class, 'index']);
 $router->get('/panel/courses', [DashboardController::class, 'courses']);
 
 // Panel - Notifications (*** All Roles ***)
-$router->get('/panel/notifications', [DashboardController::class, 'notifications']);
+$router->get('/panel/notifications', [NotificationController::class, 'index']);
+$router->get('/panel/notifications/create', [NotificationController::class, 'showCreateForm']);
+$router->post('/panel/notifications/store', [NotificationController::class, 'store']);
+$router->get('/panel/notifications/delete/{id}', [NotificationController::class, 'delete']);
+$router->get('/api/notifications/count', [NotificationController::class, 'getUnreadCount']);
 
 // Panel - Articles (*** Teacher & Admin ***)
 $router->get('/articles/{slug}', [ArticleController::class, 'show']);
