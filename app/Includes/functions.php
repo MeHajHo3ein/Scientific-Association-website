@@ -198,3 +198,11 @@ function toJalali($date, $format = 'Y/m/d')
 
   return $persianYear . '/' . $persianMonth . '/' . $persianDay;
 }
+
+// display 403 error
+function show403()
+{
+  http_response_code(403);
+  require_once '../app/Views/errors/403.php';
+  exit;
+}
