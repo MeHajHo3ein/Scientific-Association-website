@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'پنل شخصی - اعلانات';
+$pageTitle = 'پنل شخصی - افزودن اعلان ها';
 include '../app/Views/layouts/dashboard/header.php';
 include '../app/Views/layouts/dashboard/sidebar.php';
 
