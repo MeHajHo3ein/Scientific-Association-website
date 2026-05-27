@@ -18,9 +18,9 @@
       </div>
       <div class="col-lg-4 col-sm-12 text-center">
         <h5>شبکه‌های اجتماعی</h5>
-        <a class="d-block link-primary text-decoration-none text-white" href="#">اینستاگرام <i class="fa fa-instagram"></i></a>
-        <a class="d-block link-primary text-decoration-none text-white" href="#">تلگرام<i class="fa fa-telegram"></i></a>
-        <a class="d-block link-primary text-decoration-none text-white" href="#">گیت‌هاب انجمن<i class="fa fa-github"></i></a>
+        <a class="d-block link-primary text-decoration-none text-white" href="#">اینستاگرام</a>
+        <a class="d-block link-primary text-decoration-none text-white" href="#">تلگرام</a>
+        <a class="d-block link-primary text-decoration-none text-white" href="#">گیت‌هاب انجمن</a>
       </div>
     </div>
   </div>
