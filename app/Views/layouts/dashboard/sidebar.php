@@ -38,7 +38,7 @@
             </li>
             <li class="nav-item">
               <a href="/panel/teachers" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= (isActiveRoute('/panel/teachers') || isActiveRoute('/panel/teachers/create') || strpos($_SERVER['REQUEST_URI'], '/panel/teachers/edit/') === 0) ? 'active' : ''; ?>">
-                استادان
+                اساتید
               </a>
             </li>
             <li class="nav-item">
@@ -64,6 +64,12 @@
             <li class="nav-item">
               <a href="/panel/notifications" class="text-start btn my-1 btn-outline-light py-2 borde w-100 <?= isActiveRoute('/panel/notifications') ? 'active' : ''; ?>">
                 اعلانات
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./A-NEA.html"
+                class=" text-start btn my-1 btn-outline-light py-2 w-100 ">
+                اخبار/رویداد/اطلاعیه
               </a>
             </li>
             <li class="nav-item">
