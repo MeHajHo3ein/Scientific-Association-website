@@ -291,7 +291,7 @@ include '../app/Views/partials/navbar.php';
 </div>
 
 <!-- Teachers -->
-<div class="py-5 bg-secondary-subtle">
+<!-- <div class="py-5 bg-secondary-subtle">
   <div class="container d-flex justify-content-between">
     <span class="row d-flex">
       <h4 class="mx-2">اساتید و مدرسین انجمن</h4>
@@ -338,10 +338,10 @@ include '../app/Views/partials/navbar.php';
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Events -->
-<div class="py-5">
+<div class="py-5 bg-secondary-subtle">
   <div class="container d-flex justify-content-between">
     <span class="row d-flex">
       <h4 class="mx-2 row">تقویم رویدادها</h4>
@@ -354,7 +354,7 @@ include '../app/Views/partials/navbar.php';
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-sm-12">
-        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
+        <div class="py-3 rounded-3 mb-3 p-3 border-start border-primary border-5">
           <h5>کارگاه Git و GitHub</h5>
           <p class="mx-2">
             <span> نوع:</span>
@@ -369,7 +369,7 @@ include '../app/Views/partials/navbar.php';
         </div>
       </div>
       <div class="col-lg-4 col-sm-12 rounded-3">
-        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
+        <div class="py-3 rounded-3 mb-3 p-3 border-start border-primary border-5">
           <h5>کارگاه Git و GitHub</h5>
           <p class="mx-2">
             <span> نوع:</span>
@@ -384,7 +384,7 @@ include '../app/Views/partials/navbar.php';
         </div>
       </div>
       <div class="col-lg-4 col-sm-12 rounded-3">
-        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
+        <div class="py-3 rounded-3 mb-3 p-3 border-start border-primary border-5">
           <h5>کارگاه Git و GitHub</h5>
           <p class="mx-2">
             <span> نوع:</span>
@@ -418,7 +418,7 @@ include '../app/Views/partials/navbar.php';
           href="/register"
           class="btn btn-outline-primary rounded-3 p-2 me-lg-1 m-1">ثبت نام</a>
         <a
-          href="/cult/#faq"
+          href="/aboutus/#faq"
           class="btn btn-outline-warning rounded-3 p-2 me-lg-1 m-1">سؤالات متداول</a>
       </div>
     </div>
