@@ -40,6 +40,11 @@ if (!$teacher) {
   <div class="container my-5">
     <form class="form-control" action="/panel/teachers/update/<?= $teacher['id'] ?>" method="POST">
       <div class="row">
+        <div class="col-12 my-3">
+          <label for="T-image">عکس </label>
+          <input class="C-input" id="T-image" name="T-image" type="file" accept="image/*">
+          <small>فرمت‌های مجاز: jpg, png, webp — حداکثر 2MB</small>
+        </div>
         <div class="col-md-6">
           <label class="form-label" for="name">نام و نام خانوادگی</label>
           <input
