@@ -27,7 +27,7 @@ $isTeacherUpdated = ($isTeacher && isset($_SESSION['profile_updated']) && $_SESS
       <!-- *** Alert *** -->
       <!-- Success -->
       <?php if (isset($_SESSION['success'])): ?>
-        <div id="myAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+        <div id="myAlert" class="alert alert-success alert-dismissible fade m-3 show" role="alert">
           <?= $_SESSION['success']; ?>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -36,7 +36,7 @@ $isTeacherUpdated = ($isTeacher && isset($_SESSION['profile_updated']) && $_SESS
 
       <!-- Error -->
       <?php if (isset($_SESSION['error'])): ?>
-        <div id="myAlert" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div id="myAlert" class="alert alert-danger alert-dismissible fade m-3 show" role="alert">
           <?= $_SESSION['error']; ?>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -45,7 +45,7 @@ $isTeacherUpdated = ($isTeacher && isset($_SESSION['profile_updated']) && $_SESS
 
       <!-- Info -->
       <?php if (isset($_SESSION['info'])): ?>
-        <div id="myAlert" class="alert alert-info alert-dismissible fade show" role="alert">
+        <div id="myAlert" class="alert alert-info alert-dismissible fade m-3 show" role="alert">
           <?= $_SESSION['info']; ?>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -54,7 +54,7 @@ $isTeacherUpdated = ($isTeacher && isset($_SESSION['profile_updated']) && $_SESS
 
       <!-- Warning -->
       <?php if (isset($_SESSION['warning'])): ?>
-        <div id="myAlert" class="alert alert-info alert-dismissible fade show" role="alert">
+        <div id="myAlert" class="alert alert-info alert-dismissible fade m-3 show" role="alert">
           <?= $_SESSION['warning']; ?>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -62,7 +62,7 @@ $isTeacherUpdated = ($isTeacher && isset($_SESSION['profile_updated']) && $_SESS
 
       <!-- Only Teacher - Before update -->
       <?php if ($isTeacher && !$isTeacherUpdated): ?>
-        <div id="myAlert" class="alert alert-info alert-dismissible fade show" role="alert">
+        <div id="myAlert" class="alert alert-info alert-dismissible fade m-3 show" role="alert">
           شما فقط <strong> یک دفعه</strong> می توانید اطلاعات خود را تغییر دهید.
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -70,7 +70,7 @@ $isTeacherUpdated = ($isTeacher && isset($_SESSION['profile_updated']) && $_SESS
 
       <!-- Only Teacher - After update -->
       <?php if ($isTeacherUpdated && !isset($_SESSION['success']) && !isset($_SESSION['warning'])): ?>
-        <div id="myAlert" class="alert alert-info alert-dismissible fade show" role="alert">
+        <div id="myAlert" class="alert alert-info alert-dismissible fade m-3 show" role="alert">
           شما قبلاً اطلاعات خود را ویرایش کرده‌اید. امکان ویرایش مجدد وجود ندارد.
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
