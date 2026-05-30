@@ -41,10 +41,6 @@ include '../app/Views/partials/navbar.php';
             <span>متوسط</span>
           </p>
           <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-primary rounded-3">در حال برگزاری</span>
-          </p>
-          <p class="card-text">
             <span>هزینه:</span>
             <span>رایگان</span>
           </p>
@@ -73,10 +69,6 @@ include '../app/Views/partials/navbar.php';
             <span>متوسط</span>
           </p>
           <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-danger rounded-3">ظرفیت تکمیل</span>
-          </p>
-          <p class="card-text">
             <span>هزینه:</span>
             <span>رایگان</span>
           </p>
@@ -103,10 +95,6 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>سطح:</span>
             <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-warning rounded-3">نزدیک به تکمیل ظرفیت</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -135,10 +123,6 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>سطح:</span>
             <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-success rounded-3">در حال ثبت‌نام</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -173,10 +157,6 @@ include '../app/Views/partials/navbar.php';
             <span>متوسط</span>
           </p>
           <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-primary rounded-3">در حال برگزاری</span>
-          </p>
-          <p class="card-text">
             <span>هزینه:</span>
             <span>رایگان</span>
           </p>
@@ -205,10 +185,6 @@ include '../app/Views/partials/navbar.php';
             <span>متوسط</span>
           </p>
           <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-danger rounded-3">ظرفیت تکمیل</span>
-          </p>
-          <p class="card-text">
             <span>هزینه:</span>
             <span>رایگان</span>
           </p>
@@ -235,10 +211,6 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>سطح:</span>
             <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-warning rounded-3">نزدیک به تکمیل ظرفیت</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -267,10 +239,6 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>سطح:</span>
             <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-success rounded-3">در حال ثبت‌نام</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -305,10 +273,6 @@ include '../app/Views/partials/navbar.php';
             <span>متوسط</span>
           </p>
           <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-primary rounded-3">در حال برگزاری</span>
-          </p>
-          <p class="card-text">
             <span>هزینه:</span>
             <span>رایگان</span>
           </p>
@@ -337,10 +301,6 @@ include '../app/Views/partials/navbar.php';
             <span>متوسط</span>
           </p>
           <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-danger rounded-3">ظرفیت تکمیل</span>
-          </p>
-          <p class="card-text">
             <span>هزینه:</span>
             <span>رایگان</span>
           </p>
@@ -367,10 +327,6 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>سطح:</span>
             <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-warning rounded-3">نزدیک به تکمیل ظرفیت</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -399,10 +355,6 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>سطح:</span>
             <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-success rounded-3">در حال ثبت‌نام</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -437,10 +389,6 @@ include '../app/Views/partials/navbar.php';
             <span>متوسط</span>
           </p>
           <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-primary rounded-3">در حال برگزاری</span>
-          </p>
-          <p class="card-text">
             <span>هزینه:</span>
             <span>رایگان</span>
           </p>
@@ -469,10 +417,6 @@ include '../app/Views/partials/navbar.php';
             <span>متوسط</span>
           </p>
           <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-danger rounded-3">ظرفیت تکمیل</span>
-          </p>
-          <p class="card-text">
             <span>هزینه:</span>
             <span>رایگان</span>
           </p>
@@ -499,10 +443,6 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>سطح:</span>
             <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-warning rounded-3">نزدیک به تکمیل ظرفیت</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
@@ -531,10 +471,6 @@ include '../app/Views/partials/navbar.php';
           <p class="card-text">
             <span>سطح:</span>
             <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>وضعیت:</span>
-            <span class="badge bg-success rounded-3">در حال ثبت‌نام</span>
           </p>
           <p class="card-text">
             <span>هزینه:</span>
