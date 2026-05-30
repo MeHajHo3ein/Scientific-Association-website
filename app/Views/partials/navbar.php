@@ -29,7 +29,7 @@ $isActive = function ($path) use ($currentPath) {
           <a href="/" class="nav-link custom-a <?= $isActive('/') ?>">خانه</a>
         </li>
         <li class="nav-item">
-          <a href="/courses" class="nav-link custom-a <?= $isActive('/courses') ?>">دوره ها</a>
+          <a href="/courses" class="nav-link custom-a <?= (strpos($currentPath, '/courses') === 0) ? 'custom-a-active' : '' ?>">دوره ها</a>
         </li>
         <li class="nav-item">
           <a href="/offline-courses" class="nav-link custom-a <?= $isActive('/offline-courses') ?>">آموزش های آفلاین</a>
