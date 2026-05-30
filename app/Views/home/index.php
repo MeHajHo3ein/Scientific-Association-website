@@ -27,7 +27,6 @@ include '../app/Views/partials/navbar.php';
       <div
         class="bg-white col-lg-6 col-sm-12 rounded-3 justify-content-end py-4 border-start border-primary border-5">
         <h3 class="py-2 d-inline-block">دوره در حال ثبت‌نام</h3>
-        <span class="badge bg-success rounded-3">در حال ثبت‌نام</span>
 
         <p>وب دولوپمنت با JavaScript و React</p>
         <p class="mx-2">
@@ -79,7 +78,7 @@ include '../app/Views/partials/navbar.php';
             آموزش مفاهیم پیشرفته پایتون، کار با کتابخانه‌ها، تست و معماری نرم‌افزار.
           </p>
           <p class="d-flex justify-content-between">
-            <span class="badge bg-success rounded-3">در حال ثبت‌نام</span>
+            <span class="">قیمت:</span>
             <span>رایگان</span>
           </p>
           <a href="/courses_detail" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
@@ -101,7 +100,7 @@ include '../app/Views/partials/navbar.php';
             آموزش مفاهیم پیشرفته پایتون، کار با کتابخانه‌ها، تست و معماری نرم‌افزار.
           </p>
           <p class="d-flex justify-content-between">
-            <span class="badge bg-warning rounded-3">نزدیک به تکمیل ظرفیت</span>
+            <span class="">قیمت:</span>
             <span>رایگان</span>
           </p>
           <a href="/courses_detail" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
@@ -124,7 +123,7 @@ include '../app/Views/partials/navbar.php';
             آموزش مفاهیم پیشرفته پایتون، کار با کتابخانه‌ها، تست و معماری نرم‌افزار.
           </p>
           <p class="d-flex justify-content-between">
-            <span class="badge bg-primary rounded-3">در حال برگزاری</span>
+            <span class="">قیمت:</span>
             <span>رایگان</span>
           </p>
           <a href="/courses_detail" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
