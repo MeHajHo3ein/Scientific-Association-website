@@ -11,6 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
 use App\Controllers\AdminManagementController;
 use App\Controllers\ArticleController;
 use App\Controllers\AuthController;
+use App\Controllers\CourseController;
 use App\Controllers\DashboardController;
 use App\Controllers\HomeController;
 use App\Controllers\NotificationController;
@@ -51,7 +52,7 @@ $router->get('/login', function () {
 $router->get('/panel', [DashboardController::class, 'index']);
 
 // Panel - Courses (*** All Roles ***)
-$router->get('/panel/courses', [DashboardController::class, 'courses']);
+// $router->get('/panel/courses', [DashboardController::class, 'courses']);
 
 // Panel - Notifications (*** All Roles ***)
 $router->get('/panel/notifications', [NotificationController::class, 'index']);
@@ -60,20 +61,30 @@ $router->post('/panel/notifications/store', [NotificationController::class, 'sto
 $router->get('/panel/notifications/delete/{id}', [NotificationController::class, 'delete']);
 $router->get('/api/notifications/count', [NotificationController::class, 'getUnreadCount']);
 
-// Panel - Articles (*** Teacher & Admin ***)
+// Panel - Articles (*** Admin & Teacher ***)
 $router->get('/articles/{slug}', [ArticleController::class, 'show']);
 $router->get('/articles', [ArticleController::class, 'index']);
 
-// Panel - Create Article (*** Teacher & Admin ***)
+// Panel - Articles Management (*** Admin & Teacher ***)
 $router->get('/panel/articles', [ArticleController::class, 'adminIndex']);
 $router->get('/panel/articles/create', [ArticleController::class, 'showCreateForm']);
 $router->post('/panel/articles/store', [ArticleController::class, 'store']);
 $router->get('/panel/articles/delete/{id}', [ArticleController::class, 'delete']);
 
-// Panel - Offline Courses (*** Teacher & Admin ***)
+// Panel - Courses (*** Admin & Teacher ***)
+$router->get('/courses', [CourseController::class, 'index']);
+$router->get('/courses/{slug}', [CourseController::class, 'show']);
+
+// Panel - Courses Management (*** Admin & Teacher ***)
+$router->get('/panel/courses', [CourseController::class, 'adminIndex']);
+$router->get('/panel/courses/create', [CourseController::class, 'showCreateForm']);
+$router->post('/panel/courses/store', [CourseController::class, 'store']);
+$router->get('/panel/courses/delete/{id}', [CourseController::class, 'delete']);
+
+// Panel - Offline Courses (*** Admin & Teacher ***)
 $router->get('/panel/offline-courses', [DashboardController::class, 'offlineCourses']);
 
-// Panel - Create Course (*** Teacher & Admin ***)
+// Panel - Create Course (*** Admin & Teacher ***)
 $router->get('/panel/courses/create', [DashboardController::class, 'showCreateCourse']);
 
 // Panel - Admin (*** Student ***)
