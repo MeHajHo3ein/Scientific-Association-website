@@ -73,3 +73,45 @@ CREATE TABLE `user_notification_read` (
   CONSTRAINT `user_notification_read_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `user_notification_read_ibfk_2` FOREIGN KEY (`notification_id`) REFERENCES `notifications` (`id`) ON DELETE CASCADE
 );
+
+-- Create Table courses
+CREATE TABLE `courses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `level` enum('beginner','intermediate','advanced') NOT NULL DEFAULT 'beginner',
+  `price` bigint(20) DEFAULT 0,
+  `duration` varchar(100) DEFAULT NULL,
+  `student_count` int(11) DEFAULT 0,
+  `image` varchar(255) DEFAULT NULL,
+  `description` text NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `slug` (`slug`),
+  KEY `created_by` (`created_by`),
+  CONSTRAINT `courses_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
+);
+
+-- Create Table courses prerequisites
+CREATE TABLE `course_prerequisites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `sort_order` int(11) DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `course_id` (`course_id`),
+  CONSTRAINT `course_prerequisites_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE
+);
+
+-- Create Table courses syllabus
+CREATE TABLE `course_syllabus` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `sort_order` int(11) DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `course_id` (`course_id`),
+  CONSTRAINT `course_syllabus_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE
+);
