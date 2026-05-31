@@ -31,6 +31,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
     <table class="table table-bordered table-hover table-striped">
       <tr>
         <th>شماره</th>
+        <th>عکس</th>
         <th>نام و نام خانوادگی</th>
         <th>شماره موبایل</th>
         <th>ایمیل</th>
@@ -44,6 +45,13 @@ include '../app/Views/layouts/dashboard/sidebar.php';
         <?php foreach ($teachers as $index => $teacher): ?>
           <tr>
             <td><?= $index + 1 ?></td>
+            <td class="text-center">
+              <?php if (!empty($teacher['image'])): ?>
+                <img src="/uploads/teachers/<?= $teacher['image'] ?>" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+              <?php else: ?>
+                <img src="/assets/img/logo.png" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+              <?php endif; ?>
+            </td>
             <td><?= htmlspecialchars($teacher['full_name']); ?></td>
             <td><?= htmlspecialchars($teacher['mobile']); ?></td>
             <td><?= htmlspecialchars($teacher['email']); ?></td>

@@ -32,12 +32,16 @@ unset($_SESSION['errors'], $_SESSION['old_input']);
 
   <!-- Main Content -->
   <div class="container my-5">
-    <form class="form-control" action="/panel/teachers/store" method="POST">
+    <form class="form-control" action="/panel/teachers/store" enctype="multipart/form-data" method="POST">
       <div class="row">
         <div class="col-12 my-3">
           <label for="T-image">عکس </label>
           <input class="C-input" id="T-image" name="T-image" type="file" accept="image/*">
           <small>فرمت‌های مجاز: jpg, png, webp — حداکثر 2MB</small>
+          <div class="form-group">
+            <label>پیش‌نمایش تصویر</label>
+            <div class="image-preview" id="imagePreview">بدون تصویر</div>
+          </div>
         </div>
         <div class="col-md-6">
           <label class="form-label" for="full_name">نام و نام خانوادگی</label>
@@ -102,6 +106,37 @@ unset($_SESSION['errors'], $_SESSION['old_input']);
     </form>
   </div>
 </div>
+
+<script>
+  const imageInput = document.getElementById('T-image');
+  const imagePreview = document.getElementById('imagePreview');
+
+  imageInput.addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) {
+      imagePreview.innerHTML = 'بدون تصویر';
+      imagePreview.style.background = '#f5f5f5';
+      imagePreview.style.display = 'flex';
+      imagePreview.style.alignItems = 'center';
+      imagePreview.style.justifyContent = 'center';
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      imagePreview.innerHTML = '<img src="' + e.target.result + '" style="width: 100%; height: 100%; object-fit: cover;">';
+      imagePreview.style.background = 'transparent';
+      imagePreview.style.display = 'block';
+      imagePreview.style.padding = '0';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  document.getElementById('toggle-admin-view').addEventListener('change', function(e) {
+    const passwordInput = document.getElementById('password');
+    passwordInput.type = e.target.checked ? 'text' : 'password';
+  });
+</script>
 
 <?php
 include '../app/Views/layouts/dashboard/footer.php';
