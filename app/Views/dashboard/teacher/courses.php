@@ -8,6 +8,14 @@ include '../app/Views/layouts/dashboard/sidebar.php';
 <div class="col-md-10 offset-md-2 p-4">
   <div class="container">
     <h3 class="text-primary">دوره های بارگزاری شده</h3>
+    <div id="" class="alert alert-warning text-black alert-dismissible m-3 fade show" role="alert">
+      برای بارگزاری ویدیو/فایل های خود ابتدا وارد این سایت
+      <a class="alert-link link-warning text-dark" href="www.example-upload-host.com">www.example-upload-host.com</a>
+      شده و آموزش های این ویدیو
+      <a class="alert-link link-warning text-dark" href="www.example-upload-host.com/training-vedio.mp4">training-vedio.mp4</a>
+      را دنبال کرده و لینک های دریافتی خود را در قسمت مناسب جای گزاری کنید.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <a href="/panel/courses/create" class="btn btn-primary d-block w-100">افزودن</a>
     <div class="row">
       <div class="col-lg-3 col-md-6 col-sm-12">
