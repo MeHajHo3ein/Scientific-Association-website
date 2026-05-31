@@ -92,11 +92,24 @@ class TeacherManagementController
     try {
       $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+      // پردازش تصویر
+      $image = null;
+      if (isset($_FILES['T-image']) && $_FILES['T-image']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/teachers/';
+        if (!is_dir($uploadDir)) {
+          mkdir($uploadDir, 0777, true);
+        }
+        $ext = pathinfo($_FILES['T-image']['name'], PATHINFO_EXTENSION);
+        $image = time() . '_' . uniqid() . '.' . $ext;
+        move_uploaded_file($_FILES['T-image']['tmp_name'], $uploadDir . $image);
+      }
+
       $data = [
         ':full_name' => $full_name,
         ':mobile' => $mobile,
         ':email' => $email,
         ':password' => $hashed_password,
+        ':image' => $image
       ];
 
       if ($this->teacherModel->createTeacher($data)) {
@@ -114,8 +127,8 @@ class TeacherManagementController
   // Edit teacher
   public function update($id)
   {
-    $student = $this->teacherModel->getTeacherById($id);
-    if (!$student) {
+    $teacher = $this->teacherModel->getTeacherById($id);
+    if (!$teacher) {
       $_SESSION['error'] = 'استاد یافت نشد.';
       redirect('/panel/teachers');
     }
@@ -158,10 +171,23 @@ class TeacherManagementController
     }
 
     try {
+      // پردازش تصویر جدید
+      $image = $teacher['image'];
+      if (isset($_FILES['T-image']) && $_FILES['T-image']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/teachers/';
+        if (!is_dir($uploadDir)) {
+          mkdir($uploadDir, 0777, true);
+        }
+        $ext = pathinfo($_FILES['T-image']['name'], PATHINFO_EXTENSION);
+        $image = time() . '_' . uniqid() . '.' . $ext;
+        move_uploaded_file($_FILES['T-image']['tmp_name'], $uploadDir . $image);
+      }
+
       $data = [
         ':full_name' => $full_name,
         ':mobile' => $mobile,
         ':email' => $email,
+        ':image' => $image
       ];
 
       $profileUpdated = $this->teacherModel->editTeacher($id, $data);
@@ -186,15 +212,15 @@ class TeacherManagementController
   // Delete teacher
   public function deleteTeacher($id)
   {
-    $student = $this->teacherModel->getTeacherById($id);
-    if (!$student) {
+    $teacher = $this->teacherModel->getTeacherById($id);
+    if (!$teacher) {
       $_SESSION['error'] = 'استاد یافت نشد.';
       redirect('/panel/teachers');
     }
 
     try {
       if ($this->teacherModel->deleteTeacher($id)) {
-        $_SESSION['success'] = 'کاربر ' .  htmlspecialchars($student['full_name']) . ' با موفقیت حذف شد.';
+        $_SESSION['success'] = 'کاربر ' .  htmlspecialchars($teacher['full_name']) . ' با موفقیت حذف شد.';
       } else {
         $_SESSION['error'] = 'خطا در حذف استاد.';
       }

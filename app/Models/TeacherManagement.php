@@ -34,8 +34,8 @@ class TeacherManagement
   // Create teacher
   public function createTeacher($data)
   {
-    $query = "INSERT INTO users (full_name, mobile, email, password, role)
-            VALUES (:full_name, :mobile, :email, :password, 'teacher')";
+    $query = "INSERT INTO users (full_name, mobile, email, password, role, image) 
+                  VALUES (:full_name, :mobile, :email, :password, 'teacher', :image)";
     $stmt = $this->db->prepare($query);
     return $stmt->execute($data);
   }
@@ -43,7 +43,8 @@ class TeacherManagement
   // Edir teacher
   public function editTeacher($id, $data)
   {
-    $query = "UPDATE users SET full_name = :full_name, mobile = :mobile, email = :email WHERE id = :id AND role = 'teacher'";
+    $query = "UPDATE users SET full_name = :full_name, mobile = :mobile, email = :email, image = :image 
+                  WHERE id = :id AND role = 'teacher'";
     $stmt = $this->db->prepare($query);
     return $stmt->execute(array_merge($data, [':id' => $id]));
   }
