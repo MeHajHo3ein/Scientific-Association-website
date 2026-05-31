@@ -100,6 +100,12 @@
               <a href="/panel/notifications" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/notifications') ? 'active' : ''; ?>">اعلانات</a>
             </li>
             <li class="nav-item">
+              <a href="./T-Quests.html"
+                class=" text-start btn my-1 btn-outline-light py-2 w-100 ">
+                امتحانات
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="./A-NEA.html"
                 class=" text-start btn my-1 btn-outline-light py-2 w-100 ">
                 اخبار/رویداد/اطلاعیه
