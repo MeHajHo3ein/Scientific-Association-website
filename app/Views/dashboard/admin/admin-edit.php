@@ -73,6 +73,13 @@ if (!$admin) {
   </div>
 </div>
 
+<script>
+  document.getElementById('toggle-admin-view').addEventListener('change', function(e) {
+    const passwordInput = document.getElementById('password');
+    passwordInput.type = e.target.checked ? 'text' : 'password';
+  });
+</script>
+
 <?php
 include '../app/Views/layouts/dashboard/footer.php';
 ?>
