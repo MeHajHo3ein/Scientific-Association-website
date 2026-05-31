@@ -25,469 +25,181 @@ include '../app/Views/partials/navbar.php';
 
 <!-- Main -->
 <div class="container">
-  <h4 id="webdev" class="my-3">توسعه وب</h4>
-  <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
+  <?php if (empty($courses)): ?>
+    <div class="text-center">هیچ دوره‌ای یافت نشد.</div>
+  <?php else: ?>
+    <h4 id="webdev" class="my-3">توسعه وب</h4>
+    <div class="row">
+      <?php
+      $webCourses = array_filter($courses, function ($c) {
+        return stripos($c['title'], 'وب') !== false || stripos($c['title'], 'Front') !== false || stripos($c['title'], 'Web') !== false;
+      });
+      $webCourses = array_slice($webCourses, 0, 4);
+      ?>
+      <?php if (!empty($webCourses)): ?>
+        <?php foreach ($webCourses as $course): ?>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
+              <div class="card-body border-start border-primary border-5 rounded-3">
+                <img src="<?= $course['image'] ? '/uploads/courses' . $course['image'] : '/assets/img/logo.png' ?>" alt="C-img" class="card-img-top rounded-3" />
+                <h5 class="card-title"><?= htmlspecialchars($course['title']) ?></h5>
+                <p class="card-text">
+                  <span>مدرس:</span>
+                  <span><?= htmlspecialchars($course['instructor_name']) ?></span>
+                </p>
+                <p class="card-text">
+                  <span>سطح:</span>
+                  <span><?= $course['level'] == 'beginner' ? 'مبتدی' : ($course['level'] == 'intermediate' ? 'متوسط' : 'پیشرفته') ?></span>
+                </p>
+                <p class="card-text">
+                  <span>هزینه:</span>
+                  <span><?= $course['price'] > 0 ? number_format($course['price']) . ' تومان' : 'رایگان' ?></span>
+                </p>
+                <p class="card-text">
+                  <span>مدت دوره:</span>
+                  <span><?= htmlspecialchars($course['duration']) ?></span>
+                </p>
+                <a href="/courses/<?= urlencode($course['slug']) ?>" class="btn btn-outline-primary border-1 rounded-3 d-block">
+                  مشاهده جزئیات
+                </a>
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <div class="col-12">هیچ دوره‌ای در این دسته یافت نشد.</div>
+      <?php endif; ?>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 ol-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <h4 id="network" class="my-3">شبکه</h4>
-  <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
+    <h4 id="network" class="my-3">شبکه</h4>
+    <div class="row">
+      <?php
+      $networkCourses = array_filter($courses, function ($c) {
+        return stripos($c['title'], 'شبکه') !== false || stripos($c['title'], 'Network') !== false;
+      });
+      $networkCourses = array_slice($networkCourses, 0, 4);
+      ?>
+      <?php if (!empty($networkCourses)): ?>
+        <?php foreach ($networkCourses as $course): ?>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
+              <div class="card-body border-start border-primary border-5 rounded-3">
+                <img src="<?= $course['image'] ? '/uploads/courses' . $course['image'] : '/assets/img/logo.png' ?>" alt="C-img" class="card-img-top rounded-3" />
+                <h5 class="card-title"><?= htmlspecialchars($course['title']) ?></h5>
+                <p class="card-text">
+                  <span>مدرس:</span>
+                  <span><?= htmlspecialchars($course['instructor_name']) ?></span>
+                </p>
+                <p class="card-text">
+                  <span>سطح:</span>
+                  <span><?= $course['level'] == 'beginner' ? 'مبتدی' : ($course['level'] == 'intermediate' ? 'متوسط' : 'پیشرفته') ?></span>
+                </p>
+                <p class="card-text">
+                  <span>هزینه:</span>
+                  <span><?= $course['price'] > 0 ? number_format($course['price']) . ' تومان' : 'رایگان' ?></span>
+                </p>
+                <p class="card-text">
+                  <span>مدت دوره:</span>
+                  <span><?= htmlspecialchars($course['duration']) ?></span>
+                </p>
+                <a href="/courses/<?= urlencode($course['slug']) ?>" class="btn btn-outline-primary border-1 rounded-3 d-block">
+                  مشاهده جزئیات
+                </a>
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <div class="col-12">هیچ دوره‌ای در این دسته یافت نشد.</div>
+      <?php endif; ?>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 ol-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <h4 id="ai" class="my-3">هوش مصنوعی</h4>
-  <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
+    <h4 id="ai" class="my-3">هوش مصنوعی</h4>
+    <div class="row">
+      <?php
+      $aiCourses = array_filter($courses, function ($c) {
+        return stripos($c['title'], 'هوش') !== false || stripos($c['title'], 'AI') !== false || stripos($c['title'], 'مصنوعی') !== false;
+      });
+      $aiCourses = array_slice($aiCourses, 0, 4);
+      ?>
+      <?php if (!empty($aiCourses)): ?>
+        <?php foreach ($aiCourses as $course): ?>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
+              <div class="card-body border-start border-primary border-5 rounded-3">
+                <img src="<?= $course['image'] ? '/uploads/courses' . $course['image'] : '/assets/img/logo.png' ?>" alt="C-img" class="card-img-top rounded-3" />
+                <h5 class="card-title"><?= htmlspecialchars($course['title']) ?></h5>
+                <p class="card-text">
+                  <span>مدرس:</span>
+                  <span><?= htmlspecialchars($course['instructor_name']) ?></span>
+                </p>
+                <p class="card-text">
+                  <span>سطح:</span>
+                  <span><?= $course['level'] == 'beginner' ? 'مبتدی' : ($course['level'] == 'intermediate' ? 'متوسط' : 'پیشرفته') ?></span>
+                </p>
+                <p class="card-text">
+                  <span>هزینه:</span>
+                  <span><?= $course['price'] > 0 ? number_format($course['price']) . ' تومان' : 'رایگان' ?></span>
+                </p>
+                <p class="card-text">
+                  <span>مدت دوره:</span>
+                  <span><?= htmlspecialchars($course['duration']) ?></span>
+                </p>
+                <a href="/courses/<?= urlencode($course['slug']) ?>" class="btn btn-outline-primary border-1 rounded-3 d-block">
+                  مشاهده جزئیات
+                </a>
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <div class="col-12">هیچ دوره‌ای در این دسته یافت نشد.</div>
+      <?php endif; ?>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 ol-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <h4 id="prog" class="my-3">برنامه نویسی</h4>
-  <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
+    <h4 id="prog" class="my-3">برنامه نویسی</h4>
+    <div class="row">
+      <?php
+      $progCourses = array_filter($courses, function ($c) {
+        return stripos($c['title'], 'برنامه') !== false || stripos($c['title'], 'Python') !== false || stripos($c['title'], 'جاوا') !== false;
+      });
+      $progCourses = array_slice($progCourses, 0, 4);
+      ?>
+      <?php if (!empty($progCourses)): ?>
+        <?php foreach ($progCourses as $course): ?>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
+              <div class="card-body border-start border-primary border-5 rounded-3">
+                <img src="<?= $course['image'] ? '/uploads/courses' . $course['image'] : '/assets/img/logo.png' ?>" alt="C-img" class="card-img-top rounded-3" />
+                <h5 class="card-title"><?= htmlspecialchars($course['title']) ?></h5>
+                <p class="card-text">
+                  <span>مدرس:</span>
+                  <span><?= htmlspecialchars($course['instructor_name']) ?></span>
+                </p>
+                <p class="card-text">
+                  <span>سطح:</span>
+                  <span><?= $course['level'] == 'beginner' ? 'مبتدی' : ($course['level'] == 'intermediate' ? 'متوسط' : 'پیشرفته') ?></span>
+                </p>
+                <p class="card-text">
+                  <span>هزینه:</span>
+                  <span><?= $course['price'] > 0 ? number_format($course['price']) . ' تومان' : 'رایگان' ?></span>
+                </p>
+                <p class="card-text">
+                  <span>مدت دوره:</span>
+                  <span><?= htmlspecialchars($course['duration']) ?></span>
+                </p>
+                <a href="/courses/<?= urlencode($course['slug']) ?>" class="btn btn-outline-primary border-1 rounded-3 d-block">
+                  مشاهده جزئیات
+                </a>
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <div class="col-12">هیچ دوره‌ای در این دسته یافت نشد.</div>
+      <?php endif; ?>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 ol-sm-12">
-      <div class="card shadow d-flex m-2 p-0 rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3">
-          <img src="/assets/img/logo.png" alt="C-img" class="card-img-top rounded-3" />
-          <h5 class="card-title">طراحی مدرن Front-End</h5>
-          <p class="card-text">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text">
-            <span>سطح:</span>
-            <span>متوسط</span>
-          </p>
-          <p class="card-text">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <p class="card-text">
-            <span>مدت دوره:</span>
-            <span>20</span>
-            <span>ساعت</span>
-          </p>
-          <a href="/courses_detail" class="btn btn-outline-primary border-1 rounded-3 d-block">
-            مشاهده جزئیات
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php endif; ?>
 </div>
 
 <br>
