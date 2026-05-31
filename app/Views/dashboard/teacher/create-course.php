@@ -23,6 +23,16 @@ include '../app/Views/layouts/dashboard/sidebar.php';
           </select>
         </div>
         <div class="form-group">
+          <label for="category">دسته بندی</label>
+          <select class="C-select" id="category" name="category" required>
+            <option value="">انتخاب کنید...</option>
+            <option value="network">شبکه</option>
+            <option value="web">توسعه وب</option>
+            <option value="ai">هوش مصنوعی</option>
+            <option value="programming">برنامه نویسی</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="price">هزینه (تومان)</label>
           <input
             class="C-input"

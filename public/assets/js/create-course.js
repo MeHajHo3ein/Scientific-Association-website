@@ -76,7 +76,7 @@ const addSectionBtn = document.getElementById("addSectionBtn");
 
 let sectionCounter = 0;
 
-function addSection(data = { title: "", description: "" }) {
+function addSection(data = { title: "", description: "", download_link: "" }) {
   const wrapper = document.createElement("div");
   wrapper.className = "dynamic-item";
   wrapper.dataset.type = "section";
@@ -93,6 +93,10 @@ function addSection(data = { title: "", description: "" }) {
     <div class="form-group">
       <label>توضیح سرفصل</label>
       <textarea class="C-textarea w-100" name="syllabus[${sectionCounter}][description]" placeholder="در این بخش چه چیزهایی آموزش داده می‌شود؟">${data.description.replace(/"/g, "&quot;")}</textarea>
+    </div>
+    <div class="form-group">
+      <label>لینک ویدیو</label>
+      <input class="C-input" placeholder="لینک دریافتی خود از سایت هاست دانلودی خود را اینجا جایگزاری کنید.">${data.download_link}</input>
     </div>
   `;
 
