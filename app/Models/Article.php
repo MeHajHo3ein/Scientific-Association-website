@@ -21,13 +21,14 @@ class Article
                   LEFT JOIN users u ON a.author_id = u.id
                   ORDER BY a.created_at DESC";
 
-    if ($limit) {
-      $query .= " LIMIT " . intval($limit);
-    }
-
     $stmt = $this->db->prepare($query);
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($limit) {
+      return array_slice($results, 0, $limit);
+    }
+    return $results;
   }
 
   // Get all articles for admin panel
