@@ -100,6 +100,12 @@
               <a href="/panel/notifications" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/notifications') ? 'active' : ''; ?>">اعلانات</a>
             </li>
             <li class="nav-item">
+              <a href="./A-NEA.html"
+                class=" text-start btn my-1 btn-outline-light py-2 w-100 ">
+                اخبار/رویداد/اطلاعیه
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="/logout" class="btn my-1 btn-danger text-light w-100">خروج</a>
             </li>
           </ul>
