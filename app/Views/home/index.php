@@ -55,80 +55,40 @@ include '../app/Views/partials/navbar.php';
       <h4 class="mx-2 row">دوره‌های در حال برگزاری</h4>
       <p>منتخب دوره‌های فعال انجمن علمی کامپیوتر</p>
     </span>
-
     <a
       href="/courses"
       class="link-dark text-decoration-none text-sm-center text-primary">مشاهده همه دوره‌ها</a>
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-lg-4 col-sm-12">
-        <div
-          class="bg-white py-3 rounded-3 mb-3 p-3 border-start border-primary border-5">
-          <h5>برنامه‌نویسی پیشرفته با Python</h5>
-          <p class="mx-2">
-            مدرس:
-            <span>دکتر الف</span>
-          </p>
-          <p class="mx-2">
-            سطح:
-            <span>متوسط</span>
-          </p>
-          <p class="text-justify">
-            آموزش مفاهیم پیشرفته پایتون، کار با کتابخانه‌ها، تست و معماری نرم‌افزار.
-          </p>
-          <p class="d-flex justify-content-between">
-            <span class="">قیمت:</span>
-            <span>رایگان</span>
-          </p>
-          <a href="/courses_detail" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
+      <?php if (empty($homeCourses)): ?>
+        <div class="col-12">
+          <div class="text-center">هیچ دوره‌ای یافت نشد.</div>
         </div>
-      </div>
-      <div class="col-lg-4 col-sm-12 rounded-3">
-        <div
-          class="bg-white py-3 rounded-3 mb-3 p-3 border-start border-primary border-5">
-          <h5>برنامه‌نویسی پیشرفته با Python</h5>
-          <p class="mx-2">
-            مدرس:
-            <span>دکتر الف</span>
-          </p>
-          <p class="mx-2">
-            سطح:
-            <span>متوسط</span>
-          </p>
-          <p class="text-justify">
-            آموزش مفاهیم پیشرفته پایتون، کار با کتابخانه‌ها، تست و معماری نرم‌افزار.
-          </p>
-          <p class="d-flex justify-content-between">
-            <span class="">قیمت:</span>
-            <span>رایگان</span>
-          </p>
-          <a href="/courses_detail" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-sm-12 rounded-3">
-        <div
-          class="bg-white py-3 rounded-3 mb-3 p-3 border-start border-primary border-5">
-          <h5>برنامه‌نویسی پیشرفته با Python</h5>
-          <p class="mx-2">
-            مدرس:
-            <span>دکتر الف</span>
-          </p>
-          <p class="mx-2">
-            سطح:
-            <span>متوسط</span>
-          </p>
-          <p class="text-justify">
-            آموزش مفاهیم پیشرفته پایتون، کار با کتابخانه‌ها، تست و معماری نرم‌افزار.
-          </p>
-          <p class="d-flex justify-content-between">
-            <span class="">قیمت:</span>
-            <span>رایگان</span>
-          </p>
-          <a href="/courses_detail" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
-        </div>
-      </div>
+      <?php else: ?>
+        <?php foreach ($homeCourses as $course): ?>
+          <div class="col-lg-4 col-sm-12">
+            <div
+              class="bg-white py-3 rounded-3 mb-3 p-3 border-start border-primary border-5">
+              <h5><?= htmlspecialchars($course['title']) ?></h5>
+              <p class="mx-2">
+                <span>مدرس: <?= htmlspecialchars($course['instructor_name']) ?></span>
+              </p>
+              <p class="mx-2">
+                <span>سطح: <?= $course['level'] == 'beginner' ? 'مبتدی' : ($course['level'] == 'intermediate' ? 'متوسط' : 'پیشرفته') ?></span>
+              </p>
+              <p class="text-justify">
+              <p class="text-justify"><?= htmlspecialchars(mb_substr($course['description'], 0, 100)) ?></p>
+              </p>
+              <p class="d-flex justify-content-between">
+                <span class="">قیمت:</span>
+                <span class=""><?= $course['price'] > 0 ? number_format($course['price']) . ' تومان' : 'رایگان' ?></span>
+              </p>
+              <a href="/courses/<?= urlencode($course['slug']) ?>" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
   </div>
 </div>
