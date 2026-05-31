@@ -11,6 +11,7 @@ CREATE TABLE `users` (
   `full_name` varchar(100) NOT NULL,
   `mobile` varchar(11) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `password` varchar(100) NOT NULL,
   `role` enum('student','teacher','admin') NOT NULL DEFAULT 'student',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
