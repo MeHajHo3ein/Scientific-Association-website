@@ -31,13 +31,13 @@ class Course
     return $results;
   }
 
-  // Get all courses (for admin panel)
+  // Get all courses (for admin/teacher panel)
   public function getAllCourses()
   {
     $query = "SELECT c.*, u.full_name as instructor_name, u.full_name as creator_name
               FROM courses c
               LEFT JOIN users u ON c.created_by = u.id
-              ORDER BY c.created_at DESC";
+              ORDER BY c.created_at ASC";
     $stmt = $this->db->prepare($query);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
