@@ -66,23 +66,14 @@ class ArticleController
   // Show create article form 
   public function showCreateForm()
   {
-    $this->checkAdminOrTeacherAuth();
-    $role = $_SESSION['role'] ?? 'teacher';
-
-    switch ($role) {
-      case 'admin':
-        require_once '../app/Views/dashboard/admin/create-article.php';
-        break;
-      default:
-        require_once '../app/Views/dashboard/teacher/create-article.php';
-        break;
-    }
+    $this->checkTeacherAuth();
+    require_once '../app/Views/dashboard/teacher/create-article.php';
   }
 
   // Store new article
   public function store()
   {
-    $this->checkAdminOrTeacherAuth();
+    $this->checkTeacherAuth();
 
     $title = trim($_POST['title'] ?? '');
     $summary = trim($_POST['summary'] ?? '');
@@ -142,7 +133,7 @@ class ArticleController
   // Delete article
   public function delete($id)
   {
-    $this->checkAdminAuth();
+    $this->checkAdminOrTeacherAuth();
 
     $article = $this->articleModel->getArticleById($id);
     if (!$article) {
@@ -163,9 +154,9 @@ class ArticleController
     redirect('/panel/articles');
   }
 
-  private function checkAdminAuth()
+  private function checkTeacherAuth()
   {
-    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'teacher') {
       show403();
     }
   }
