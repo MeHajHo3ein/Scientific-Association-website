@@ -83,11 +83,6 @@ unset($_SESSION['errors'], $_SESSION['old_input']);
       <!-- مدرس و تصویر -->
       <div class="form-row">
         <div class="form-group">
-          <label for="instructorId">مدرس</label>
-          <input type="text" class="C-input" value="<?= htmlspecialchars($_SESSION['full_name'] ?? 'کاربر') ?>" disabled readonly />
-        </div>
-
-        <div class="form-group">
           <label for="image">عکس دوره</label>
           <input
             type="file"
