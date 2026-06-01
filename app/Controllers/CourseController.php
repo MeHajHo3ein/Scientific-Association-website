@@ -67,23 +67,14 @@ class CourseController
   // Display create courses form
   public function showCreateForm()
   {
-    $this->checkAdminOrTeacherAuth();
-    $role = $_SESSION['role'] ?? 'teacher';
-
-    switch ($role) {
-      case 'admin':
-        require_once '../app/Views/dashboard/admin/create-course.php';
-        break;
-      default:
-        require_once '../app/Views/dashboard/teacher/create-course.php';
-        break;
-    }
+    $this->checkTeacherAuth();
+    require_once '../app/Views/dashboard/teacher/create-course.php';
   }
 
   // Store new course
   public function store()
   {
-    $this->checkAdminOrTeacherAuth();
+    $this->checkTeacherAuth();
 
     $title = trim($_POST['title'] ?? '');
     $level = $_POST['level'] ?? 'beginner';
@@ -178,7 +169,7 @@ class CourseController
   // Delete course
   public function delete($id)
   {
-    $this->checkAdminAuth();
+    $this->checkAdminOrTeacherAuth();
 
     $course = $this->courseModel->getCourseById($id);
     if (!$course) {
@@ -199,9 +190,9 @@ class CourseController
     redirect('/panel/courses');
   }
 
-  private function checkAdminAuth()
+  private function checkTeacherAuth()
   {
-    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'teacher') {
       show403();
     }
   }
