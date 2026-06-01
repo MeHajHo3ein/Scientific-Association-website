@@ -23,9 +23,6 @@ include '../app/Views/layouts/dashboard/sidebar.php';
 <!-- Main Content -->
 <div class="col-md-10 offset-md-2 p-4">
   <h3 class="text-primary">اعلانات</h3>
-  <a href="/panel/notifications/create" class="btn btn-primary w-100 d-block my-1">
-    افزودن
-  </a>
   <div class="container">
     <table class="table table-bordered table-hover table-striped">
       <tr>

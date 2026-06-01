@@ -23,7 +23,6 @@ include '../app/Views/layouts/dashboard/sidebar.php';
 <!-- Main Content -->
 <div class="col-md-10 offset-md-2 p-4">
   <h3 class="text-primary">مقالات بارگزاری شده</h3>
-  <a href="/panel/articles/create" class="btn btn-primary d-block w-100 my-1">افزودن</a>
   <div class="container overflow-auto">
     <!--            <div id="addarticles" class="modal fade show">-->
     <!--                <form class="form-control container">-->
