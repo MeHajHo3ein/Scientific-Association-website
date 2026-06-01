@@ -57,18 +57,11 @@ class NotificationController
 
     $role = $_SESSION['role'] ?? 'teacher';
 
-    if ($role !== 'admin' && $role !== 'teacher') {
+    if ($role !== 'teacher') {
       show403();
     }
 
-    switch ($role) {
-      case 'admin':
-        require_once '../app/Views/dashboard/admin/notification-create.php';
-        break;
-      default:
-        require_once '../app/Views/dashboard/teacher/notification-create.php';
-        break;
-    }
+    require_once '../app/Views/dashboard/teacher/notification-create.php';
   }
 
   // Save new notification (just students)
@@ -80,7 +73,7 @@ class NotificationController
 
     $role = $_SESSION['role'] ?? 'student';
 
-    if ($role !== 'admin' && $role !== 'teacher') {
+    if ($role !== 'teacher') {
       show403();
     }
 
