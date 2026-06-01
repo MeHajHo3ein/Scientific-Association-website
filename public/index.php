@@ -51,9 +51,6 @@ $router->get('/login', function () {
 // Panel
 $router->get('/panel', [DashboardController::class, 'index']);
 
-// Panel - Courses (*** All Roles ***)
-// $router->get('/panel/courses', [DashboardController::class, 'courses']);
-
 // Panel - Notifications (*** All Roles ***)
 $router->get('/panel/notifications', [NotificationController::class, 'index']);
 $router->get('/panel/notifications/create', [NotificationController::class, 'showCreateForm']);
@@ -83,9 +80,6 @@ $router->get('/panel/courses/delete/{id}', [CourseController::class, 'delete']);
 
 // Panel - Offline Courses (*** Admin & Teacher ***)
 $router->get('/panel/offline-courses', [DashboardController::class, 'offlineCourses']);
-
-// Panel - Create Course (*** Admin & Teacher ***)
-$router->get('/panel/courses/create', [DashboardController::class, 'showCreateCourse']);
 
 // Panel - Admin (*** Student ***)
 $router->get('/panel/students', [StudentManagementController::class, 'index']);
