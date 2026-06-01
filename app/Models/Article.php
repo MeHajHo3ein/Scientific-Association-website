@@ -31,7 +31,7 @@ class Article
     return $results;
   }
 
-  // Get all articles for admin panel
+  // Get all articles for admin/teacher panel
   public function getAllArticles()
   {
     $query = "SELECT a.*, u.full_name as author_name 
