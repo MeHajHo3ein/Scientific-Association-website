@@ -85,7 +85,7 @@
                 class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel') ? 'active' : ""; ?>"><?= getBackButtonText(); ?></a>
             </li>
             <li class="nav-item">
-              <a href="/panel/courses" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/courses') ? 'active' : ""; ?>">دوره ها</a>
+              <a href="/panel/courses" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/courses') || isActiveRoute('/panel/courses/create') ? 'active' : ""; ?>">دوره ها</a>
             </li>
             <li class="nav-item">
               <a href="/panel/articles" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/articles') || isActiveRoute('/panel/articles/create') ? 'active' : ''; ?>">
@@ -97,7 +97,7 @@
               <a href="/panel/offline-courses" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/offline-courses') ? 'active' : ""; ?>">فایل های قابل دانلود</a>
             </li>
             <li class="nav-item">
-              <a href="/panel/notifications" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/notifications') ? 'active' : ''; ?>">اعلانات</a>
+              <a href="/panel/notifications" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/notifications') || isActiveRoute('/panel/notifications/create') ? 'active' : ''; ?>">اعلانات</a>
             </li>
             <li class="nav-item">
               <a href="./T-Quests.html"
