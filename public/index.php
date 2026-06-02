@@ -14,6 +14,7 @@ use App\Controllers\AuthController;
 use App\Controllers\CourseController;
 use App\Controllers\DashboardController;
 use App\Controllers\HomeController;
+use App\Controllers\NeasController;
 use App\Controllers\NotificationController;
 use App\Controllers\PagesController;
 use App\Controllers\ProfileController;
@@ -28,7 +29,7 @@ $router->get('/', [HomeController::class, 'index']);
 $router->get('/courses', [PagesController::class, 'courses']);
 $router->get('/offline-courses', [PagesController::class, 'offline_courses']);
 $router->get('/articles', [ArticleController::class, 'index']);
-$router->get('/news', [PagesController::class, 'news']);
+$router->get('/news', [NeasController::class, 'index']);
 $router->get('/certificates', [PagesController::class, 'certificates']);
 $router->get('/cult', [PagesController::class, 'cult']);
 $router->get('/contactus', [PagesController::class, 'contact_us']);
@@ -80,6 +81,12 @@ $router->get('/panel/courses/delete/{id}', [CourseController::class, 'delete']);
 
 // Panel - Offline Courses (*** Admin & Teacher ***)
 $router->get('/panel/offline-courses', [DashboardController::class, 'offlineCourses']);
+
+// Panel - Neas (*** Admin & Teacher ***)
+$router->get('/panel/neas', [NeasController::class, 'adminIndex']);
+$router->get('/panel/neas/create', [NeasController::class, 'showCreateForm']);
+$router->post('/panel/neas/store', [NeasController::class, 'store']);
+$router->get('/panel/neas/delete/{id}', [NeasController::class, 'delete']);
 
 // Panel - Admin (*** Student ***)
 $router->get('/panel/students', [StudentManagementController::class, 'index']);
