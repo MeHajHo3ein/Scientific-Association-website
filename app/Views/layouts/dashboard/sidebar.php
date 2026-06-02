@@ -67,7 +67,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="./A-NEA.html"
+              <a href="/panel/neas"
                 class=" text-start btn my-1 btn-outline-light py-2 w-100 ">
                 اخبار/رویداد/اطلاعیه
               </a>
@@ -106,7 +106,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="./A-NEA.html"
+              <a href="/panel/neas"
                 class=" text-start btn my-1 btn-outline-light py-2 w-100 ">
                 اخبار/رویداد/اطلاعیه
               </a>
