@@ -53,6 +53,8 @@ function getBackButtonText()
     '/panel/certificates',
     '/panel/notifications',
     '/panel/notifications/create',
+    '/panel/neas',
+    '/panel/neas/create',
     '/panel/articles',
     '/panel/articles/create',
     '/panel/offline-courses',
@@ -100,6 +102,8 @@ function getBackButtonUrl()
     '/panel/certificates',
     '/panel/notifications',
     '/panel/notifications/create',
+    '/panel/neas',
+    '/panel/neas/create',
     '/panel/articles',
     '/panel/articles/create',
     '/panel/offline-courses',
@@ -148,6 +152,11 @@ function getBackButtonUrl()
   // For Notifications
   if ($currentUri === '/panel/notifications/create') {
     return '/panel/notifications';
+  }
+
+  // For NEA
+  if ($currentUri === '/panel/neas/create') {
+    return '/panel/neas';
   }
 
   if (in_array($currentUri, $panelPages)) {
