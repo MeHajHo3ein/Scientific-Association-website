@@ -84,6 +84,7 @@ CREATE TABLE `courses` (
   `price` bigint(20) DEFAULT 0,
   `duration` varchar(100) DEFAULT NULL,
   `student_count` int(11) DEFAULT 0,
+  `instructor_id` int NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
   `created_by` int(11) NOT NULL,
