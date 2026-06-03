@@ -28,8 +28,7 @@ imageInput.addEventListener("change", () => {
   // نمایش پیش‌نمایش
   const reader = new FileReader();
   reader.onload = (e) => {
-    imagePreview.innerHTML =
-      '<img src="' + e.target.result + '" alt="Course Image" style="max-width:200px;">';
+    imagePreview.innerHTML = '<img src="' + e.target.result + '" alt="Course Image">';
   };
   reader.readAsDataURL(file);
 });
