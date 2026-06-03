@@ -26,7 +26,7 @@ include '../app/Views/partials/navbar.php';
     </div>
     <div class="col-lg-10 col-sm-10">
       <?php if (empty($announcements)): ?>
-        <div class="alert alert-info text-center">هیچ اطلاعیه‌ای وجود ندارد.</div>
+        <div class="text-center">هیچ اطلاعیه‌ای وجود ندارد.</div>
       <?php else: ?>
         <?php foreach ($announcements as $index => $item): ?>
           <?php if ($index === 0): ?>
@@ -65,7 +65,7 @@ include '../app/Views/partials/navbar.php';
     </div>
     <div class="col-lg-10 col-sm-10">
       <?php if (empty($news)): ?>
-        <div class="alert alert-info text-center">هیچ خبری وجود ندارد.</div>
+        <div class="text-center">هیچ خبری وجود ندارد.</div>
       <?php else: ?>
         <?php foreach ($news as $index => $item): ?>
           <?php if ($index === 0): ?>
@@ -104,7 +104,7 @@ include '../app/Views/partials/navbar.php';
     </div>
     <div class="col-lg-10 col-sm-10">
       <?php if (empty($events)): ?>
-        <div class="alert alert-info text-center">هیچ رویدادی وجود ندارد.</div>
+        <div class="text-center">هیچ رویدادی وجود ندارد.</div>
       <?php else: ?>
         <?php foreach ($events as $index => $item): ?>
           <?php if ($index === 0): ?>
