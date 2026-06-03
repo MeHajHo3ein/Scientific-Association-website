@@ -68,7 +68,7 @@
             </li>
             <li class="nav-item">
               <a href="/panel/neas"
-                class=" text-start btn my-1 btn-outline-light py-2 w-100 ">
+                class=" text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/neas') || isActiveRoute('/panel/neas/create') ? 'active' : ''; ?>">
                 اخبار/رویداد/اطلاعیه
               </a>
             </li>
@@ -107,7 +107,7 @@
             </li>
             <li class="nav-item">
               <a href="/panel/neas"
-                class=" text-start btn my-1 btn-outline-light py-2 w-100 ">
+                class=" text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/neas') || isActiveRoute('/panel/neas/create') ? 'active' : ''; ?>">
                 اخبار/رویداد/اطلاعیه
               </a>
             </li>
