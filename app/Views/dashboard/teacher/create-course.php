@@ -48,9 +48,10 @@ unset($_SESSION['errors'], $_SESSION['old_input']);
             name="price"
             min="0"
             step="1000"
-            value="<?= htmlspecialchars($old_input['price'] ?? '') ?>"
-            required />
-          <small class="C-small">اگر 0 وارد کنید، دوره رایگان در نظر گرفته می‌شود.</small>
+            placeholder="رایگان"
+            disabled />
+          <!-- value="<?= htmlspecialchars($old_input['price'] ?? '') ?>" -->
+          <!-- <small class="C-small">اگر 0 وارد کنید، دوره رایگان در نظر گرفته می‌شود.</small> -->
         </div>
 
         <div class="form-group">
