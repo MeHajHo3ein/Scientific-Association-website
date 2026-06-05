@@ -19,7 +19,7 @@ $isTeacherUpdated = ($isTeacher && isset($_SESSION['profile_updated']) && $_SESS
       از منوی سمت راست بخش مورد نظر را انتخاب کنید.
     </p>
     <!-- Dashboard -->
-    <div class="card shadow-sm rounded-4 p-4 border-primary">
+    <div class="card shadow-sm p-4 border-0">
       <div class="text-center mb-4">
         <h4 class="fw-bold text-dark mb-1">اطلاعات حساب کاربری</h4>
       </div>
@@ -192,6 +192,10 @@ $isTeacherUpdated = ($isTeacher && isset($_SESSION['profile_updated']) && $_SESS
             <small id="strengthLabel" class="text-muted"></small>
           </div>
           <div class="invalid-feedback d-block small" id="passwordError"></div>
+          <p class="text-secondary">
+            اگر نمی‌خواهید رمزتان تغییر کند، این فیلد را
+            <span class="text-dark text-decoration-underline">خالی</span> بگذارید.
+          </p>
         </div>
         <!-- Submit -->
         <?php if (!$isTeacherUpdated): ?>

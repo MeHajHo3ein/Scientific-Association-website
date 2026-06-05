@@ -11,7 +11,7 @@ $isStudentUpdated = ($isStudent && isset($_SESSION['profile_updated']) && $_SESS
 <div class="col-md-10 offset-md-2 p-4">
   <div class="container">
     <!--Hero-->
-    <div class="card my-3 py-3">
+    <div class="card my-3 py-3 border-0">
       <div class="card-body py-3">
         <h3><?= htmlspecialchars($_SESSION['full_name'] ?? 'کاربر'); ?>، خوش اومدی 👋</h3>
         <p class="h5 text-secondary">
@@ -20,7 +20,7 @@ $isStudentUpdated = ($isStudent && isset($_SESSION['profile_updated']) && $_SESS
       </div>
     </div>
     <!-- Dashboard -->
-    <div class="card shadow-sm rounded-4 p-4 border-primary">
+    <div class="card shadow-sm p-4 border-0">
       <div class="text-center mb-4">
         <h4 class="fw-bold text-dark mb-1">اطلاعات حساب کاربری</h4>
       </div>
@@ -219,6 +219,10 @@ $isStudentUpdated = ($isStudent && isset($_SESSION['profile_updated']) && $_SESS
             <small id="strengthLabel" class="text-muted"></small>
           </div>
           <div class="invalid-feedback d-block small" id="passwordError"></div>
+          <p class="text-secondary">
+            اگر نمی‌خواهید رمزتان تغییر کند، این فیلد را
+            <span class="text-dark text-decoration-underline">خالی</span> بگذارید.
+          </p>
         </div>
         <!-- Submit -->
         <?php if (!$isStudentUpdated): ?>
