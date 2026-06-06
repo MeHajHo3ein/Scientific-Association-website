@@ -11,7 +11,7 @@ class AdminManagementController
 
   public function __construct()
   {
-    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'owner') {
       show403();
     }
 
@@ -22,13 +22,13 @@ class AdminManagementController
   public function index()
   {
     $admins = $this->adminModel->getAllAdmins();
-    require_once '../app/Views/dashboard/admin/admins.php';
+    require_once '../app/Views/dashboard/owner/admins.php';
   }
 
   // Show create form
   public function showCreateForm()
   {
-    require_once '../app/Views/dashboard/admin/admin-create.php';
+    require_once '../app/Views/dashboard/owner/admin-create.php';
   }
 
   // Show edit form
@@ -40,7 +40,7 @@ class AdminManagementController
       redirect('/panel/admins');
     }
 
-    require_once '../app/Views/dashboard/admin/admin-edit.php';
+    require_once '../app/Views/dashboard/owner/admin-edit.php';
   }
 
   // Store add admin
@@ -120,6 +120,7 @@ class AdminManagementController
     $mobile = trim($_POST['mobile'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
+    $new_role = $_POST['role'] ?? '';
 
     $errors = [];
 
@@ -147,6 +148,11 @@ class AdminManagementController
       $errors['password'] = 'رمز عبور باید حداقل ۸ کاراکتر باشد.';
     }
 
+    $allowed_roles = ['teacher', 'student'];
+    if (!empty($new_role) && !in_array($new_role, $allowed_roles)) {
+      $errors['role'] = 'نقش انتخابی نامعتبر است.';
+    }
+
     if (!empty($errors)) {
       $_SESSION['errors'] = $errors;
       $_SESSION['old_input'] = $_POST;
@@ -162,13 +168,28 @@ class AdminManagementController
 
       $profileUpdated = $this->adminModel->editAdmin($id, $data);
       $passwordUpdated = true;
+      $roleUpdated = true;
 
       if (!empty($password)) {
         $passwordUpdated = $this->adminModel->editPassword($id, $password);
       }
 
-      if ($profileUpdated && $passwordUpdated) {
+      $roleChanged = false;
+      if (!empty($new_role) && $new_role !== 'admin') {
+        $roleUpdated = $this->adminModel->updateRole($id, $new_role);
+        $roleChanged = true;
+      }
+
+      if ($profileUpdated && $passwordUpdated && $roleUpdated) {
         $_SESSION['success'] = 'اطلاعات کاربر ' . htmlspecialchars($full_name) . ' با موفقیت تغییر کرد.';
+
+        if ($roleChanged) {
+          $roleNames = [
+            'teacher' => 'استاد',
+            'student' => 'دانشجو'
+          ];
+          $_SESSION['success'] = "سطح دسترسی کاربر به <strong>{$roleNames[$new_role]}</strong> تغییر کرد.";
+        }
       } else {
         $_SESSION['error'] = 'خطا در ویرایش اطلاعات.';
       }
@@ -179,7 +200,7 @@ class AdminManagementController
     redirect('/panel/admins');
   }
 
-  // Delete teacher
+  // Delete admin
   public function deleteAdmin($id)
   {
     $student = $this->adminModel->getAdminById($id);
