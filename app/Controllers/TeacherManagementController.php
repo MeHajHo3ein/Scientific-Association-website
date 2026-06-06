@@ -15,7 +15,7 @@ class TeacherManagementController
       session_start();
     }
 
-    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    if (!isset($_SESSION['user_id']) || ($_SESSION['role'] !== 'owner' && $_SESSION['role'] !== 'admin')) {
       show403();
     }
 
@@ -26,12 +26,25 @@ class TeacherManagementController
   public function index()
   {
     $teachers = $this->teacherModel->getAllTeachers();
-    require_once '../app/Views/dashboard/admin/teachers.php';
+    $role = $_SESSION['role'] ?? 'admin';
+
+    switch ($role) {
+      case 'owner':
+        require_once '../app/Views/dashboard/owner/teachers.php';
+        break;
+      default:
+        require_once '../app/Views/dashboard/admin/teachers.php';
+        break;
+    }
   }
 
   // Show create form
   public function showCreateForm()
   {
+    if ($_SESSION['role'] !== 'admin') {
+      show403();
+    }
+
     require_once '../app/Views/dashboard/admin/teacher-create.php';
   }
 
@@ -39,12 +52,20 @@ class TeacherManagementController
   public function showEditForm($id)
   {
     $teacher = $this->teacherModel->getTeacherById($id);
+    $role = $_SESSION['role'] ?? 'admin';
     if (!$teacher) {
       $_SESSION['error'] = 'استاد یافت نشد.';
       redirect('/panel/teachers');
     }
 
-    require_once '../app/Views/dashboard/admin/teacher-edit.php';
+    switch ($role) {
+      case 'owner':
+        require_once '../app/Views/dashboard/owner/teacher-edit.php';
+        break;
+      default:
+        require_once '../app/Views/dashboard/admin/teacher-edit.php';
+        break;
+    }
   }
 
   // Store add teacher
@@ -137,6 +158,7 @@ class TeacherManagementController
     $mobile = trim($_POST['mobile'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
+    $new_role = $_POST['role'] ?? '';
 
     $errors = [];
 
@@ -162,6 +184,11 @@ class TeacherManagementController
 
     if (!empty($password) && strlen($password) < 8) {
       $errors['password'] = 'رمز عبور باید حداقل ۸ کاراکتر باشد.';
+    }
+
+    $allowed_roles = ['student', 'admin'];
+    if (!empty($new_role) && !in_array($new_role, $allowed_roles)) {
+      $errors['role'] = 'نقش انتخابی نامعتبر است.';
     }
 
     if (!empty($errors)) {
@@ -192,13 +219,28 @@ class TeacherManagementController
 
       $profileUpdated = $this->teacherModel->editTeacher($id, $data);
       $passwordUpdated = true;
+      $roleUpdated = true;
 
       if (!empty($password)) {
         $passwordUpdated = $this->teacherModel->editPassword($id, $password);
       }
 
-      if ($profileUpdated && $passwordUpdated) {
+      $roleChanged = false;
+      if (!empty($new_role)) {
+        $roleUpdated = $this->teacherModel->updateRole($id, $new_role);
+        $roleChanged = true;
+      }
+
+      if ($profileUpdated && $passwordUpdated && $roleUpdated) {
         $_SESSION['success'] = 'اطلاعات کاربر ' . htmlspecialchars($full_name) . ' با موفقیت تغییر کرد.';
+
+        if ($roleChanged) {
+          $roleNames = [
+            'student' => 'دانشجو',
+            'admin' => 'ادمین'
+          ];
+          $_SESSION['success'] = "سطح دسترسی کاربر به <strong>{$roleNames[$new_role]}</strong> تغییر کرد.";
+        }
       } else {
         $_SESSION['error'] = 'خطا در ویرایش اطلاعات.';
       }
