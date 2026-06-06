@@ -60,6 +60,17 @@ class StudentManagement
     ]);
   }
 
+  // Update user role (change from admin to teacher/admin)
+  public function updateRole($id, $newRole)
+  {
+    $query = "UPDATE users SET role = :role WHERE id = :id";
+    $stmt = $this->db->prepare($query);
+    return $stmt->execute([
+      ':role' => $newRole,
+      ':id' => $id
+    ]);
+  }
+
   // Delete student
   public function deleteStudent($id)
   {
