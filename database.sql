@@ -13,7 +13,7 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `password` varchar(100) NOT NULL,
-  `role` enum('student','teacher','admin') NOT NULL DEFAULT 'student',
+  `role` enum('student','teacher','admin','owner') NOT NULL DEFAULT 'student',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `profile_updated` TINYINT(1) DEFAULT 0,
   PRIMARY KEY (`id`),
