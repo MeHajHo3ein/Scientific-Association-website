@@ -31,6 +31,9 @@ class DashboardController
     $role = $_SESSION['role'] ?? 'student';
 
     switch ($role) {
+      case 'owner':
+        require_once '../app/Views/dashboard/owner/dashboard.php';
+        break;
       case 'admin':
         require_once '../app/Views/dashboard/admin/dashboard.php';
         break;
@@ -50,6 +53,9 @@ class DashboardController
     $role = $_SESSION['role'] ?? 'student';
 
     switch ($role) {
+      case 'owner':
+        require_once '../app/Views/dashboard/owner/courses.php';
+        break;
       case 'admin':
         require_once '../app/Views/dashboard/admin/courses.php';
         break;
@@ -69,6 +75,9 @@ class DashboardController
     $role = $_SESSION['role'] ?? 'student';
 
     switch ($role) {
+      case 'owner':
+        require_once '../app/Views/dashboard/owner/notifications.php';
+        break;
       case 'admin':
         require_once '../app/Views/dashboard/admin/notifications.php';
         break;
@@ -95,6 +104,9 @@ class DashboardController
     $role = $_SESSION['role'] ?? 'teacher';
 
     switch ($role) {
+      case 'owner':
+        require_once '../app/Views/dashboard/owner/articles.php';
+        break;
       case 'admin':
         require_once '../app/Views/dashboard/admin/articles.php';
         break;
@@ -110,6 +122,9 @@ class DashboardController
     $role = $_SESSION['role'] ?? 'teacher';
 
     switch ($role) {
+      case 'owner':
+        require_once '../app/Views/dashboard/owner/offline-courses.php';
+        break;
       case 'admin':
         require_once '../app/Views/dashboard/admin/offline-courses.php';
         break;
@@ -153,19 +168,46 @@ class DashboardController
   public function students()
   {
     $this->checkAuth();
-    require_once '../app/Views/dashboard/admin/students.php';
+    $role = $_SESSION['role'] ?? 'admin';
+
+    switch ($role) {
+      case 'owner':
+        require_once '../app/Views/dashboard/owner/students.php';
+        break;
+      default:
+        require_once '../app/Views/dashboard/admin/students.php';
+        break;
+    }
   }
 
   public function teachers()
   {
     $this->checkAuth();
-    require_once '../app/Views/dashboard/admin/teachers.php';
+    $role = $_SESSION['role'] ?? 'admin';
+
+    switch ($role) {
+      case 'owner':
+        require_once '../app/Views/dashboard/owner/teachers.php';
+        break;
+      default:
+        require_once '../app/Views/dashboard/admin/teachers.php';
+        break;
+    }
   }
 
   public function admins()
   {
     $this->checkAuth();
-    require_once '../app/Views/dashboard/admin/admins.php';
+    $role = $_SESSION['role'] ?? 'admin';
+
+    switch ($role) {
+      case 'owner':
+        require_once '../app/Views/dashboard/owner/admins.php';
+        break;
+      default:
+        require_once '../app/Views/dashboard/admin/admins.php';
+        break;
+    }
   }
 
   private function checkAuth()
