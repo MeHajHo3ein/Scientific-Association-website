@@ -110,8 +110,8 @@ class AdminManagementController
   // Edit teacher
   public function update($id)
   {
-    $student = $this->adminModel->getAdminById($id);
-    if (!$student) {
+    $admin = $this->adminModel->getAdminById($id);
+    if (!$admin) {
       $_SESSION['error'] = 'ادمین یافت نشد.';
       redirect('/panel/admins');
     }
@@ -203,15 +203,15 @@ class AdminManagementController
   // Delete admin
   public function deleteAdmin($id)
   {
-    $student = $this->adminModel->getAdminById($id);
-    if (!$student) {
+    $admin = $this->adminModel->getAdminById($id);
+    if (!$admin) {
       $_SESSION['error'] = 'ادمین یافت نشد.';
       redirect('/panel/admins');
     }
 
     try {
       if ($this->adminModel->deleteAdmin($id)) {
-        $_SESSION['success'] = 'کاربر ' .  htmlspecialchars($student['full_name']) . ' با موفقیت حذف شد.';
+        $_SESSION['success'] = 'کاربر ' .  htmlspecialchars($admin['full_name']) . ' با موفقیت حذف شد.';
       } else {
         $_SESSION['error'] = 'خطا در حذف ادمین.';
       }
