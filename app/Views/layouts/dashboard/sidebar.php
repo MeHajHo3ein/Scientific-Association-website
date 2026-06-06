@@ -42,11 +42,6 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/panel/admins" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= (isActiveRoute('/panel/admins') || isActiveRoute('/panel/admins/create') || strpos($_SERVER['REQUEST_URI'], '/panel/admins/edit/') === 0) ? 'active' : ''; ?>">
-                ادمین ها
-              </a>
-            </li>
-            <li class="nav-item">
               <a href="/panel/courses" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/courses') || isActiveRoute('/panel/courses/create') ? 'active' : ''; ?>">
                 دوره ها
               </a>
