@@ -43,6 +43,9 @@ class NotificationController
     } elseif ($role === 'admin') {
       $notifications = $this->notificationModel->getAllNotifications();
       require_once '../app/Views/dashboard/admin/notifications.php';
+    } elseif ($role === 'owner') {
+      $notifications = $this->notificationModel->getAllNotifications();
+      require_once '../app/Views/dashboard/owner/notifications.php';
     } else {
       show403();
     }
@@ -119,13 +122,13 @@ class NotificationController
   // Delete notification
   public function delete($id)
   {
-    if (!isset($_SESSION['user_id']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'teacher')) {
+    if (!isset($_SESSION['user_id']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'teacher' && $_SESSION['role'] !== 'owner')) {
       redirect('/');
     }
 
     $role = $_SESSION['role'] ?? 'student';
 
-    if ($role !== 'admin' && $role !== 'teacher') {
+    if ($role !== 'owner' && $role !== 'admin' && $role !== 'teacher') {
       show403();
     }
 
