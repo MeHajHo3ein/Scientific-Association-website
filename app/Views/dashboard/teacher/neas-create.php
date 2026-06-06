@@ -41,43 +41,11 @@ unset($_SESSION['errors'], $_SESSION['old_input']);
       value="<?= htmlspecialchars($old_input['content'] ?? ''); ?>"
       required />
 
-    <!-- <label class="form-label">دسته بندی</label>
-    <div class="form-check">
-      <input
-        type="radio"
-        class="form-check-input"
-        name="category"
-        value="event"
-        id="Events"
-        <?= ($old_input['category'] ?? '') == 'event' ? 'checked' : '' ?> />
-      <label class="form-check-label" for="Events"> رویداد </label>
-    </div>
-    <div class="form-check">
-      <input
-        type="radio"
-        class="form-check-input"
-        name="category"
-        value="news"
-        id="News"
-        <?= ($old_input['category'] ?? '') == 'news' ? 'checked' : '' ?> />
-      <label class="form-check-label" for="News"> خبر </label>
-    </div>
-    <div class="form-check">
-      <input
-        type="radio"
-        class="form-check-input"
-        name="category"
-        value="announcement"
-        id="Announcements"
-        checked
-        <?= ($old_input['category'] ?? '') == 'announcement' ? 'checked' : '' ?> />
-      <label class="form-check-label" for="Announcements"> اطلاعیه </label> -->
-
     <div class="form-group">
       <label for="category">دسته بندی</label>
       <select class="C-select" id="category" name="category" required>
         <option value="">انتخاب کنید...</option>
-        <option value="events" <?= ($old_input['category'] ?? '') == 'events' ? 'selected' : '' ?>>رویداد</option>
+        <option value="event" <?= ($old_input['category'] ?? '') == 'event' ? 'selected' : '' ?>>رویداد</option>
         <option value="news" <?= ($old_input['category'] ?? '') == 'news' ? 'selected' : '' ?>>خبر</option>
         <option value="announcement" <?= ($old_input['category'] ?? '') == 'announcement' ? 'selected' : '' ?>>اطلاعیه</option>
       </select>
