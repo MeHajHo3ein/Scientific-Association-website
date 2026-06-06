@@ -43,14 +43,14 @@
             <li class="nav-item">
               <a
                 href="/panel/students"
-                class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/students') ? 'active' : '' ?>">
+                class="text-start btn my-1 btn-outline-light py-2 w-100 <?= (isActiveRoute('/panel/students') || strpos($_SERVER['REQUEST_URI'], '/panel/students/edit/') === 0) ? 'active' : '' ?>">
                 دانشجویان
               </a>
             </li>
             <li class="nav-item">
               <a
                 href="/panel/teachers"
-                class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/teachers') ? 'active' : '' ?>">
+                class="text-start btn my-1 btn-outline-light py-2 w-100 <?= (isActiveRoute('/panel/teachers') || strpos($_SERVER['REQUEST_URI'], '/panel/teachers/edit/') === 0) ? 'active' : '' ?>">
                 اساتید
               </a>
             </li>
