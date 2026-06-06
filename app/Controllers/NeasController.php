@@ -34,6 +34,9 @@ class NeasController
     $role = $_SESSION['role'] ?? 'teacher';
 
     switch ($role) {
+      case 'owner':
+        require_once '../app/Views/dashboard/owner/neas.php';
+        break;
       case 'admin':
         require_once '../app/Views/dashboard/admin/neas.php';
         break;
@@ -137,7 +140,7 @@ class NeasController
     }
 
     $role = $_SESSION['role'] ?? 'student';
-    if ($role !== 'admin' && $role !== 'teacher') {
+    if ($role !== 'owner' && $role !== 'admin' && $role !== 'teacher') {
       show403();
     }
   }
