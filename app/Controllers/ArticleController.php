@@ -54,6 +54,9 @@ class ArticleController
     $role = $_SESSION['role'] ?? 'teacher';
 
     switch ($role) {
+      case 'owner':
+        require_once '../app/Views/dashboard/owner/articles.php';
+        break;
       case 'admin':
         require_once '../app/Views/dashboard/admin/articles.php';
         break;
@@ -168,7 +171,7 @@ class ArticleController
     }
 
     $role = $_SESSION['role'] ?? 'student';
-    if ($role !== 'admin' && $role !== 'teacher') {
+    if ($role !== 'owner' && $role !== 'admin' && $role !== 'teacher') {
       show403();
     }
   }
