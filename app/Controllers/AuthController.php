@@ -131,6 +131,7 @@ class AuthController
           $_SESSION['full_name'] = $user['full_name'];
           $_SESSION['mobile'] = $user['mobile'];
           $_SESSION['email'] = $user['email'];
+          $_SESSION['role'] = $user['role'];
           $_SESSION['just_registered'] = true;
           $_SESSION['registered_name'] = $full_name;
           redirect('/');
