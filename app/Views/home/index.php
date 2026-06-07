@@ -168,48 +168,43 @@ include '../app/Views/partials/navbar.php';
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-lg-4 col-sm-12">
-        <div
-          class="py-3 bg-white rounded-3 mb-3 p-3 border-start border-primary border-5">
-          <h5>برگزاری کارگاه React برای دانشجویان</h5>
-          <p class="mx-2">
-            <span> ۱۴۰۳/۰۲/۱۰ </span>
-            |
-            <span>کارگاه</span>
-          </p>
-          <p class="text-justify">
-            ثبت‌نام کارگاه فشرده React آغاز شد. ظرفیت محدود است
-          </p>
+      <?php
+      $latestNews = $latestNews ?? [];
+      $latestAnnouncements = $latestAnnouncements ?? [];
+
+      $allLatest = array_merge($latestNews, $latestAnnouncements);
+      usort($allLatest, function ($a, $b) {
+        return strtotime($b['created_at']) - strtotime($a['created_at']);
+      });
+      $latestItems = array_slice($allLatest, 0, 3);
+      ?>
+
+      <?php if (empty($latestItems)): ?>
+        <div class="col-12">
+          <div class="text-center">هیچ خبر یا اطلاعیه‌ای وجود ندارد.</div>
         </div>
-      </div>
-      <div class="col-lg-4 col-sm-12 rounded-3">
-        <div
-          class="py-3 bg-white rounded-3 mb-3 p-3 border-start border-primary border-5">
-          <h5>برگزاری کارگاه React برای دانشجویان</h5>
-          <p class="mx-2">
-            <span> ۱۴۰۳/۰۲/۱۰ </span>
-            |
-            <span>کارگاه</span>
-          </p>
-          <p class="text-justify">
-            ثبت‌نام کارگاه فشرده React آغاز شد. ظرفیت محدود است
-          </p>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-12 rounded-3">
-        <div
-          class="py-3 bg-white rounded-3 mb-3 p-3 border-start border-primary border-5">
-          <h5>برگزاری کارگاه React برای دانشجویان</h5>
-          <p class="mx-2">
-            <span> ۱۴۰۳/۰۲/۱۰ </span>
-            |
-            <span>کارگاه</span>
-          </p>
-          <p class="text-justify">
-            ثبت‌نام کارگاه فشرده React آغاز شد. ظرفیت محدود است
-          </p>
-        </div>
-      </div>
+      <?php else: ?>
+        <?php foreach ($latestItems as $item): ?>
+          <div class="col-lg-4 col-sm-12">
+            <div
+              class="py-3 bg-white rounded-3 mb-3 p-3 border-start border-primary border-5">
+              <h5><?= htmlspecialchars($item['title']) ?></h5>
+              <p class="mx-2">
+                <span><?= toJalali($item['created_at'], 'Y/m/d') ?></span>
+                |
+                <span>
+                  <?php
+                  $categories = ['news' => 'خبر', 'event' => 'رویداد', 'announcement' => 'اطلاعیه'];
+                  echo $categories[$item['category']] ?? 'خبر';
+                  ?>
+                </span>
+              </p>
+              <p class="text-justify">
+                <?= htmlspecialchars(mb_substr($item['content'], 0, 100)) ?></p>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
   </div>
 </div>
@@ -335,51 +330,29 @@ include '../app/Views/partials/navbar.php';
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-lg-4 col-sm-12">
-        <div class="py-3 rounded-3 mb-3 p-3 border-start border-primary border-5">
-          <h5>کارگاه Git و GitHub</h5>
-          <p class="mx-2">
-            <span> نوع:</span>
-            <span>کارگاه</span>
-            |
-            <span>تاریخ:</span>
-            <span>۱۴۰۳/۰۳/۰۵</span>
-          </p>
-          <p class="text-justify">
-            آموزش کاربردی کنترل نسخه و کار گروهی با Git و GitHub.
-          </p>
+      <?php if (empty($latestEvents)): ?>
+        <div class="col-12">
+          <div class="text-center">هیچ رویدادی وجود ندارد.</div>
         </div>
-      </div>
-      <div class="col-lg-4 col-sm-12 rounded-3">
-        <div class="py-3 rounded-3 mb-3 p-3 border-start border-primary border-5">
-          <h5>کارگاه Git و GitHub</h5>
-          <p class="mx-2">
-            <span> نوع:</span>
-            <span>کارگاه</span>
-            |
-            <span> تاریخ:</span>
-            <span>۱۴۰۳/۰۳/۰۵</span>
-          </p>
-          <p class="text-justify">
-            آموزش کاربردی کنترل نسخه و کار گروهی با Git و GitHub.
-          </p>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-12 rounded-3">
-        <div class="py-3 rounded-3 mb-3 p-3 border-start border-primary border-5">
-          <h5>کارگاه Git و GitHub</h5>
-          <p class="mx-2">
-            <span> نوع:</span>
-            <span>کارگاه</span>
-            |
-            <span> تاریخ:</span>
-            <span>۱۴۰۳/۰۳/۰۵</span>
-          </p>
-          <p class="text-justify">
-            آموزش کاربردی کنترل نسخه و کار گروهی با Git و GitHub.
-          </p>
-        </div>
-      </div>
+      <?php else: ?>
+        <?php foreach ($latestEvents as $event): ?>
+          <div class="col-lg-4 col-sm-12">
+            <div class="py-3 rounded-3 mb-3 p-3 border-start border-primary border-5">
+              <h5><?= htmlspecialchars($event['title']) ?></h5>
+              <p class="mx-2">
+                <span> نوع:</span>
+                <span>رویداد</span>
+                |
+                <span>تاریخ:</span>
+                <span><?= toJalali($event['created_at'], 'Y/m/d') ?></span>
+              </p>
+              <p class="text-justify">
+                <?= htmlspecialchars(mb_substr($event['content'], 0, 100)) ?>...
+              </p>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
   </div>
 </div>
