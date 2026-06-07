@@ -159,9 +159,10 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="./A-Tickets.html"
-                class=" text-start btn my-1 btn-outline-light py-2 borde w-100 ">
+              <a href="/panel/tickets"
+                class=" text-start btn my-1 btn-outline-light py-2 borde w-100 <?= isActiveRoute('/panel/tickets') ? 'active' : '' ?>">
                 تیکت ها
+                <span id="ticketBadge" class="badge bg-danger ms-1" style="display: none;"></span>
               </a>
             </li>
             <li class="nav-item">
@@ -204,8 +205,8 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="./T-Tickets.html"
-                class=" text-start btn my-1 btn-outline-light py-2 borde w-100">
+              <a href="/panel/tickets"
+                class=" text-start btn my-1 btn-outline-light py-2 borde w-100 <?= isActiveRoute('/panel/tickets') ? 'active' : '' ?>">
                 تیکت ها
               </a>
             </li>
@@ -237,10 +238,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="./S-Tickets.html"
-                class=" text-start btn my-1 btn-outline-light py-2 borde w-100 ">
+              <a href="/panel/tickets"
+                class=" text-start btn my-1 btn-outline-light py-2 borde w-100 <?= isActiveRoute('/panel/tickets') ? 'active' : '' ?>">
                 تیکت ها
               </a>
+              <span id="adminTicketBadge" class="position-relative top-0 start-100 translate-middle badge rounded-pill bg-danger w-25 h-25" style="display: none; font-size: 0.7rem;">
+                0
+              </span>
             </li>
             <li class="nav-item">
               <a href="/logout" class="btn my-1 btn-danger text-light w-100">
