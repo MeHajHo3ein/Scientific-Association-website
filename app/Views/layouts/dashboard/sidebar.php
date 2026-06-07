@@ -104,7 +104,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <button class="btn my-1 btn-danger text-light w-100">خروج</button>
+              <a href="/logout" class="btn my-1 btn-danger text-light w-100">خروج</a>
             </li>
           </ul>
         <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
@@ -151,6 +151,19 @@
                 اخبار/رویداد/اطلاعیه
               </a>
             </li>
+            <li>
+              <a
+                href="O-Analytics.html"
+                class="text-start btn my-1 btn-outline-light py-2 w-100">
+                آمار
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./A-Tickets.html"
+                class=" text-start btn my-1 btn-outline-light py-2 borde w-100 ">
+                تیکت ها
+              </a>
+            </li>
             <li class="nav-item">
               <a href="/logout" class="btn my-1 btn-danger text-light w-100">خروج</a>
             </li>
@@ -191,6 +204,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="./T-Tickets.html"
+                class=" text-start btn my-1 btn-outline-light py-2 borde w-100">
+                تیکت ها
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="/logout" class="btn my-1 btn-danger text-light w-100">خروج</a>
             </li>
           </ul>
@@ -215,6 +234,12 @@
             <li class="nav-item">
               <a href="/panel/notifications" class="text-start btn my-1 btn-outline-light py-2 borde w-100 <?= isActiveRoute('/panel/notifications') ? 'active' : ''; ?>">
                 اعلانات
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./S-Tickets.html"
+                class=" text-start btn my-1 btn-outline-light py-2 borde w-100 ">
+                تیکت ها
               </a>
             </li>
             <li class="nav-item">
