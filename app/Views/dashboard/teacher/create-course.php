@@ -40,6 +40,17 @@ unset($_SESSION['errors'], $_SESSION['old_input']);
         </div>
 
         <div class="form-group">
+          <label for="category">دسته بندی</label>
+          <select class="C-select" id="category" name="category" required>
+            <option value="">انتخاب کنید...</option>
+            <option value="network" <?= ($old_input['category'] ?? '') == 'network' ? 'selected' : '' ?>>شبکه</option>
+            <option value="webdev" <?= ($old_input['category'] ?? '') == 'webdev' ? 'selected' : '' ?>>توسعه وب</option>
+            <option value="ai" <?= ($old_input['category'] ?? '') == 'ai' ? 'selected' : '' ?>>هوش مصنوعی</option>
+            <option value="programming" <?= ($old_input['category'] ?? '') == 'programming' ? 'selected' : '' ?>>برنامه نویسی</option>
+          </select>
+        </div>
+
+        <div class="form-group">
           <label for="price">هزینه (تومان)</label>
           <input
             type="number"
