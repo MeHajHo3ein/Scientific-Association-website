@@ -101,7 +101,7 @@ include '../app/Views/partials/navbar.php';
                 <span>سطح: <?= $course['level'] == 'beginner' ? 'مبتدی' : ($course['level'] == 'intermediate' ? 'متوسط' : 'پیشرفته') ?></span>
               </p>
               <p class="text-justify">
-              <p class="text-justify"><?= htmlspecialchars(mb_substr($course['description'], 0, 100)) ?></p>
+              <p class="text-justify"><?= htmlspecialchars(mb_substr($course['description'], 0, 100)) ?>...</p>
               </p>
               <p class="d-flex justify-content-between">
                 <span class="">قیمت:</span>
