@@ -15,6 +15,7 @@ class HomeController
 
     $courseModel = new Course();
     $homeCourses = $courseModel->getPublishedCourses(3);
+    $lastCourse = $courseModel->getLastCourse();
 
     require_once '../app/Views/home/index.php';
   }
