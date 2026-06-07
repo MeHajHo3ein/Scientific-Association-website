@@ -26,22 +26,45 @@ include '../app/Views/partials/navbar.php';
       </div>
       <div
         class="bg-white col-lg-6 col-sm-12 rounded-3 justify-content-end py-4 border-start border-primary border-5">
-        <h3 class="py-2 d-inline-block">دوره در حال ثبت‌نام</h3>
 
-        <p>وب دولوپمنت با JavaScript و React</p>
-        <p class="mx-2">
-          مدرس:
-          <span>دکتر الف</span>
-        </p>
-        <p class="mx-2">
-          سطح:
-          <span>متوسط</span>
-        </p>
-        <p class="mx-2">
-          شروع:
-          <span> ۲۰ اردیبهشت</span>
-        </p>
-        <a href="" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
+        <?php if (!empty($lastCourse)): ?>
+          <h3 class="py-2 d-inline-block">دوره در حال ثبت‌نام</h3>
+          <p><?= htmlspecialchars($lastCourse['title']); ?></p>
+          <p class="mx-2">
+            مدرس:
+            <span><?= htmlspecialchars($lastCourse['instructor_name']); ?></span>
+          </p>
+          <p class="mx-2">
+            سطح:
+            <span>
+              <?php
+              $levels = ['beginner' => 'مبتدی', 'intermediate' => 'متوسط', 'advanced' => 'پیشرفته'];
+              echo $levels[$lastCourse['level']] ?? 'متوسط';
+              ?>
+            </span>
+          </p>
+          <p class="mx-2">
+            شروع:
+            <span><?= toJalali($lastCourse['created_at'], 'Y/m/d'); ?></span>
+          </p>
+          <a href="/courses/<?= urlencode($lastCourse['slug']); ?>" class="link-primary text-decoration-none">مشاهده جزئیات دوره</a>
+        <?php else: ?>
+          <h3 class="py-2 d-inline-block">دوره در حال ثبت‌نام</h3>
+          <p>به زودی...</p>
+          <p class="mx-2">
+            مدرس:
+            <span>-</span>
+          </p>
+          <p class="mx-2">
+            سطح:
+            <span>-</span>
+          </p>
+          <p class="mx-2">
+            شروع:
+            <span>-</span>
+          </p>
+          <a href="/courses" class="link-primary text-decoration-none">مشاهده دوره‌ها</a>
+        <?php endif; ?>
       </div>
     </div>
     <br />
