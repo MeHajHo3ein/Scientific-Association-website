@@ -47,10 +47,10 @@ class Course
   public function getCourseBySlug($slug)
   {
     $slug = urldecode($slug);
-    $query = "SELECT c.*, u.full_name as instructor_name
-              FROM courses c
-              LEFT JOIN users u ON c.created_by = u.id
-              WHERE c.slug = :slug";
+    $query = "SELECT c.*, u.full_name as instructor_name, u.image as instructor_image
+            FROM courses c
+            LEFT JOIN users u ON c.created_by = u.id
+            WHERE c.slug = :slug";
     $stmt = $this->db->prepare($query);
     $stmt->execute([':slug' => $slug]);
     return $stmt->fetch(PDO::FETCH_ASSOC);

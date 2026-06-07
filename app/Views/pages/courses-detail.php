@@ -62,9 +62,9 @@ $course = $course ?? [];
       <h4 class="card-title">مدرس دوره</h4>
       <div class="col-lg-3">
         <img
-          src="/assets/img/logo.png"
+          src="<?= !empty($course['image']) ? '/uploads/teachers/' . htmlspecialchars($course['instructor_image']) : '/assets/img/logo.png' ?>"
           alt="image of Teacher"
-          class="img-fluid border-start border-primary border-5 rounded-pill Teachers-icon" />
+          class="img-fluid rounded-circle Teachers-icon" style="object-fit: cover; width: 120px; height: 120px;" />
       </div>
       <div class="col-lg-9">
         <p class="h4"><?= htmlspecialchars($course['instructor_name']) ?></p>
