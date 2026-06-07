@@ -87,7 +87,7 @@ unset($_SESSION['errors'], $_SESSION['old_input']);
           <label for="image">عکس دوره</label>
           <input
             type="file"
-            class="C-input"
+            class="form-control"
             id="image"
             name="image"
             accept="image/*" />
