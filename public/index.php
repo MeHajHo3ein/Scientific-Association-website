@@ -20,6 +20,7 @@ use App\Controllers\PagesController;
 use App\Controllers\ProfileController;
 use App\Controllers\StudentManagementController;
 use App\Controllers\TeacherManagementController;
+use App\Controllers\TicketController;
 use App\Core\Router;
 
 $router = new Router();
@@ -111,6 +112,13 @@ $router->post('/panel/admins/store', [AdminManagementController::class, 'store']
 $router->get('/panel/admins/edit/{id}', [AdminManagementController::class, 'showEditForm']);
 $router->post('/panel/admins/update/{id}', [AdminManagementController::class, 'update']);
 $router->get('/panel/admins/delete/{id}', [AdminManagementController::class, 'deleteAdmin']);
+
+// Panel - Tickets
+$router->get('/panel/tickets', [TicketController::class, 'index']);
+$router->post('/panel/tickets/store', [TicketController::class, 'store']);
+$router->get('/panel/tickets/mark-read-admin/{id}', [TicketController::class, 'markAsReadByAdmin']);
+$router->get('/panel/tickets/delete/{id}', [TicketController::class, 'delete']);
+$router->get('/api/tickets/count', [TicketController::class, 'getUnreadCount']);
 
 $router->post('/panel/update-profile', [ProfileController::class, 'update']);
 
