@@ -23,6 +23,23 @@ include '../app/Views/layouts/dashboard/sidebar.php';
 <!-- Main Content -->
 <div class="col-md-10 offset-md-2 p-4">
   <h3 class="text-primary">دوره های بارگزاری شده</h3>
+  <div
+    id=""
+    class="alert alert-warning text-black alert-dismissible m-3 fade show"
+    role="alert">
+    برای بارگزاری ویدیو/فایل های خود ابتدا وارد این سایت
+    <a class="alert-link link-warning text-dark" href="www.example-upload-host.com">www.example-upload-host.com</a>
+    شده و آموزش های این ویدیو
+    <a
+      class="alert-link link-warning text-dark"
+      href="www.example-upload-host.com/training-vedio.mp4">training-vedio.mp4</a>
+    را دنبال کرده و لینک های دریافتی خود را در قسمت مناسب جای گزاری کنید.
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"></button>
+  </div>
   <a href="/panel/courses/create" class="btn btn-primary d-block w-100 my-1">افزودن</a>
   <div class="container overflow-auto">
     <table class="table table-bordered table-hover table-striped">
@@ -31,6 +48,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
         <th>عنوان</th>
         <th>مدرس</th>
         <th>هزینه</th>
+        <th>دسته بندی</th>
         <th>مدت دوره</th>
         <th>تعداد دانشجو</th>
         <th>تاریخ انتشار</th>
@@ -47,6 +65,7 @@ include '../app/Views/layouts/dashboard/sidebar.php';
             <td><?= htmlspecialchars($course['title']) ?></td>
             <td><?= htmlspecialchars($course['instructor_name']) ?></td>
             <td><?= $course['price'] > 0 ? number_format($course['price']) . ' تومان' : 'رایگان' ?></td>
+            <td><?= htmlspecialchars($course['category']) ?></td>
             <td><?= htmlspecialchars($course['duration']) ?></td>
             <td><?= number_format($course['student_count']) ?> نفر</td>
             <td><?= toJalali($course['created_at'], 'Y/m/d') ?></td>
