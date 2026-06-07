@@ -26,7 +26,11 @@ class CourseController
   // Display courses in courses page
   public function index()
   {
-    $courses = $this->courseModel->getPublishedCourses();
+    $webdevCourses = $this->courseModel->getCoursesByCategory('webdev');
+    $networkCourses = $this->courseModel->getCoursesByCategory('network');
+    $aiCourses = $this->courseModel->getCoursesByCategory('ai');
+    $programmingCourses = $this->courseModel->getCoursesByCategory('programming');
+
     require_once '../app/Views/pages/courses.php';
   }
 
@@ -81,6 +85,7 @@ class CourseController
 
     $title = trim($_POST['title'] ?? '');
     $level = $_POST['level'] ?? 'beginner';
+    $category = $_POST['category'] ?? 'webdev';
     $price = intval($_POST['price'] ?? 0);
     $duration = trim($_POST['duration'] ?? '');
     $student_count = intval($_POST['student_count'] ?? 0);
@@ -101,7 +106,8 @@ class CourseController
         if (!empty($section['title']) || !empty($section['description'])) {
           $syllabus[] = [
             'title' => $section['title'],
-            'description' => $section['description']
+            'description' => $section['description'],
+            'video_link' => $section['video_link'] ?? null
           ];
         }
       }
@@ -144,6 +150,7 @@ class CourseController
       $data = [
         ':title' => $title,
         ':slug' => $slug,
+        ':category' => $category,
         ':level' => $level,
         ':price' => $price,
         ':duration' => $duration,

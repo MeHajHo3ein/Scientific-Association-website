@@ -68,6 +68,38 @@ class Course
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
+  // Get courses by category
+  public function getCoursesByCategory($category, $limit = null)
+  {
+    $query = "SELECT c.*, u.full_name as instructor_name
+              FROM courses c
+              LEFT JOIN users u ON c.created_by = u.id
+              WHERE c.category = :category
+              ORDER BY c.created_at DESC";
+
+    $stmt = $this->db->prepare($query);
+    $stmt->execute([':category' => $category]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($limit) {
+      return array_slice($results, 0, $limit);
+    }
+    return $results;
+  }
+
+  // Get last course for hero section
+  public function getLastCourse()
+  {
+    $query = "SELECT c.*, u.full_name as instructor_name
+              FROM courses c
+              LEFT JOIN users u ON c.created_by = u.id
+              ORDER BY c.created_at DESC
+              LIMIT 1";
+    $stmt = $this->db->prepare($query);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+
   // Get course prerequisites
   public function getCoursePrerequisites($courseId)
   {
@@ -89,8 +121,8 @@ class Course
   /// Create course
   public function create($data)
   {
-    $query = "INSERT INTO courses (title, slug, level, price, duration, student_count, image, description, created_by) 
-              VALUES (:title, :slug, :level, :price, :duration, :student_count, :image, :description, :created_by)";
+    $query = "INSERT INTO courses (title, slug, category , level, price, duration, student_count, image, description, created_by) 
+              VALUES (:title, :slug, :category , :level, :price, :duration, :student_count, :image, :description, :created_by)";
     $stmt = $this->db->prepare($query);
     $stmt->execute($data);
     return $this->db->lastInsertId();
@@ -129,8 +161,8 @@ class Course
     $stmt->execute([':course_id' => $courseId]);
 
     if (!empty($syllabus)) {
-      $query = "INSERT INTO course_syllabus (course_id, title, description, sort_order) 
-                      VALUES (:course_id, :title, :description, :sort_order)";
+      $query = "INSERT INTO course_syllabus (course_id, title, description, video_link, sort_order) 
+              VALUES (:course_id, :title, :description, :video_link, :sort_order)";
       $stmt = $this->db->prepare($query);
 
       foreach ($syllabus as $index => $section) {
@@ -139,6 +171,7 @@ class Course
             ':course_id' => $courseId,
             ':title' => $section['title'],
             ':description' => $section['description'],
+            ':video_link' => $section['video_link'] ?? null,
             ':sort_order' => $index
           ]);
         }
