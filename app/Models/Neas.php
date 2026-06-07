@@ -47,6 +47,22 @@ class Neas
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
+  // Get latest items by category with limit (for homepage)
+  public function getLatestItemsByCategory($category, $limit)
+  {
+    $query = "SELECT n.*, u.full_name as author_name
+              FROM neas n
+              LEFT JOIN users u ON n.created_by = u.id
+              WHERE n.category = :category
+              ORDER BY n.created_at DESC
+              LIMIT :limit";
+    $stmt = $this->db->prepare($query);
+    $stmt->bindParam(':category', $category, PDO::PARAM_STR);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
   // Create new item
   public function create($data)
   {
