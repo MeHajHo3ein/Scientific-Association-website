@@ -24,10 +24,12 @@ include '../app/Views/partials/navbar.php';
         <h4 class="text-primary">اطلاعات تماس</h4>
         <h5 class="">ایمیل رسمی:</h5>
         <p class="h4 text-secondary text-wrap">cs.science.association@university.ac.ir</p>
-        <h5 class="">آدرس دفتر:</h5>
+        <h5 class="">آدرس:</h5>
         <p class="text-secondary">
           دانشکده مهندسی کامپیوتر – طبقه دوم – دفتر انجمن علمی
         </p>
+        <h5 class="">تلفن:</h5>
+        <p class="text-secondary">03137747312</p>
         <h5 class="">ساعات پاسخ‌گویی:</h5>
         <p class="text-secondary">شنبه تا چهارشنبه | ۸ الی ۱۴</p>
         <h4 class="text-primary">شبکه‌های اجتماعی</h4>
@@ -35,7 +37,7 @@ include '../app/Views/partials/navbar.php';
           <a href="" class="text-primary link-dark text-decoration-none">تلگرام</a>
           <a href="" class="text-primary link-dark text-decoration-none">
             اینستاگرام</a>
-          <a href="" class="text-primary link-dark text-decoration-none">لینکدین</a>
+          <a href="" class="text-primary link-dark text-decoration-none">گیت هاب</a>
         </div>
       </div>
     </div>
