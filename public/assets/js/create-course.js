@@ -75,7 +75,7 @@ const addSectionBtn = document.getElementById("addSectionBtn");
 
 let sectionCounter = 0;
 
-function addSection(data = { title: "", description: "", download_link: "" }) {
+function addSection(data = { title: "", description: "", video_link: "" }) {
   const wrapper = document.createElement("div");
   wrapper.className = "dynamic-item";
   wrapper.dataset.type = "section";
@@ -95,7 +95,7 @@ function addSection(data = { title: "", description: "", download_link: "" }) {
     </div>
     <div class="form-group">
       <label>لینک ویدیو</label>
-      <input class="C-input" placeholder="لینک دریافتی خود از سایت هاست دانلودی خود را اینجا جایگزاری کنید.">${data.download_link}</input>
+      <input class="C-input w-100" type="text" name="syllabus[${sectionCounter}][video_link]" placeholder="لینک دریافتی خود از سایت هاست دانلودی خود را اینجا جایگزاری کنید." value="${data.video_link.replace(/"/g, "&quot;")}">
     </div>
   `;
 
