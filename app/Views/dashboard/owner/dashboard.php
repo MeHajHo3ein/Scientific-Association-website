@@ -175,7 +175,6 @@ include '../app/Views/layouts/dashboard/sidebar.php';
 
   </div>
 </div>
-</div>
 
 <script src="/assets/js/dashboard-profile.js"></script>
 
