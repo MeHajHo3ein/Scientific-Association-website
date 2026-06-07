@@ -77,7 +77,7 @@ let sectionCounter = 0;
 
 function addSection(data = { title: "", description: "", video_link: "" }) {
   const wrapper = document.createElement("div");
-  wrapper.className = "dynamic-item";
+  wrapper.className = "dynamic-item mb-4";
   wrapper.dataset.type = "section";
 
   wrapper.innerHTML = `
