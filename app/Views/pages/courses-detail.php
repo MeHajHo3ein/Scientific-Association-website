@@ -99,11 +99,9 @@ $course = $course ?? [];
                     <p><?= nl2br(htmlspecialchars($section['description'])) ?></p>
                     <?php if (!empty($section['video_link'])): ?>
                       <div class="mt-3">
-                        <a href="<?= htmlspecialchars($section['video_link']); ?>" class="btn btn-primary btn-sm mt-2" target="_blank" rel="noopener noreferrer">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle-fill me-1" viewBox="0 0 16 16">
-                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z" />
-                          </svg>
+                        <a href="<?= htmlspecialchars($section['video_link']); ?>" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">
                           دانلود
+                          <i class="fa fa-download"></i>
                         </a>
                       </div>
                     <?php endif; ?>
