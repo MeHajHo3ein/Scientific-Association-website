@@ -238,7 +238,6 @@ $isStudentUpdated = ($isStudent && isset($_SESSION['profile_updated']) && $_SESS
     </div>
   </div>
 </div>
-</div>
 
 <script src="/assets/js/dashboard-profile.js"></script>
 

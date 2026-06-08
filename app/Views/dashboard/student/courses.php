@@ -144,7 +144,6 @@ include '../app/Views/layouts/dashboard/sidebar.php';
     </div>
   </div>
 </div>
-</div>
 
 <?php
 include '../app/Views/layouts/dashboard/footer.php';
