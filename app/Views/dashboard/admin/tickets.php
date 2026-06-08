@@ -28,19 +28,17 @@ $tickets = $tickets ?? [];
             </div>
 
             <?php if ($ticket['is_read_admin'] == 0): ?>
-              <a href="/panel/tickets/mark-read-admin/<?= $ticket['id'] ?>" class="btn btn-outline-warning text-black w-100 mb-2">
+              <a href="/panel/tickets/mark-read-admin/<?= $ticket['id'] ?>" class="btn btn-warning w-100 mb-1">
                 علامت زدن به عنوان خوانده شده
               </a>
             <?php else: ?>
-              <button class="btn btn-outline-success text-black w-100 mb-2" disabled>
+              <button class="btn btn-success w-100 mb-1" disabled>
                 خوانده شده
               </button>
             <?php endif; ?>
-
-            <a href="/panel/tickets/delete/<?= $ticket['id'] ?>" class="btn btn-outline-danger text-black w-100">
+            <a href="/panel/tickets/delete/<?= $ticket['id'] ?>" class="btn btn-danger w-100 mb-1">
               حذف تیکت
             </a>
-
           </div>
         <?php endforeach; ?>
       <?php endif; ?>
