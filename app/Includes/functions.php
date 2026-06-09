@@ -178,13 +178,46 @@ function getBackButtonUrl()
 function toPersianNumber($number)
 {
   $persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  $englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   $number = max(1, ceil($number));
-  return str_replace(range(0, 9), $persianDigits, (string)$number);
+  return str_replace($englishDigits, $persianDigits, (string)$number);
 }
 
 function toJalali($date, $format = 'Y/m/d')
 {
   $timestamp = strtotime($date);
+  if (!$timestamp) {
+    return $date;
+  }
+
+  $gy = date('Y', $timestamp);
+  $gm = date('m', $timestamp);
+  $gd = date('d', $timestamp);
+
+  $g_d_m = array(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334);
+  $gy2 = ($gm > 2) ? ($gy + 1) : $gy;
+  $days = 355666 + (365 * $gy) + floor(($gy2 + 3) / 4) - floor(($gy2 + 99) / 100) + floor(($gy2 + 399) / 400) + $gd + $g_d_m[$gm - 1];
+  $jy = -1595 + (33 * floor($days / 12053));
+  $days %= 12053;
+  $jy += 4 * floor($days / 1461);
+  $days %= 1461;
+
+  if ($days > 365) {
+    $jy += floor(($days - 1) / 365);
+    $days = ($days - 1) % 365;
+  }
+
+  if ($days < 186) {
+    $jm = 1 + floor($days / 31);
+    $jd = 1 + ($days % 31);
+  } else {
+    $jm = 7 + floor(($days - 186) / 30);
+    $jd = 1 + (($days - 186) % 30);
+  }
+
+  $jy = (int)$jy;
+  $jm = (int)$jm;
+  $jd = (int)$jd;
 
   $jalaliMonths = [
     'فروردین',
@@ -201,29 +234,19 @@ function toJalali($date, $format = 'Y/m/d')
     'اسفند'
   ];
 
-  $year = date('Y', $timestamp);
-  $month = date('n', $timestamp);
-  $day = date('j', $timestamp);
-
-  $jalaliYear = $year - 621;
-  $jalaliMonth = $month;
-  $jalaliDay = $day;
-
-  if ($jalaliMonth > 6) {
-    $jalaliDay--;
-  }
-
   $persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  $englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-  $persianYear = str_replace(array_keys($persianDigits), array_values($persianDigits), (string)$jalaliYear);
-  $persianMonth = str_replace(array_keys($persianDigits), array_values($persianDigits), str_pad($jalaliMonth, 2, '0', STR_PAD_LEFT));
-  $persianDay = str_replace(array_keys($persianDigits), array_values($persianDigits), str_pad($jalaliDay, 2, '0', STR_PAD_LEFT));
+  $persianYear = str_replace($englishDigits, $persianDigits, (string)$jy);
+  $persianMonth = str_replace($englishDigits, $persianDigits, str_pad($jm, 2, '0', STR_PAD_LEFT));
+  $persianDay = str_replace($englishDigits, $persianDigits, str_pad($jd, 2, '0', STR_PAD_LEFT));
 
   if ($format == 'Y/m/d') {
     return $persianYear . '/' . $persianMonth . '/' . $persianDay;
   } elseif ($format == 'd F Y') {
-    $persianDayNum = str_replace(array_keys($persianDigits), array_values($persianDigits), (string)$jalaliDay);
-    return $persianDayNum . ' ' . $jalaliMonths[$jalaliMonth - 1] . ' ' . $persianYear;
+    $persianDayNum = str_replace($englishDigits, $persianDigits, (string)$jd);
+    $monthIndex = $jm - 1;
+    return $persianDayNum . ' ' . $jalaliMonths[$monthIndex] . ' ' . $persianYear;
   }
 
   return $persianYear . '/' . $persianMonth . '/' . $persianDay;
