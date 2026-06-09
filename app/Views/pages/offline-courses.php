@@ -4,6 +4,8 @@ $bodyClass = 'bg-secondary-subtle';
 $navbarRounded = 'rounded-bottom-3';
 include '../app/Views/layouts/header.php';
 include '../app/Views/partials/navbar.php';
+
+$publicFiles = $publicFiles ?? [];
 ?>
 
 <!-- Hero -->
@@ -20,206 +22,40 @@ include '../app/Views/partials/navbar.php';
 <!-- Main -->
 <div class="container">
   <div class="row">
-    <div class="col-lg-4 col-sm-12 ">
-      <div class="m-5 card rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3 bg-white text-center">
-          <!--            <div class="card-body border-start border-primary border-5 rounded-3 bg-white row p-5">-->
-          <!--                <div class="col-lg-6 col-sm-12">-->
-          <!--                    <img src="./src/img/logo.png" alt="C-img" class="card-img-bottom rounded-3" />-->
-          <!--                </div>-->
-          <!--                <div class="col-lg-6 col-sm-12">-->
-          <h5 class="card-title mt-3">Front-End</h5>
-          <p class="card-text py-1">
-            <span>درس:</span>
-            <span>وب</span>
-          </p>
-          <p class="card-text py-1">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text py-1">
-            <span>نوع فایل:</span>
-            <span>ویدیو</span>
-          </p>
-          <p class="card-text py-1">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <a href="" class="btn btn-outline-primary border-1">
-            دانلود
-          </a>
-          <!--                </div>-->
-          <!--            </div>-->
-        </div>
+    <?php if (empty($publicFiles)): ?>
+      <div class="col-12">
+        <div class="text-center">هیچ فایلی برای دانلود وجود ندارد.</div>
       </div>
-    </div>
-    <div class="col-lg-4 col-sm-12 ">
-      <div class="m-5 card rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3 bg-white text-center">
-          <!--            <div class="card-body border-start border-primary border-5 rounded-3 bg-white row p-5">-->
-          <!--                <div class="col-lg-6 col-sm-12">-->
-          <!--                    <img src="./src/img/logo.png" alt="C-img" class="card-img-bottom rounded-3" />-->
-          <!--                </div>-->
-          <!--                <div class="col-lg-6 col-sm-12">-->
-          <h5 class="card-title mt-3">Front-End</h5>
-          <p class="card-text py-1">
-            <span>درس:</span>
-            <span>وب</span>
-          </p>
-          <p class="card-text py-1">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text py-1">
-            <span>نوع فایل:</span>
-            <span>ویدیو</span>
-          </p>
-          <p class="card-text py-1">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <a href="" class="btn btn-outline-primary border-1">
-            دانلود
-          </a>
-          <!--                </div>-->
-          <!--            </div>-->
+    <?php else: ?>
+      <?php foreach ($publicFiles as $file): ?>
+        <div class="col-lg-4 col-sm-12 ">
+          <div class="m-5 card rounded-3 border-0">
+            <div class="card-body border-start border-primary border-5 rounded-3 bg-white text-center">
+              <h5 class="card-title mt-3"><?= htmlspecialchars($file['title']) ?></h5>
+              <p class="card-text py-1">
+                <span>درس:</span>
+                <span><?= htmlspecialchars($file['lesson']) ?></span>
+              </p>
+              <p class="card-text py-1">
+                <span>مدرس:</span>
+                <span><?= htmlspecialchars($file['teacher_name']) ?></span>
+              </p>
+              <p class="card-text py-1">
+                <span>نوع فایل:</span>
+                <span><?= htmlspecialchars($file['file_type']) ?></span>
+              </p>
+              <p class="card-text py-1">
+                <span>هزینه:</span>
+                <span><?= $file['price'] > 0 ? number_format($file['price']) . ' تومان' : 'رایگان' ?></span>
+              </p>
+              <a href="<?= htmlspecialchars($file['file_link']) ?>" class="btn btn-outline-primary border-1" target="_blank" rel="noopener noreferrer">
+                دانلود
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-12 ">
-      <div class="m-5 card rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3 bg-white text-center">
-          <!--            <div class="card-body border-start border-primary border-5 rounded-3 bg-white row p-5">-->
-          <!--                <div class="col-lg-6 col-sm-12">-->
-          <!--                    <img src="./src/img/logo.png" alt="C-img" class="card-img-bottom rounded-3" />-->
-          <!--                </div>-->
-          <!--                <div class="col-lg-6 col-sm-12">-->
-          <h5 class="card-title mt-3">Front-End</h5>
-          <p class="card-text py-1">
-            <span>درس:</span>
-            <span>وب</span>
-          </p>
-          <p class="card-text py-1">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text py-1">
-            <span>نوع فایل:</span>
-            <span>ویدیو</span>
-          </p>
-          <p class="card-text py-1">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <a href="" class="btn btn-outline-primary border-1">
-            دانلود
-          </a>
-          <!--                </div>-->
-          <!--            </div>-->
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-4 col-sm-12 ">
-      <div class="m-5 card rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3 bg-white text-center">
-          <!--            <div class="card-body border-start border-primary border-5 rounded-3 bg-white row p-5">-->
-          <!--                <div class="col-lg-6 col-sm-12">-->
-          <!--                    <img src="./src/img/logo.png" alt="C-img" class="card-img-bottom rounded-3" />-->
-          <!--                </div>-->
-          <!--                <div class="col-lg-6 col-sm-12">-->
-          <h5 class="card-title mt-3">Front-End</h5>
-          <p class="card-text py-1">
-            <span>درس:</span>
-            <span>وب</span>
-          </p>
-          <p class="card-text py-1">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text py-1">
-            <span>نوع فایل:</span>
-            <span>ویدیو</span>
-          </p>
-          <p class="card-text py-1">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <a href="" class="btn btn-outline-primary border-1">
-            دانلود
-          </a>
-          <!--                </div>-->
-          <!--            </div>-->
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-12 ">
-      <div class="m-5 card rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3 bg-white text-center">
-          <!--            <div class="card-body border-start border-primary border-5 rounded-3 bg-white row p-5">-->
-          <!--                <div class="col-lg-6 col-sm-12">-->
-          <!--                    <img src="./src/img/logo.png" alt="C-img" class="card-img-bottom rounded-3" />-->
-          <!--                </div>-->
-          <!--                <div class="col-lg-6 col-sm-12">-->
-          <h5 class="card-title mt-3">Front-End</h5>
-          <p class="card-text py-1">
-            <span>درس:</span>
-            <span>وب</span>
-          </p>
-          <p class="card-text py-1">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text py-1">
-            <span>نوع فایل:</span>
-            <span>ویدیو</span>
-          </p>
-          <p class="card-text py-1">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <a href="" class="btn btn-outline-primary border-1">
-            دانلود
-          </a>
-          <!--                </div>-->
-          <!--            </div>-->
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-12 ">
-      <div class="m-5 card rounded-3 border-0">
-        <div class="card-body border-start border-primary border-5 rounded-3 bg-white text-center">
-          <!--            <div class="card-body border-start border-primary border-5 rounded-3 bg-white row p-5">-->
-          <!--                <div class="col-lg-6 col-sm-12">-->
-          <!--                    <img src="./src/img/logo.png" alt="C-img" class="card-img-bottom rounded-3" />-->
-          <!--                </div>-->
-          <!--                <div class="col-lg-6 col-sm-12">-->
-          <h5 class="card-title mt-3">Front-End</h5>
-          <p class="card-text py-1">
-            <span>درس:</span>
-            <span>وب</span>
-          </p>
-          <p class="card-text py-1">
-            <span>مدرس:</span>
-            <span>حسام</span>
-          </p>
-          <p class="card-text py-1">
-            <span>نوع فایل:</span>
-            <span>ویدیو</span>
-          </p>
-          <p class="card-text py-1">
-            <span>هزینه:</span>
-            <span>رایگان</span>
-          </p>
-          <a href="" class="btn btn-outline-primary border-1">
-            دانلود
-          </a>
-          <!--                </div>-->
-          <!--            </div>-->
-        </div>
-      </div>
-    </div>
+      <?php endforeach; ?>
+    <?php endif; ?>
   </div>
 </div>
 
