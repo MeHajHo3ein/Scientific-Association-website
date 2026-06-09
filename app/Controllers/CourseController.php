@@ -54,9 +54,12 @@ class CourseController
   // Display courses in admin panel
   public function adminIndex()
   {
-    $this->checkAdminOrTeacherAuth();
+    if (!isset($_SESSION['user_id'])) {
+      redirect('/');
+    }
+
     $courses = $this->courseModel->getAllCourses();
-    $role = $_SESSION['role'] ?? 'teacher';
+    $role = $_SESSION['role'] ?? 'student';
 
     switch ($role) {
       case 'owner':
@@ -65,8 +68,11 @@ class CourseController
       case 'admin':
         require_once '../app/Views/dashboard/admin/courses.php';
         break;
-      default:
+      case 'teacher':
         require_once '../app/Views/dashboard/teacher/courses.php';
+        break;
+      default:
+        require_once '../app/Views/dashboard/student/courses.php';
         break;
     }
   }
