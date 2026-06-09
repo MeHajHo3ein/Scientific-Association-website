@@ -187,7 +187,7 @@
 
             </li>
             <li class="nav-item">
-              <a href="/panel/offline-courses" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/offline-courses') ? 'active' : ""; ?>">فایل های قابل دانلود</a>
+              <a href="/panel/offline-courses" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/offline-courses') || isActiveRoute('/panel/offline-courses/create') ? 'active' : ""; ?>">فایل های قابل دانلود</a>
             </li>
             <li class="nav-item">
               <a href="/panel/notifications" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/notifications') || isActiveRoute('/panel/notifications/create') ? 'active' : ''; ?>">اعلانات</a>
