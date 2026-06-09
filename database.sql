@@ -146,3 +146,18 @@ CREATE TABLE `tickets` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 );
+
+-- Create Table offline_files
+CREATE TABLE `offline_files` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `lesson` varchar(255) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `file_link` varchar(500) NOT NULL,
+  `file_type` varchar(50) DEFAULT NULL,
+  `price` bigint(20) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `teacher_id` (`teacher_id`),
+  CONSTRAINT `offline_files_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+);
