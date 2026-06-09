@@ -224,45 +224,29 @@ include '../app/Views/partials/navbar.php';
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-lg-4 col-sm-12">
-        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
-          <h5>اسلایدهای دوره Python پیشرفته</h5>
-          <p class="mx-2">
-            <span> نوع:</span>
-            <span>اسلاید</span>
-            |
-            <span> دسته:</span>
-            <span>Programming</span>
-          </p>
-          <a href="" class="link-primary text-decoration-none">دانلود</a>
+      <?php
+      $latestFiles = $latestFiles ?? [];
+      if (empty($latestFiles)): ?>
+        <div class="col-12">
+          <div class="text-center">هیچ فایلی برای دانلود وجود ندارد.</div>
         </div>
-      </div>
-      <div class="col-lg-4 col-sm-12 rounded-3">
-        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
-          <h5>ویدیوی معرفی شبکه‌های عصبی</h5>
-          <p class="mx-2">
-            <span> نوع:</span>
-            <span>ویدیو</span>
-            |
-            <span> دسته:</span>
-            <span>AI</span>
-          </p>
-          <a href="" class="link-primary text-decoration-none">دانلود</a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-12 rounded-3">
-        <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
-          <h5>PDF مبانی طراحی وب</h5>
-          <p class="mx-2">
-            <span> نوع:</span>
-            <span>PDF</span>
-            |
-            <span> دسته:</span>
-            <span>Web</span>
-          </p>
-          <a href="" class="link-primary text-decoration-none">دانلود</a>
-        </div>
-      </div>
+      <?php else: ?>
+        <?php foreach ($latestFiles as $file): ?>
+          <div class="col-lg-4 col-sm-12">
+            <div class="py-3 rounded-3 mb-3 p-3 border-start border-5">
+              <h5><?= htmlspecialchars($file['title']) ?></h5>
+              <p class="mx-2">
+                <span> نوع:</span>
+                <span><?= htmlspecialchars($file['file_type']) ?></span>
+                |
+                <span> دسته:</span>
+                <span><?= htmlspecialchars($file['lesson']) ?></span>
+              </p>
+              <a href="<?= htmlspecialchars($file['file_link']) ?>" class="link-primary text-decoration-none" target="_blank" rel="noopener noreferrer">دانلود</a>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
   </div>
 </div>
