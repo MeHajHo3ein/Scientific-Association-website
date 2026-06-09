@@ -16,6 +16,7 @@ use App\Controllers\DashboardController;
 use App\Controllers\HomeController;
 use App\Controllers\NeasController;
 use App\Controllers\NotificationController;
+use App\Controllers\OfflineFileController;
 use App\Controllers\PagesController;
 use App\Controllers\ProfileController;
 use App\Controllers\StudentManagementController;
@@ -28,7 +29,7 @@ $router = new Router();
 // Public routes
 $router->get('/', [HomeController::class, 'index']);
 $router->get('/courses', [PagesController::class, 'courses']);
-$router->get('/offline-courses', [PagesController::class, 'offline_courses']);
+$router->get('/offline-courses', [OfflineFileController::class, 'publicIndex']);
 $router->get('/articles', [ArticleController::class, 'index']);
 $router->get('/news', [NeasController::class, 'index']);
 $router->get('/certificates', [PagesController::class, 'certificates']);
@@ -80,8 +81,11 @@ $router->get('/panel/courses/create', [CourseController::class, 'showCreateForm'
 $router->post('/panel/courses/store', [CourseController::class, 'store']);
 $router->get('/panel/courses/delete/{id}', [CourseController::class, 'delete']);
 
-// Panel - Offline Courses (*** Admin & Teacher ***)
-$router->get('/panel/offline-courses', [DashboardController::class, 'offlineCourses']);
+// Panel - Offline Courses Management (*** Admin & Teacher ***)
+$router->get('/panel/offline-courses', [OfflineFileController::class, 'index']);
+$router->get('/panel/offline-courses/create', [OfflineFileController::class, 'showCreateForm']);
+$router->post('/panel/offline-courses/store', [OfflineFileController::class, 'store']);
+$router->get('/panel/offline-courses/delete/{id}', [OfflineFileController::class, 'delete']);
 
 // Panel - Neas (*** Admin & Teacher ***)
 $router->get('/panel/neas', [NeasController::class, 'adminIndex']);
