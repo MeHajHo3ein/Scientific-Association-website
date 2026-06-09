@@ -138,7 +138,6 @@ include '../app/Views/partials/navbar.php';
     <?php endif; ?>
   </div>
 </div>
-</div>
 
 <br>
 <?php
