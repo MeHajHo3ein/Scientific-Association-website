@@ -3,6 +3,9 @@ $pageTitle = 'انجمن علمی دانشگاه خوارزمی(شهرضا) - خ
 $showToasts = true;
 include '../app/Views/layouts/header.php';
 include '../app/Views/partials/navbar.php';
+
+$totalCourses = $totalCourses ?? 0;
+$totalStudents = $totalStudents ?? 0;
 ?>
 
 <!-- Hero -->
@@ -19,8 +22,8 @@ include '../app/Views/partials/navbar.php';
         <a href="/courses" class="btn btn-outline-primary rounded-3">مشاهده دوره‌ها</a>
         <a href="/register" class="btn btn-outline-primary rounded-3 m-3">عضویت در انجمن</a>
         <div>
-          <span class="text-white mx-2">+۲۰ دوره فعال </span>
-          <span class="text-white mx-2">+۳۰۰ عضو</span>
+          <span class="text-white mx-2">+<?= number_format($totalCourses) ?> دوره فعال </span>
+          <span class="text-white mx-2">+<?= number_format($totalStudents) ?> عضو</span>
           <span class="text-white mx-2">گواهینامه معتبر دانشگاهی</span>
         </div>
       </div>

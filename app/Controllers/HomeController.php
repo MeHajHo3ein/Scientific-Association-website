@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Course;
 use App\Models\Neas;
 use App\Models\OfflineFile;
+use App\Models\User;
 
 class HomeController
 {
@@ -18,6 +19,10 @@ class HomeController
     $courseModel = new Course();
     $homeCourses = $courseModel->getPublishedCourses(3);
     $lastCourse = $courseModel->getLastCourse();
+    $totalCourses = $courseModel->getTotalCoursesCount();
+
+    $userModel = new User();
+    $totalStudents = $userModel->getTotalStudentsCount();
 
     $neasModel = new Neas();
     $latestNews = $neasModel->getLatestItemsByCategory('news', 3);

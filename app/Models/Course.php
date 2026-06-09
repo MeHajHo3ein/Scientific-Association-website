@@ -118,6 +118,16 @@ class Course
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  // Get total courses count for homepage
+  public function getTotalCoursesCount()
+  {
+    $query = "SELECT COUNT(*) as total FROM courses";
+    $stmt = $this->db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'] ?? 0;
+  }
+
   /// Create course
   public function create($data)
   {

@@ -32,6 +32,16 @@ class User
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
+  // Get total students count for homepage
+  public function getTotalStudentsCount()
+  {
+    $query = "SELECT COUNT(*) as total FROM users WHERE role = 'student'";
+    $stmt = $this->db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'] ?? 0;
+  }
+
   // Update user profile
   public function updateProfile($id, $data)
   {
