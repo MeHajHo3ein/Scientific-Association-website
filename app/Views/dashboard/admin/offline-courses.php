@@ -1,131 +1,64 @@
 <?php
-$pageTitle = 'پنل شخصی - فایل های آفلاین';
+$pageTitle = 'پنل شخصی - دانلود فایل';
 include '../app/Views/layouts/dashboard/header.php';
 include '../app/Views/layouts/dashboard/sidebar.php';
 ?>
 
+<!-- Alert Messages -->
+<!-- Success -->
+<?php if (isset($_SESSION['offline_success'])): ?>
+  <div id="myAlert" class="alert alert-success alert-dismissible fixed-top m-3 fade show" role="alert">
+    <?= $_SESSION['offline_success']; ?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <?php unset($_SESSION['offline_success']); ?>
+<?php endif; ?>
+
+<!-- Delete -->
+<?php if (isset($_SESSION['offline_error'])): ?>
+  <div id="myAlert" class="alert alert-danger alert-dismissible fixed-top m-3 fade show" role="alert">
+    <?= $_SESSION['offline_error']; ?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <?php unset($_SESSION['offline_error']); ?>
+<?php endif; ?>
+
 <!-- Main Content -->
 <div class="col-md-10 offset-md-2 p-4">
-  <div class="container">
-    <h3 class="text-primary">فایل های قابل دانلود</h3>
-    <button
-      class="btn btn-primary my-1 w-100"
-      onclick="openModal('addOF')">
-      افزودن
-    </button>
-    <div class="row">
-      <div class="col-lg-4 col-sm-12 ">
-        <div class="m-5 card   border-0">
-          <div class="card-body border-start border-primary border-5   bg-white text-center">
-            <h5 class="card-title mt-3">Front-End</h5>
-            <p class="card-text py-1">
-              <span>درس:</span>
-              <span>وب</span>
-            </p>
-            <p class="card-text py-1">
-              <span>مدرس:</span>
-              <span>حسام</span>
-            </p>
-            <p class="card-text py-1">
-              <span>نوع فایل:</span>
-              <span>ویدیو</span>
-            </p>
-            <p class="card-text py-1">
-              <span>هزینه:</span>
-              <span>رایگان</span>
-            </p>
-            <a href="" class="btn btn-outline-primary border-1 ">
-              دانلود
-            </a>
-            <a href="" class="btn btn-outline-danger border-1 ">
-              حذف
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-12 ">
-        <div class="m-5 card   border-0">
-          <div class="card-body border-start border-primary border-5   bg-white text-center">
-            <h5 class="card-title mt-3">Front-End</h5>
-            <p class="card-text py-1">
-              <span>درس:</span>
-              <span>وب</span>
-            </p>
-            <p class="card-text py-1">
-              <span>مدرس:</span>
-              <span>حسام</span>
-            </p>
-            <p class="card-text py-1">
-              <span>نوع فایل:</span>
-              <span>ویدیو</span>
-            </p>
-            <p class="card-text py-1">
-              <span>هزینه:</span>
-              <span>رایگان</span>
-            </p>
-            <a href="" class="btn btn-outline-primary border-1 ">
-              دانلود
-            </a>
-            <a href="" class="btn btn-outline-danger border-1 ">
-              حذف
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-12 ">
-        <div class="m-5 card   border-0">
-          <div class="card-body border-start border-primary border-5   bg-white text-center">
-            <h5 class="card-title mt-3">Front-End</h5>
-            <p class="card-text py-1">
-              <span>درس:</span>
-              <span>وب</span>
-            </p>
-            <p class="card-text py-1">
-              <span>مدرس:</span>
-              <span>حسام</span>
-            </p>
-            <p class="card-text py-1">
-              <span>نوع فایل:</span>
-              <span>ویدیو</span>
-            </p>
-            <p class="card-text py-1">
-              <span>هزینه:</span>
-              <span>رایگان</span>
-            </p>
-            <a href="" class="btn btn-outline-primary border-1 ">
-              دانلود
-            </a>
-            <a href="" class="btn btn-outline-danger border-1 ">
-              حذف
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="addOF" class="modal">
-      <form class="form-control container">
-        <div class="">
-          <label for="file"> </label>
-          <input class="C-input" id="file" name="file" type="file" accept="file/*">
-        </div>
-        <label class="form-label">عنوان</label>
-        <input class="d-block w-100" type="text">
-        <label class="form-label">درس</label>
-        <input class="d-block w-100" type="text">
-        <label class="form-label">مدرس</label>
-        <input class="d-block w-100" type="text">
-        <label class="form-label">هزینه</label>
-        <input class="d-block w-100" type="text">
-        <button type="submit" class="btn btn-success w-100 fw-semibold py-2 mt-5" id="submitBtn">
-          ثبت‌
-        </button>
-        <button
-          class="btn btn-danger my-1 w-100"
-          onclick="closeModal('addOF')">
-          بستن
-        </button>
-      </form>
-    </div>
+  <h3 class="text-primary">فایل های قابل دانلود</h3>
+  <div class="container overflow-auto">
+    <table class="table table-bordered table-hover table-striped">
+      <tr>
+        <th>شماره</th>
+        <th>عنوان</th>
+        <th>درس</th>
+        <th>مدرس</th>
+        <th>نوع فایل</th>
+        <th>هزینه</th>
+        <th>تاریخ انتشار</th>
+        <th>عملیات</th>
+      </tr>
+      <?php if (empty($files)): ?>
+        <tr>
+          <td colspan="8" class="text-center">هیچ فایلی یافت نشد.</td>
+        </tr>
+      <?php else: ?>
+        <?php foreach ($files as $index => $file): ?>
+          <tr>
+            <td><?= $index + 1 ?></td>
+            <td><?= htmlspecialchars($file['title']) ?></td>
+            <td><?= htmlspecialchars($file['lesson']) ?></td>
+            <td><?= htmlspecialchars($file['teacher_name'] ?? $_SESSION['full_name']) ?></td>
+            <td><?= htmlspecialchars($file['file_type']) ?></td>
+            <td><?= $file['price'] > 0 ? number_format($file['price']) . ' تومان' : 'رایگان' ?></td>
+            <td><?= toJalali($file['created_at'], 'Y/m/d') ?></td>
+            <td class="">
+              <a href="/panel/offline-courses/delete/<?= $file['id'] ?>" class="btn btn-danger" onclick="return confirm('آیا از حذف این فایل مطمئن هستید؟')">حذف</a>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      <?php endif; ?>
+    </table>
   </div>
 </div>
 
