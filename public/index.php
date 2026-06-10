@@ -19,6 +19,7 @@ use App\Controllers\NotificationController;
 use App\Controllers\OfflineFileController;
 use App\Controllers\PagesController;
 use App\Controllers\ProfileController;
+use App\Controllers\SearchController;
 use App\Controllers\StudentManagementController;
 use App\Controllers\TeacherManagementController;
 use App\Controllers\TicketController;
@@ -123,6 +124,10 @@ $router->post('/panel/tickets/store', [TicketController::class, 'store']);
 $router->get('/panel/tickets/mark-read-admin/{id}', [TicketController::class, 'markAsReadByAdmin']);
 $router->get('/panel/tickets/delete/{id}', [TicketController::class, 'delete']);
 $router->get('/api/tickets/count', [TicketController::class, 'getUnreadCount']);
+
+// Search routes
+$router->get('/search', [SearchController::class, 'search']);
+$router->get('/api/live-search', [SearchController::class, 'liveSearch']);
 
 $router->post('/panel/update-profile', [ProfileController::class, 'update']);
 
