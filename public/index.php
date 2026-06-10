@@ -9,6 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 use App\Controllers\AdminManagementController;
+use App\Controllers\AnalyticsController;
 use App\Controllers\ArticleController;
 use App\Controllers\AuthController;
 use App\Controllers\CourseController;
@@ -124,6 +125,10 @@ $router->post('/panel/tickets/store', [TicketController::class, 'store']);
 $router->get('/panel/tickets/mark-read-admin/{id}', [TicketController::class, 'markAsReadByAdmin']);
 $router->get('/panel/tickets/delete/{id}', [TicketController::class, 'delete']);
 $router->get('/api/tickets/count', [TicketController::class, 'getUnreadCount']);
+
+// Panel - Analytics (Owner & Admin)
+$router->get('/panel/analytics', [AnalyticsController::class, 'index']);
+$router->get('/api/analytics/stats', [AnalyticsController::class, 'getStats']);
 
 // Search routes
 $router->get('/search', [SearchController::class, 'search']);
