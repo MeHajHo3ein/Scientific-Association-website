@@ -55,15 +55,22 @@ $isActive = function ($path) use ($currentPath) {
       </ul>
 
       <!-- Search Bar -->
-      <form class="d-flex mx-auto my-3 my-xxl-0 search-box" role="search">
-        <input
-          class="form-control rounded-start-4 rounded-end-0"
-          type="search"
-          placeholder="جستجو..." />
-        <button class="btn btn-primary rounded-end-4 rounded-start-0" type="submit">
-          <i class="fa fa-search"></i>
-        </button>
-      </form>
+      <div class="live-search-container">
+        <form class="d-flex mx-auto my-3 my-xxl-0 search-box" action="/search" method="GET" role="search">
+          <input
+            class="form-control rounded-start-4 rounded-end-0"
+            type="search"
+            name="q"
+            id="search-input-live"
+            autocomplete="off"
+            placeholder="جستجو..."
+            value="<?= htmlspecialchars($_GET['q'] ?? '') ?>" />
+          <button class="btn btn-primary rounded-end-4 rounded-start-0" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+        <div id="live-results"></div>
+      </div>
 
       <!-- Displays user info if logged in -->
       <?php if (isset($_SESSION['user_id'])): ?>
