@@ -166,7 +166,7 @@ $totalStudents = $totalStudents ?? 0;
       <p>با جدیدترین رویدادها و اطلاعیه‌های انجمن همراه باشید</p>
     </span>
     <a
-      href="/news"
+      href="/neas"
       class="link-dark text-decoration-none text-sm-center text-primary">مشاهده همه اخبار</a>
   </div>
   <div class="container">
@@ -312,7 +312,7 @@ $totalStudents = $totalStudents ?? 0;
       <p>رویدادهای پیش رو و مهم انجمن</p>
     </span>
     <a
-      href="/news/#events"
+      href="/neas/#events"
       class="link-dark text-decoration-none text-sm-center text-primary">جزئیات همه رویدادها</a>
   </div>
   <div class="container">

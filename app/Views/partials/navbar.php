@@ -38,7 +38,7 @@ $isActive = function ($path) use ($currentPath) {
           <a href="/articles" class="nav-link custom-a <?= (strpos($currentPath, '/articles') === 0) ? 'custom-a-active' : '' ?>">مقالات</a>
         </li>
         <li class="nav-item">
-          <a href="/news" class="nav-link custom-a <?= $isActive('/news') ?>">اخبار و اطلاعیه ها</a>
+          <a href="/neas" class="nav-link custom-a <?= $isActive('/neas') ?>">اخبار و اطلاعیه ها</a>
         </li>
         <li class="nav-item">
           <a href="/certificates" class="nav-link custom-a <?= $isActive('/certificates') ?>">گواهینامه ها</a>

@@ -32,7 +32,7 @@ $router->get('/', [HomeController::class, 'index']);
 $router->get('/courses', [PagesController::class, 'courses']);
 $router->get('/offline-courses', [OfflineFileController::class, 'publicIndex']);
 $router->get('/articles', [ArticleController::class, 'index']);
-$router->get('/news', [NeasController::class, 'index']);
+$router->get('/neas', [NeasController::class, 'index']);
 $router->get('/certificates', [PagesController::class, 'certificates']);
 $router->get('/cult', [PagesController::class, 'cult']);
 $router->get('/contactus', [PagesController::class, 'contact_us']);

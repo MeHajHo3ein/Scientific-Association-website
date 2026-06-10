@@ -25,7 +25,7 @@ class Neas
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  // Get items by category (for news page)
+  // Get items by category (for neas page)
   public function getItemsByCategory($category)
   {
     $query = "SELECT n.*, u.full_name as author_name

@@ -17,13 +17,13 @@ class NeasController
     $this->neasModel = new Neas();
   }
 
-  // Display NEA in news page
+  // Display NEA in neas page
   public function index()
   {
     $news = $this->neasModel->getItemsByCategory('news');
     $events = $this->neasModel->getItemsByCategory('event');
     $announcements = $this->neasModel->getItemsByCategory('announcement');
-    require_once '../app/Views/pages/news.php';
+    require_once '../app/Views/pages/neas.php';
   }
 
   // Display item list (for admin/teacher panel)

@@ -19,9 +19,9 @@ class PagesController
     require_once '../app/Views/pages/articles.php';
   }
 
-  public function news()
+  public function neas()
   {
-    require_once '../app/Views/pages/news.php';
+    require_once '../app/Views/pages/neas.php';
   }
 
   public function certificates()
