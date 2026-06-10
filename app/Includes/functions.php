@@ -252,6 +252,27 @@ function toJalali($date, $format = 'Y/m/d')
   return $persianYear . '/' . $persianMonth . '/' . $persianDay;
 }
 
+// Highlight search keywords in text
+function highlightText($text, $query, $highlightClass = 'bg-warning')
+{
+  if (empty($query) || empty($text)) {
+    return htmlspecialchars($text);
+  }
+
+  $keywords = explode(' ', trim($query));
+  $highlighted = htmlspecialchars($text);
+
+  foreach ($keywords as $keyword) {
+    if (strlen($keyword) < 2) continue;
+
+    $pattern = '/' . preg_quote($keyword, '/') . '/iu';
+    $replacement = '<span class="' . $highlightClass . ' fw-bold">$0</span>';
+    $highlighted = preg_replace($pattern, $replacement, $highlighted);
+  }
+
+  return $highlighted;
+}
+
 // display 403 error
 function show403()
 {
