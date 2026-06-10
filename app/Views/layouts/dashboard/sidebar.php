@@ -91,8 +91,8 @@
             </li>
             <li>
               <a
-                href="O-Analytics.html"
-                class="text-start btn my-1 btn-outline-light py-2 w-100">
+                href="/panel/analytics"
+                class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/analytics') ? 'active' : '' ?>">
                 آمار
               </a>
             </li>
@@ -153,8 +153,8 @@
             </li>
             <li>
               <a
-                href="O-Analytics.html"
-                class="text-start btn my-1 btn-outline-light py-2 w-100">
+                href="/panel/analytics"
+                class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/analytics') ? 'active' : '' ?>">
                 آمار
               </a>
             </li>
