@@ -14,7 +14,7 @@ $totalStudents = $totalStudents ?? 0;
     <br />
     <div class="row">
       <div class="col-lg-6 col-sm-12 p-3">
-        <h2 class="text-white text-justify p-3">انجمن علمی کامپیوتر</h2>
+        <h2 class="text-white text-justify p-3"><?= htmlspecialchars(setting('site_name', 'انجمن علمی کامپیوتر')) ?></h2>
         <p class="h6 text-white p-3">
           برگزاری دوره‌های تخصصی برنامه‌نویسی، هوش مصنوعی، وب و شبکه، انتشار مقالات
           علمی و برگزاری رویدادهای آموزشی برای دانشجویان و علاقه‌مندان کامپیوتر.
@@ -349,7 +349,7 @@ $totalStudents = $totalStudents ?? 0;
   <div class="container py-3">
     <div class="row">
       <div class="col-lg-6 col-sm-12">
-        <h5 class="text-white">عضو انجمن علمی کامپیوتر شوید</h5>
+        <h5 class="text-white"><?= htmlspecialchars(setting('site_name', 'انجمن علمی کامپیوتر')) ?></h5>
         <p class="text-white text-justify">
           با عضویت در انجمن، در دوره‌ها، رویدادها، مسابقات و پروژه‌های گروهی شرکت کنید
           و از مزایای ویژه دانشجویی بهره‌مند شوید.
