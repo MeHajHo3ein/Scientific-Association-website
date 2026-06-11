@@ -8,8 +8,8 @@ $isActive = function ($path) use ($currentPath) {
 <nav class="navbar navbar-expand-xxl fixed-top bg-white border-bottom shadow-lg<?= isset($navbarRounded) ? ' ' . $navbarRounded : '' ?>">
   <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center" href="/">
-      <img src="/assets/img/logo.png" alt="logo" height="60" class="me-2 rounded-3" />
-      <h5>انجمن علمی کامپیوتر</h5>
+      <img src="<?= setting('site_logo', '/assets/img/logo.png') ?>" alt="logo" height="60" class="me-2 rounded-3" />
+      <h5><?= htmlspecialchars(setting('site_name', 'انجمن علمی کامپیوتر')) ?></h5>
     </a>
 
     <!-- Hamburger Toggle -->
