@@ -1,5 +1,6 @@
 <?php
-$pageTitle = 'انجمن علمی دانشگاه خوارزمی(شهرضا) - خبرها';
+$siteName = setting('site_name', 'انجمن علمی دانشگاه خوارزمی(شهرضا)') . ' - خبرها';
+$pageTitle = $pageTitle ?? $siteName;
 $bodyClass = 'bg-secondary-subtle';
 include '../app/Views/layouts/header.php';
 include '../app/Views/partials/navbar.php';
