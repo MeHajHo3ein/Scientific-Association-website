@@ -2,6 +2,7 @@
 
 require_once '../Autoloader.php';
 require_once '../app/Includes/functions.php';
+require_once '../app/Helpers/SettingsHelper.php';
 
 // Start session if NOT already started
 if (session_status() === PHP_SESSION_NONE) {
@@ -21,6 +22,7 @@ use App\Controllers\OfflineFileController;
 use App\Controllers\PagesController;
 use App\Controllers\ProfileController;
 use App\Controllers\SearchController;
+use App\Controllers\SettingController;
 use App\Controllers\StudentManagementController;
 use App\Controllers\TeacherManagementController;
 use App\Controllers\TicketController;
@@ -129,6 +131,14 @@ $router->get('/api/tickets/count', [TicketController::class, 'getUnreadCount']);
 // Panel - Analytics (Owner & Admin)
 $router->get('/panel/analytics', [AnalyticsController::class, 'index']);
 $router->get('/api/analytics/stats', [AnalyticsController::class, 'getStats']);
+
+// Panel - Settings (Owner Only)
+$router->get('/panel/settings', [SettingController::class, 'index']);
+$router->post('/panel/settings/site-name', [SettingController::class, 'updateSiteName']);
+$router->post('/panel/settings/logo', [SettingController::class, 'updateLogo']);
+$router->post('/panel/settings/contact', [SettingController::class, 'updateContact']);
+$router->post('/panel/settings/social/update', [SettingController::class, 'updateSocialMedias']);
+$router->post('/panel/settings/social/add', [SettingController::class, 'addSocialMedia']);
 
 // Search routes
 $router->get('/search', [SearchController::class, 'search']);
