@@ -98,8 +98,8 @@
             </li>
             <li>
               <a
-                href="O-Setting.html"
-                class="text-start btn my-1 btn-outline-light py-2 w-100">
+                href="/panel/settings"
+                class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/settings') ? 'active' : '' ?>">
                 تنظیمات سیستم
               </a>
             </li>
