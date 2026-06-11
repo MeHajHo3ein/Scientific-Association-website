@@ -161,3 +161,28 @@ CREATE TABLE `offline_files` (
   KEY `teacher_id` (`teacher_id`),
   CONSTRAINT `offline_files_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 );
+
+-- Create Table settings
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key` varchar(100) NOT NULL,
+  `value` text DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `key` (`key`)
+);
+
+-- Insert default settings
+INSERT INTO `settings` (`key`, `value`) VALUES
+('site_name', 'انجمن علمی دانشگاه خوارزمی(شهرضا)'),
+('site_logo', '/assets/img/logo.png'),
+('contact_phone', '03137747312'),
+('contact_email', 'cs.science.association@university.ac.ir'),
+('contact_address', 'دانشکده مهندسی کامپیوتر – طبقه دوم – دفتر انجمن علمی');
+
+CREATE TABLE `settings_social_media` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `link` varchar(500) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+);
