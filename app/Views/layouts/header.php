@@ -1,5 +1,6 @@
 <?php
-$pageTitle = $pageTitle ?? 'انجمن علمی کامپیوتر دانشگاه خوارزمی (شهرضا)';
+$siteName = setting('site_name', 'انجمن علمی کامپیوتر دانشگاه خوارزمی (شهرضا)');
+$pageTitle = $pageTitle ?? $siteName;
 ?>
 <!doctype html>
 <html lang="fa" dir="rtl">
