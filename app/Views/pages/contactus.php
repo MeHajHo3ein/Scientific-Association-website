@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'انجمن علمی دانشگاه خوارزمی(شهرضا) - ارتباط با ما';
+$pageTitle = setting('site_name', 'انجمن علمی دانشگاه خوارزمی(شهرضا)') . ' - ارتباط با ما';
 $bodyClass = 'bg-secondary-subtle';
 include '../app/Views/layouts/header.php';
 include '../app/Views/partials/navbar.php';
@@ -23,22 +23,32 @@ include '../app/Views/partials/navbar.php';
       <div class="bg-white p-5 rounded-3 w-100 h-100">
         <h4 class="text-primary">اطلاعات تماس</h4>
         <h5 class="">ایمیل رسمی:</h5>
-        <p class="h4 text-secondary text-wrap">cs.science.association@university.ac.ir</p>
+        <p class="h4 text-secondary text-wrap"><?= htmlspecialchars(setting('contact_email', 'cs.science.association@university.ac.ir')) ?></p>
         <h5 class="">آدرس:</h5>
-        <p class="text-secondary">
-          دانشکده مهندسی کامپیوتر – طبقه دوم – دفتر انجمن علمی
-        </p>
+        <p class="text-secondary"><?= htmlspecialchars(setting('contact_address', 'دانشکده مهندسی کامپیوتر – طبقه دوم – دفتر انجمن علمی')) ?></p>
         <h5 class="">تلفن:</h5>
-        <p class="text-secondary">03137747312</p>
+        <p class="text-secondary"><?= htmlspecialchars(setting('contact_phone', '03137747312')) ?></p>
         <h5 class="">ساعات پاسخ‌گویی:</h5>
         <p class="text-secondary">شنبه تا چهارشنبه | ۸ الی ۱۴</p>
         <h4 class="text-primary">شبکه‌های اجتماعی</h4>
-        <div class="d-flex p-4 justify-content-between">
-          <a href="" class="text-primary link-dark text-decoration-none">تلگرام</a>
-          <a href="" class="text-primary link-dark text-decoration-none">
-            اینستاگرام</a>
-          <a href="" class="text-primary link-dark text-decoration-none">گیت هاب</a>
-        </div>
+        <?php
+        $socialMedias = [];
+        try {
+          $settingModel = new App\Models\Setting();
+          $socialMedias = $settingModel->getAllSocialMedias();
+        } catch (Exception $e) {
+          $socialMedias = [];
+        }
+        ?>
+        <?php if (!empty($socialMedias)): ?>
+          <div class="d-flex p-4 justify-content-between">
+            <?php foreach ($socialMedias as $social): ?>
+              <a href="<?= htmlspecialchars($social['link']) ?>" class="text-primary link-dark text-decoration-none" target="_blank"><?= htmlspecialchars($social['name']) ?></a>
+            <?php endforeach; ?>
+          </div>
+        <?php else: ?>
+          <span class="d-block text-muted">هیچ شبکه اجتماعی ای تعریف نشده</span>
+        <?php endif; ?>
       </div>
     </div>
     <div class="col-lg-6 col-md-12 mt-1">
