@@ -17,28 +17,29 @@ class NotificationController
     $this->notificationModel = new Notification();
   }
 
-  // Display notification page for all rules 
+  // Display notification page for all roles
   public function index()
   {
     if (!isset($_SESSION['user_id'])) {
       redirect('/');
     }
 
+    $userId = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 'student';
 
     if ($role === 'student') {
-      $notifications = $this->notificationModel->getUserNotifications($_SESSION['user_id']);
+      $notifications = $this->notificationModel->getUserNotifications($userId);
 
       foreach ($notifications as $notification) {
         if (!$notification['user_read']) {
-          $this->notificationModel->markAsRead($notification['id'], $_SESSION['user_id']);
+          $this->notificationModel->markAsRead($notification['id'], $userId);
         }
       }
 
-      $notifications = $this->notificationModel->getUserNotifications($_SESSION['user_id']);
+      $notifications = $this->notificationModel->getUserNotifications($userId);
       require_once '../app/Views/dashboard/student/notifications.php';
     } elseif ($role === 'teacher') {
-      $notifications = $this->notificationModel->getAllNotifications();
+      $notifications = $this->notificationModel->getAllNotifications($userId, $role);
       require_once '../app/Views/dashboard/teacher/notifications.php';
     } elseif ($role === 'admin') {
       $notifications = $this->notificationModel->getAllNotifications();
@@ -58,16 +59,16 @@ class NotificationController
       redirect('/');
     }
 
-    $role = $_SESSION['role'] ?? 'teacher';
+    $role = $_SESSION['role'] ?? 'student';
 
-    if ($role !== 'teacher') {
+    if ($role !== 'teacher' && $role !== 'admin' && $role !== 'owner') {
       show403();
     }
 
     require_once '../app/Views/dashboard/teacher/notification-create.php';
   }
 
-  // Save new notification (just students)
+  // Save new notification
   public function store()
   {
     if (!isset($_SESSION['user_id'])) {
@@ -76,7 +77,7 @@ class NotificationController
 
     $role = $_SESSION['role'] ?? 'student';
 
-    if ($role !== 'teacher') {
+    if ($role !== 'teacher' && $role !== 'admin' && $role !== 'owner') {
       show403();
     }
 
@@ -104,7 +105,8 @@ class NotificationController
       $data = [
         ':title' => $title,
         ':message' => $message,
-        ':target_role' => $target_role
+        ':target_role' => $target_role,
+        ':created_by' => $_SESSION['user_id']
       ];
 
       if ($this->notificationModel->create($data)) {
@@ -122,24 +124,25 @@ class NotificationController
   // Delete notification
   public function delete($id)
   {
-    if (!isset($_SESSION['user_id']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'teacher' && $_SESSION['role'] !== 'owner')) {
+    if (!isset($_SESSION['user_id'])) {
       redirect('/');
     }
 
+    $userId = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 'student';
 
     if ($role !== 'owner' && $role !== 'admin' && $role !== 'teacher') {
       show403();
     }
 
-    $notification = $this->notificationModel->getById($id);
+    $notification = $this->notificationModel->getById($id, $userId, $role);
     if (!$notification) {
-      $_SESSION['error'] = 'اعلان یافت نشد.';
+      $_SESSION['error'] = 'اعلان یافت نشد یا شما اجازه حذف آن را ندارید.';
       redirect('/panel/notifications');
     }
 
     try {
-      if ($this->notificationModel->delete($id)) {
+      if ($this->notificationModel->delete($id, $userId, $role)) {
         $_SESSION['success'] = 'اعلان با موفقیت حذف شد.';
       } else {
         $_SESSION['error'] = 'خطا در حذف اعلان.';
