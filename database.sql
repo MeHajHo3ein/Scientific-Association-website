@@ -58,7 +58,10 @@ CREATE TABLE `notifications` (
   `message` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `target_role` enum('student','teacher','admin') NOT NULL DEFAULT 'student',
-  PRIMARY KEY (`id`)
+  `created_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+   KEY `created_by` (`created_by`),
+  CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
 );
 
 -- Create Table user notifications read
