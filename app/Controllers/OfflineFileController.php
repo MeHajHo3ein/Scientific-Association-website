@@ -22,16 +22,16 @@ class OfflineFileController
   {
     $this->checkAdminOrTeacherAuth();
 
+    $userId = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 'teacher';
 
+    $files = $this->fileModel->getAllFiles($userId, $role);
+
     if ($role === 'admin') {
-      $files = $this->fileModel->getAllFiles();
       require_once '../app/Views/dashboard/admin/offline-courses.php';
     } elseif ($role === 'owner') {
-      $files = $this->fileModel->getAllFiles();
       require_once '../app/Views/dashboard/owner/offline-courses.php';
     } else {
-      $files = $this->fileModel->getFilesByTeacher($_SESSION['user_id']);
       require_once '../app/Views/dashboard/teacher/offline-courses.php';
     }
   }
@@ -111,18 +111,17 @@ class OfflineFileController
   {
     $this->checkAdminOrTeacherAuth();
 
-    $file = $this->fileModel->getFileById($id);
+    $userId = $_SESSION['user_id'];
+    $role = $_SESSION['role'] ?? 'teacher';
+
+    $file = $this->fileModel->getFileById($id, $userId, $role);
     if (!$file) {
-      $_SESSION['offline_error'] = 'فایل یافت نشد.';
+      $_SESSION['offline_error'] = 'فایل یافت نشد یا شما اجازه حذف آن را ندارید.';
       redirect('/panel/offline-courses');
     }
 
-    if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'owner' && $file['teacher_id'] != $_SESSION['user_id']) {
-      show403();
-    }
-
     try {
-      if ($this->fileModel->delete($id)) {
+      if ($this->fileModel->delete($id, $userId, $role)) {
         $_SESSION['offline_success'] = 'فایل <strong>' . htmlspecialchars($file['title']) . '</strong> با موفقیت حذف شد.';
       } else {
         $_SESSION['offline_error'] = 'خطا در حذف فایل.';

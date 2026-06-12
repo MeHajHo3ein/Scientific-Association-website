@@ -14,14 +14,24 @@ class OfflineFile
   }
 
   // Get all files (for admin/teacher panel)
-  public function getAllFiles()
+  public function getAllFiles($userId = null, $role = null)
   {
     $query = "SELECT f.*, u.full_name as teacher_name 
               FROM offline_files f
-              LEFT JOIN users u ON f.teacher_id = u.id
-              ORDER BY f.created_at ASC";
+              LEFT JOIN users u ON f.teacher_id = u.id";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " WHERE f.teacher_id = :user_id";
+    }
+
+    $query .= " ORDER BY f.created_at ASC";
+
     $stmt = $this->db->prepare($query);
-    $stmt->execute();
+    if ($role === 'teacher' && $userId) {
+      $stmt->execute([':user_id' => $userId]);
+    } else {
+      $stmt->execute();
+    }
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
@@ -54,14 +64,23 @@ class OfflineFile
   }
 
   // Get file by id
-  public function getFileById($id)
+  public function getFileById($id, $userId = null, $role = null)
   {
     $query = "SELECT f.*, u.full_name as teacher_name 
               FROM offline_files f
               LEFT JOIN users u ON f.teacher_id = u.id
               WHERE f.id = :id";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " AND f.teacher_id = :user_id";
+    }
+
     $stmt = $this->db->prepare($query);
-    $stmt->execute([':id' => $id]);
+    $params = [':id' => $id];
+    if ($role === 'teacher' && $userId) {
+      $params[':user_id'] = $userId;
+    }
+    $stmt->execute($params);
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
@@ -75,8 +94,14 @@ class OfflineFile
   }
 
   // Delete file
-  public function delete($id)
+  public function delete($id, $userId = null, $role = null)
   {
+    if ($role === 'teacher' && $userId) {
+      $query = "DELETE FROM offline_files WHERE id = :id AND teacher_id = :user_id";
+      $stmt = $this->db->prepare($query);
+      return $stmt->execute([':id' => $id, ':user_id' => $userId]);
+    }
+
     $query = "DELETE FROM offline_files WHERE id = :id";
     $stmt = $this->db->prepare($query);
     return $stmt->execute([':id' => $id]);
@@ -86,7 +111,6 @@ class OfflineFile
   public static function getFileTypeFromUrl($url)
   {
     $ext = strtolower(pathinfo($url, PATHINFO_EXTENSION));
-
     $ext = preg_replace('/[^a-z0-9]/', '', $ext);
 
     if (!empty($ext)) {
