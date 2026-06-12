@@ -32,14 +32,24 @@ class Article
   }
 
   // Get all articles for admin/teacher panel
-  public function getAllArticles()
+  public function getAllArticles($userId = null, $role = null)
   {
     $query = "SELECT a.*, u.full_name as author_name 
-                  FROM articles a
-                  LEFT JOIN users u ON a.author_id = u.id
-                  ORDER BY a.created_at ASC";
+              FROM articles a
+              LEFT JOIN users u ON a.author_id = u.id";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " WHERE a.author_id = :user_id";
+    }
+
+    $query .= " ORDER BY a.created_at ASC";
+
     $stmt = $this->db->prepare($query);
-    $stmt->execute();
+    if ($role === 'teacher' && $userId) {
+      $stmt->execute([':user_id' => $userId]);
+    } else {
+      $stmt->execute();
+    }
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
@@ -58,14 +68,23 @@ class Article
   }
 
   // Get article by id
-  public function getArticleById($id)
+  public function getArticleById($id, $userId = null, $role = null)
   {
     $query = "SELECT a.*, u.full_name as author_name 
-                  FROM articles a
-                  LEFT JOIN users u ON a.author_id = u.id
-                  WHERE a.id = :id";
+              FROM articles a
+              LEFT JOIN users u ON a.author_id = u.id
+              WHERE a.id = :id";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " AND a.author_id = :user_id";
+    }
+
     $stmt = $this->db->prepare($query);
-    $stmt->execute([':id' => $id]);
+    $params = [':id' => $id];
+    if ($role === 'teacher' && $userId) {
+      $params[':user_id'] = $userId;
+    }
+    $stmt->execute($params);
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
@@ -82,7 +101,7 @@ class Article
   public function create($data)
   {
     $query = "INSERT INTO articles (title, slug, summary, content, author_id) 
-                  VALUES (:title, :slug, :summary, :content, :author_id)";
+              VALUES (:title, :slug, :summary, :content, :author_id)";
     $stmt = $this->db->prepare($query);
     $stmt->execute($data);
     return $this->db->lastInsertId();
@@ -97,7 +116,7 @@ class Article
 
     if (!empty($sections)) {
       $query = "INSERT INTO article_sections (article_id, title, description, sort_order) 
-                      VALUES (:article_id, :title, :description, :sort_order)";
+                VALUES (:article_id, :title, :description, :sort_order)";
       $stmt = $this->db->prepare($query);
 
       foreach ($sections as $index => $section) {
@@ -115,8 +134,14 @@ class Article
   }
 
   /// Delete article
-  public function delete($id)
+  public function delete($id, $userId = null, $role = null)
   {
+    if ($role === 'teacher' && $userId) {
+      $query = "DELETE FROM articles WHERE id = :id AND author_id = :user_id";
+      $stmt = $this->db->prepare($query);
+      return $stmt->execute([':id' => $id, ':user_id' => $userId]);
+    }
+
     $query = "DELETE FROM articles WHERE id = :id";
     $stmt = $this->db->prepare($query);
     return $stmt->execute([':id' => $id]);

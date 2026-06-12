@@ -50,8 +50,11 @@ class ArticleController
   public function adminIndex()
   {
     $this->checkAdminOrTeacherAuth();
-    $articles = $this->articleModel->getAllArticles();
+
+    $userId = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 'teacher';
+
+    $articles = $this->articleModel->getAllArticles($userId, $role);
 
     switch ($role) {
       case 'owner':
@@ -138,14 +141,17 @@ class ArticleController
   {
     $this->checkAdminOrTeacherAuth();
 
-    $article = $this->articleModel->getArticleById($id);
+    $userId = $_SESSION['user_id'];
+    $role = $_SESSION['role'] ?? 'teacher';
+
+    $article = $this->articleModel->getArticleById($id, $userId, $role);
     if (!$article) {
-      $_SESSION['error'] = 'مقاله یافت نشد.';
+      $_SESSION['error'] = 'مقاله یافت نشد یا شما اجازه حذف آن را ندارید.';
       redirect('/panel/articles');
     }
 
     try {
-      if ($this->articleModel->delete($id)) {
+      if ($this->articleModel->delete($id, $userId, $role)) {
         $_SESSION['success'] = "مقاله <strong>{$article['title']}</strong> با موفقیت حذف شد.";
       } else {
         $_SESSION['error'] = 'خطا در حذف مقاله.';
