@@ -30,8 +30,11 @@ class NeasController
   public function adminIndex()
   {
     $this->checkAdminOrTeacherAuth();
-    $items = $this->neasModel->getAllItems();
+
+    $userId = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 'teacher';
+
+    $items = $this->neasModel->getAllItems($userId, $role);
 
     switch ($role) {
       case 'owner':
@@ -107,14 +110,17 @@ class NeasController
   {
     $this->checkAdminOrTeacherAuth();
 
-    $item = $this->neasModel->getItemById($id);
+    $userId = $_SESSION['user_id'];
+    $role = $_SESSION['role'] ?? 'teacher';
+
+    $item = $this->neasModel->getItemById($id, $userId, $role);
     if (!$item) {
-      $_SESSION['error'] = 'مطلب یافت نشد.';
+      $_SESSION['error'] = 'مطلب یافت نشد یا شما اجازه حذف آن را ندارید.';
       redirect('/panel/neas');
     }
 
     try {
-      if ($this->neasModel->delete($id)) {
+      if ($this->neasModel->delete($id, $userId, $role)) {
         $_SESSION['success'] = 'مطلب با موفقیت حذف شد.';
       } else {
         $_SESSION['error'] = 'خطا در حذف مطلب.';

@@ -14,14 +14,24 @@ class Neas
   }
 
   // Get all items (for admin/teacher panel)
-  public function getAllItems()
+  public function getAllItems($userId = null, $role = null)
   {
     $query = "SELECT n.*, u.full_name as author_name
-                  FROM neas n
-                  LEFT JOIN users u ON n.created_by = u.id
-                  ORDER BY n.created_at ASC";
+              FROM neas n
+              LEFT JOIN users u ON n.created_by = u.id";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " WHERE n.created_by = :user_id";
+    }
+
+    $query .= " ORDER BY n.created_at ASC";
+
     $stmt = $this->db->prepare($query);
-    $stmt->execute();
+    if ($role === 'teacher' && $userId) {
+      $stmt->execute([':user_id' => $userId]);
+    } else {
+      $stmt->execute();
+    }
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
@@ -29,21 +39,30 @@ class Neas
   public function getItemsByCategory($category)
   {
     $query = "SELECT n.*, u.full_name as author_name
-                  FROM neas n
-                  LEFT JOIN users u ON n.created_by = u.id
-                  WHERE n.category = :category
-                  ORDER BY n.created_at DESC";
+              FROM neas n
+              LEFT JOIN users u ON n.created_by = u.id
+              WHERE n.category = :category
+              ORDER BY n.created_at DESC";
     $stmt = $this->db->prepare($query);
     $stmt->execute([':category' => $category]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
   // Get item by id
-  public function getItemById($id)
+  public function getItemById($id, $userId = null, $role = null)
   {
     $query = "SELECT * FROM neas WHERE id = :id";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " AND created_by = :user_id";
+    }
+
     $stmt = $this->db->prepare($query);
-    $stmt->execute([':id' => $id]);
+    $params = [':id' => $id];
+    if ($role === 'teacher' && $userId) {
+      $params[':user_id'] = $userId;
+    }
+    $stmt->execute($params);
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
@@ -67,14 +86,20 @@ class Neas
   public function create($data)
   {
     $query = "INSERT INTO neas (title, content, category, created_by)
-                  VALUES (:title, :content, :category, :created_by)";
+              VALUES (:title, :content, :category, :created_by)";
     $stmt = $this->db->prepare($query);
     return $stmt->execute($data);
   }
 
   // Delete item
-  public function delete($id)
+  public function delete($id, $userId = null, $role = null)
   {
+    if ($role === 'teacher' && $userId) {
+      $query = "DELETE FROM neas WHERE id = :id AND created_by = :user_id";
+      $stmt = $this->db->prepare($query);
+      return $stmt->execute([':id' => $id, ':user_id' => $userId]);
+    }
+
     $query = "DELETE FROM neas WHERE id = :id";
     $stmt = $this->db->prepare($query);
     return $stmt->execute([':id' => $id]);
