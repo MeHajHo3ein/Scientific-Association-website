@@ -58,8 +58,10 @@ class CourseController
       redirect('/');
     }
 
-    $courses = $this->courseModel->getAllCourses();
+    $userId = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 'student';
+
+    $courses = $this->courseModel->getAllCourses($userId, $role);
 
     switch ($role) {
       case 'owner':
@@ -187,14 +189,17 @@ class CourseController
   {
     $this->checkAdminOrTeacherAuth();
 
-    $course = $this->courseModel->getCourseById($id);
+    $userId = $_SESSION['user_id'];
+    $role = $_SESSION['role'] ?? 'teacher';
+
+    $course = $this->courseModel->getCourseById($id, $userId, $role);
     if (!$course) {
-      $_SESSION['error'] = 'دوره یافت نشد.';
+      $_SESSION['error'] = 'دوره یافت نشد یا شما اجازه حذف آن را ندارید.';
       redirect('/panel/courses');
     }
 
     try {
-      if ($this->courseModel->delete($id)) {
+      if ($this->courseModel->delete($id, $userId, $role)) {
         $_SESSION['success'] = "دوره <strong>{$course['title']}</strong> با موفقیت حذف شد.";
       } else {
         $_SESSION['error'] = 'خطا در حذف دوره.';

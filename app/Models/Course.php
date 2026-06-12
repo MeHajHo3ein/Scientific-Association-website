@@ -32,14 +32,24 @@ class Course
   }
 
   // Get all courses (for admin/teacher panel)
-  public function getAllCourses()
+  public function getAllCourses($userId = null, $role = null)
   {
     $query = "SELECT c.*, u.full_name as instructor_name, u.full_name as creator_name
               FROM courses c
-              LEFT JOIN users u ON c.created_by = u.id
-              ORDER BY c.created_at ASC";
+              LEFT JOIN users u ON c.created_by = u.id";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " WHERE c.created_by = :user_id";
+    }
+
+    $query .= " ORDER BY c.created_at ASC";
+
     $stmt = $this->db->prepare($query);
-    $stmt->execute();
+    if ($role === 'teacher' && $userId) {
+      $stmt->execute([':user_id' => $userId]);
+    } else {
+      $stmt->execute();
+    }
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
@@ -48,23 +58,32 @@ class Course
   {
     $slug = urldecode($slug);
     $query = "SELECT c.*, u.full_name as instructor_name, u.image as instructor_image
-            FROM courses c
-            LEFT JOIN users u ON c.created_by = u.id
-            WHERE c.slug = :slug";
+              FROM courses c
+              LEFT JOIN users u ON c.created_by = u.id
+              WHERE c.slug = :slug";
     $stmt = $this->db->prepare($query);
     $stmt->execute([':slug' => $slug]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  /// Get course by id
-  public function getCourseById($id)
+  // Get course by id
+  public function getCourseById($id, $userId = null, $role = null)
   {
     $query = "SELECT c.*, u.full_name as instructor_name
               FROM courses c
               LEFT JOIN users u ON c.created_by = u.id
               WHERE c.id = :id";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " AND c.created_by = :user_id";
+    }
+
     $stmt = $this->db->prepare($query);
-    $stmt->execute([':id' => $id]);
+    $params = [':id' => $id];
+    if ($role === 'teacher' && $userId) {
+      $params[':user_id'] = $userId;
+    }
+    $stmt->execute($params);
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
@@ -128,7 +147,7 @@ class Course
     return $result['total'] ?? 0;
   }
 
-  /// Create course
+  // Create course
   public function create($data)
   {
     $query = "INSERT INTO courses (title, slug, category , level, price, duration, student_count, image, description, created_by) 
@@ -147,7 +166,7 @@ class Course
 
     if (!empty($prerequisites)) {
       $query = "INSERT INTO course_prerequisites (course_id, title, sort_order) 
-                      VALUES (:course_id, :title, :sort_order)";
+                VALUES (:course_id, :title, :sort_order)";
       $stmt = $this->db->prepare($query);
 
       foreach ($prerequisites as $index => $prereq) {
@@ -172,7 +191,7 @@ class Course
 
     if (!empty($syllabus)) {
       $query = "INSERT INTO course_syllabus (course_id, title, description, video_link, sort_order) 
-              VALUES (:course_id, :title, :description, :video_link, :sort_order)";
+                VALUES (:course_id, :title, :description, :video_link, :sort_order)";
       $stmt = $this->db->prepare($query);
 
       foreach ($syllabus as $index => $section) {
@@ -191,8 +210,14 @@ class Course
   }
 
   // Delete course
-  public function delete($id)
+  public function delete($id, $userId = null, $role = null)
   {
+    if ($role === 'teacher' && $userId) {
+      $query = "DELETE FROM courses WHERE id = :id AND created_by = :user_id";
+      $stmt = $this->db->prepare($query);
+      return $stmt->execute([':id' => $id, ':user_id' => $userId]);
+    }
+
     $query = "DELETE FROM courses WHERE id = :id";
     $stmt = $this->db->prepare($query);
     return $stmt->execute([':id' => $id]);
