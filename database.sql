@@ -189,3 +189,65 @@ CREATE TABLE `settings_social_media` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 );
+
+-- Create Table exams 
+CREATE TABLE `exams` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `course_name` varchar(255) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `pass_score` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `teacher_id` (`teacher_id`),
+  CONSTRAINT `exams_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+);
+
+-- Create Table exam_questions 
+CREATE TABLE `exam_questions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `exam_id` int(11) NOT NULL,
+  `question_text` text NOT NULL,
+  `question_type` enum('truefalse','multiple','codeoutput') NOT NULL,
+  `code_block` text DEFAULT NULL,
+  `score` int(11) DEFAULT 1,
+  `options` text DEFAULT NULL,
+  `correct_answer` varchar(255) NOT NULL,
+  `sort_order` int(11) DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `exam_id` (`exam_id`),
+  CONSTRAINT `exam_questions_ibfk_1` FOREIGN KEY (`exam_id`) REFERENCES `exams` (`id`) ON DELETE CASCADE
+);
+
+-- Create Table exam_results 
+CREATE TABLE `exam_results` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `exam_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `score` int(11) DEFAULT 0,
+  `total_score` int(11) DEFAULT 0,
+  `percentage` int(11) DEFAULT 0,
+  `is_passed` tinyint(1) DEFAULT 0,
+  `certificate_code` varchar(100) DEFAULT NULL,
+  `completed_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `exam_id` (`exam_id`),
+  KEY `student_id` (`student_id`),
+  UNIQUE KEY `certificate_code` (`certificate_code`),
+  CONSTRAINT `exam_results_ibfk_1` FOREIGN KEY (`exam_id`) REFERENCES `exams` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `exam_results_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+);
+
+-- Create Table exam_answers
+CREATE TABLE `exam_answers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `result_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `answer` text DEFAULT NULL,
+  `is_correct` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `result_id` (`result_id`),
+  KEY `question_id` (`question_id`),
+  CONSTRAINT `exam_answers_ibfk_1` FOREIGN KEY (`result_id`) REFERENCES `exam_results` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `exam_answers_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `exam_questions` (`id`) ON DELETE CASCADE
+);
