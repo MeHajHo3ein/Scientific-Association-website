@@ -163,6 +163,8 @@ $categories = [
 <!-- <script src="/assets/js/search.js"></script> -->
 <!-- <script src="/assets/js/live-search.js"></script> -->
 
+<script src="/assets/js/notification-api.js"></script>
+
 <?php
 include '../app/Views/partials/main-footer.php';
 include '../app/Views/layouts/footer.php';

@@ -81,6 +81,7 @@ $verifyUrl = $baseUrl . '/certificates';
   <?php endif; ?>
 </div>
 
+<script src="/assets/js/notification-api.js"></script>
 <script src="/assets/js/html2canvas.min.js.js"></script>
 <script>
   function toPersianNumberJS(num) {

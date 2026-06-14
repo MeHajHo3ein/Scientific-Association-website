@@ -114,6 +114,8 @@ $isStudent = $isLoggedIn && ($_SESSION['role'] === 'student');
   <?php endif; ?>
 </div>
 
+<script src="/assets/js/notification-api.js"></script>
+
 <br>
 <br>
 <?php

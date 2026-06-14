@@ -83,6 +83,8 @@ $questions = $questions ?? [];
   </div>
 </form>
 
+<script src="/assets/js/notification-api.js"></script>
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const optionItems = document.querySelectorAll('.option-item');

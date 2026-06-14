@@ -60,6 +60,8 @@ $publicFiles = $publicFiles ?? [];
   </div>
 </div>
 
+<script src="/assets/js/notification-api.js"></script>
+
 <br>
 <?php
 include '../app/Views/partials/main-footer.php';
