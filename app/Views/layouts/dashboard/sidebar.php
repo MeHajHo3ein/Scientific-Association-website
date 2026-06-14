@@ -193,8 +193,8 @@
               <a href="/panel/notifications" class="text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/notifications') || isActiveRoute('/panel/notifications/create') ? 'active' : ''; ?>">اعلانات</a>
             </li>
             <li class="nav-item">
-              <a href="./T-Quests.html"
-                class=" text-start btn my-1 btn-outline-light py-2 w-100 ">
+              <a href="/panel/quests"
+                class=" text-start btn my-1 btn-outline-light py-2 w-100 <?= isActiveRoute('/panel/quests') || isActiveRoute('/panel/quests/create') ? 'active' : ''; ?>">
                 امتحانات
               </a>
             </li>
