@@ -15,6 +15,7 @@ use App\Controllers\ArticleController;
 use App\Controllers\AuthController;
 use App\Controllers\CourseController;
 use App\Controllers\DashboardController;
+use App\Controllers\ExamController;
 use App\Controllers\HomeController;
 use App\Controllers\NeasController;
 use App\Controllers\NotificationController;
@@ -36,8 +37,7 @@ $router->get('/courses', [PagesController::class, 'courses']);
 $router->get('/offline-courses', [OfflineFileController::class, 'publicIndex']);
 $router->get('/articles', [ArticleController::class, 'index']);
 $router->get('/neas', [NeasController::class, 'index']);
-$router->get('/certificates', [PagesController::class, 'certificates']);
-$router->get('/cult', [PagesController::class, 'cult']);
+// $router->get('/cult', [PagesController::class, 'cult']);
 $router->get('/contactus', [PagesController::class, 'contact_us']);
 $router->get('/aboutus', [PagesController::class, 'about_us']);
 
@@ -140,6 +140,24 @@ $router->post('/panel/settings/contact', [SettingController::class, 'updateConta
 $router->post('/panel/settings/social/update', [SettingController::class, 'updateSocialMedias']);
 $router->post('/panel/settings/social/add', [SettingController::class, 'addSocialMedia']);
 
+// Panel - Exam (Teacher Only)
+$router->get('/panel/quests', [ExamController::class, 'index']);
+$router->get('/api/quests/list', [ExamController::class, 'getExamsList']);
+$router->get('/panel/quests/create', [ExamController::class, 'showCreateForm']);
+$router->post('/panel/quests/store', [ExamController::class, 'store']);
+$router->get('/panel/quests/delete/{id}', [ExamController::class, 'delete']);
+
+// Panel - Exam (Public)
+$router->get('/certificates', [ExamController::class, 'certificates']);
+$router->get('/certificates/verify', [ExamController::class, 'verifyCertificate']);
+$router->get('/certificates/exam/{id}', [ExamController::class, 'takeExam']);
+$router->post('/certificates/exam/submit', [ExamController::class, 'submitExam']);
+$router->get('/certificates/result', [ExamController::class, 'showResult']);
+$router->get('/certificates/view/{id}', [ExamController::class, 'viewCertificate']);
+
+// Panel - Exam (Student Dashboard)
+$router->get('/panel/certificates', [ExamController::class, 'myCertificates']);
+
 // Search routes
 $router->get('/search', [SearchController::class, 'search']);
 $router->get('/api/live-search', [SearchController::class, 'liveSearch']);
@@ -147,7 +165,7 @@ $router->get('/api/live-search', [SearchController::class, 'liveSearch']);
 $router->post('/panel/update-profile', [ProfileController::class, 'update']);
 
 // Panel - Certificates (*** Student ***)
-$router->get('/panel/certificates', [DashboardController::class, 'certificates']);
+// $router->get('/panel/certificates', [DashboardController::class, 'certificates']);
 
 // Logout route
 $router->get('/logout', [AuthController::class, 'logout']);
