@@ -40,7 +40,7 @@ $questions = $questions ?? [];
 
             <?php if ($question['question_type'] === 'codeoutput' && !empty($question['code_block'])): ?>
               <div class="bg-body-secondary text-end p-3 rounded-3">
-                <pre class="mb-0"><code><?= htmlspecialchars($question['code_block']) ?></code></pre>
+                <code><?= htmlspecialchars($question['code_block']) ?></code>
               </div>
             <?php endif; ?>
 
