@@ -61,6 +61,8 @@ function getBackButtonText()
     '/panel/offline-courses/create',
     '/panel/analytics',
     '/panel/settings',
+    '/panel/quests',
+    '/panel/quests/create',
     '/panel/tickets',
     '/panel/students',
     '/panel/students/create',
@@ -114,6 +116,8 @@ function getBackButtonUrl()
     '/panel/offline-courses/create',
     '/panel/analytics',
     '/panel/settings',
+    '/panel/quests',
+    '/panel/quests/create',
     '/panel/tickets',
     '/panel/students',
     '/panel/teachers',
@@ -170,6 +174,11 @@ function getBackButtonUrl()
   // For Offline Courses
   if ($currentUri === '/panel/offline-courses/create') {
     return '/panel/offline-courses';
+  }
+
+  // For Quests
+  if ($currentUri === '/panel/quests/create') {
+    return '/panel/quests';
   }
 
   if (in_array($currentUri, $panelPages)) {
