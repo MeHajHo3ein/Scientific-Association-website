@@ -144,12 +144,10 @@ $perPage = 12;
 
     let html = '<nav class="mt-3"><ul class="pagination justify-content-center">';
 
-    // Previous button
     html += `<li class="page-item ${page <= 1 ? 'disabled' : ''}">
               <a class="page-link" href="#" data-page="${page - 1}">قبلی</a>
             </li>`;
 
-    // Page numbers
     const startPage = Math.max(1, page - 2);
     const endPage = Math.min(totalPages, page + 2);
 
@@ -169,7 +167,6 @@ $perPage = 12;
       html += `<li class="page-item"><a class="page-link" href="#" data-page="${totalPages}">${toPersianNumberJS(totalPages)}</a></li>`;
     }
 
-    // Next button
     html += `<li class="page-item ${page >= totalPages ? 'disabled' : ''}">
               <a class="page-link" href="#" data-page="${page + 1}">بعدی</a>
             </li>`;
@@ -182,10 +179,7 @@ $perPage = 12;
     if (page < 1) return;
     if (page === currentPage) return;
 
-    // Show loading state
     const tbody = document.getElementById('examsTableBody');
-    tbody.innerHTML = `<tr><td colspan="5" class="text-center">در حال بارگذاری...</td></tr>`;
-
     fetch(`/api/quests/list?page=${page}`)
       .then(res => {
         if (!res.ok) throw new Error('Network response was not ok');
@@ -199,7 +193,6 @@ $perPage = 12;
         renderTable(data.exams, data.page, PER_PAGE);
         renderPagination(data.page, data.totalPages);
 
-        // Scroll to top of table
         document.querySelector('.container.overflow-auto').scrollIntoView({
           behavior: 'smooth',
           block: 'start'
@@ -211,7 +204,6 @@ $perPage = 12;
       });
   }
 
-  // Event delegation برای کلیک روی لینک‌های پجینیشن
   document.addEventListener('click', function(e) {
     const link = e.target.closest('#paginationContainer a[data-page]');
     if (!link) return;
