@@ -58,10 +58,15 @@ class CourseController
       redirect('/');
     }
 
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
     $userId = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 'student';
 
-    $courses = $this->courseModel->getAllCourses($userId, $role);
+    $courses = $this->courseModel->getAllCoursesPaginated($userId, $role, $perPage, $offset);
+    $totalCourses = $this->courseModel->getTotalCoursesCount($userId, $role);
+    $totalPages = ceil($totalCourses / $perPage);
 
     switch ($role) {
       case 'owner':
@@ -209,6 +214,48 @@ class CourseController
     }
 
     redirect('/panel/courses');
+  }
+
+  // Get courses list for AJAX pagination
+  public function getCoursesList()
+  {
+    header('Content-Type: application/json');
+
+    $this->checkAdminOrTeacherAuth();
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $userId = $_SESSION['user_id'];
+    $role = $_SESSION['role'] ?? 'teacher';
+
+    $courses = $this->courseModel->getAllCoursesPaginated($userId, $role, $perPage, $offset);
+    $totalCourses = $this->courseModel->getTotalCoursesCount($userId, $role);
+    $totalPages = ceil($totalCourses / $perPage);
+
+    // Format data for JSON response
+    $formattedCourses = [];
+    foreach ($courses as $course) {
+      $formattedCourses[] = [
+        'id' => $course['id'],
+        'title' => $course['title'],
+        'instructor_name' => $course['instructor_name'],
+        'price' => $course['price'] > 0 ? number_format($course['price']) . ' تومان' : 'رایگان',
+        'category' => $course['category'],
+        'duration' => $course['duration'],
+        'student_count' => number_format($course['student_count']) . ' نفر',
+        'created_at_fa' => toJalali($course['created_at'], 'Y/m/d')
+      ];
+    }
+
+    echo json_encode([
+      'success' => true,
+      'items' => $formattedCourses,
+      'page' => $page,
+      'totalPages' => $totalPages,
+      'totalItems' => $totalCourses
+    ]);
   }
 
   private function checkTeacherAuth()

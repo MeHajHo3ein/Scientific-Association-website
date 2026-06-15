@@ -137,16 +137,6 @@ class Course
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  // Get total courses count for homepage
-  public function getTotalCoursesCount()
-  {
-    $query = "SELECT COUNT(*) as total FROM courses";
-    $stmt = $this->db->prepare($query);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $result['total'] ?? 0;
-  }
-
   // Create course
   public function create($data)
   {
@@ -258,5 +248,46 @@ class Course
     }
     $stmt->execute($params);
     return $stmt->rowCount() > 0;
+  }
+
+  // Get all courses with pagination
+  public function getAllCoursesPaginated($userId = null, $role = null, $limit, $offset)
+  {
+    $query = "SELECT c.*, u.full_name as instructor_name, u.full_name as creator_name
+              FROM courses c
+              LEFT JOIN users u ON c.created_by = u.id";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " WHERE c.created_by = :user_id";
+    }
+
+    $query .= " ORDER BY c.created_at ASC LIMIT :limit OFFSET :offset";
+
+    $stmt = $this->db->prepare($query);
+    if ($role === 'teacher' && $userId) {
+      $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    }
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // Get total courses count
+  public function getTotalCoursesCount($userId = null, $role = null)
+  {
+    $query = "SELECT COUNT(*) as total FROM courses c";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " WHERE c.created_by = :user_id";
+    }
+
+    $stmt = $this->db->prepare($query);
+    if ($role === 'teacher' && $userId) {
+      $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    }
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'] ?? 0;
   }
 }
