@@ -104,4 +104,45 @@ class Neas
     $stmt = $this->db->prepare($query);
     return $stmt->execute([':id' => $id]);
   }
+
+  // Get all items with pagination (for admin/teacher panel)
+  public function getAllItemsPaginated($userId = null, $role = null, $limit, $offset)
+  {
+    $query = "SELECT n.*, u.full_name as author_name
+              FROM neas n
+              LEFT JOIN users u ON n.created_by = u.id";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " WHERE n.created_by = :user_id";
+    }
+
+    $query .= " ORDER BY n.created_at ASC LIMIT :limit OFFSET :offset";
+
+    $stmt = $this->db->prepare($query);
+    if ($role === 'teacher' && $userId) {
+      $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    }
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // Get total items count
+  public function getTotalItemsCount($userId = null, $role = null)
+  {
+    $query = "SELECT COUNT(*) as total FROM neas n";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " WHERE n.created_by = :user_id";
+    }
+
+    $stmt = $this->db->prepare($query);
+    if ($role === 'teacher' && $userId) {
+      $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    }
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'] ?? 0;
+  }
 }

@@ -31,10 +31,15 @@ class NeasController
   {
     $this->checkAdminOrTeacherAuth();
 
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
     $userId = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 'teacher';
 
-    $items = $this->neasModel->getAllItems($userId, $role);
+    $items = $this->neasModel->getAllItemsPaginated($userId, $role, $perPage, $offset);
+    $totalItems = $this->neasModel->getTotalItemsCount($userId, $role);
+    $totalPages = ceil($totalItems / $perPage);
 
     switch ($role) {
       case 'owner':
@@ -130,6 +135,44 @@ class NeasController
     }
 
     redirect('/panel/neas');
+  }
+
+  // Get items list for AJAX pagination
+  public function getItemsList()
+  {
+    header('Content-Type: application/json');
+
+    $this->checkAdminOrTeacherAuth();
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $userId = $_SESSION['user_id'];
+    $role = $_SESSION['role'] ?? 'teacher';
+
+    $items = $this->neasModel->getAllItemsPaginated($userId, $role, $perPage, $offset);
+    $totalItems = $this->neasModel->getTotalItemsCount($userId, $role);
+    $totalPages = ceil($totalItems / $perPage);
+
+    $formattedItems = [];
+    foreach ($items as $item) {
+      $formattedItems[] = [
+        'id' => $item['id'],
+        'title' => $item['title'],
+        'content' => mb_substr($item['content'], 0, 100),
+        'category' => $item['category'],
+        'created_at_fa' => toJalali($item['created_at'], 'Y/m/d'),
+      ];
+    }
+
+    echo json_encode([
+      'success' => true,
+      'items' => $formattedItems,
+      'page' => $page,
+      'totalPages' => $totalPages,
+      'totalItems' => $totalItems
+    ]);
   }
 
   private function checkTeacherAuth()
