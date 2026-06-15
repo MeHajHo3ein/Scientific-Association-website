@@ -24,6 +24,9 @@ class NotificationController
       redirect('/');
     }
 
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
     $userId = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 'student';
 
@@ -39,13 +42,22 @@ class NotificationController
       $notifications = $this->notificationModel->getUserNotifications($userId);
       require_once '../app/Views/dashboard/student/notifications.php';
     } elseif ($role === 'teacher') {
-      $notifications = $this->notificationModel->getAllNotifications($userId, $role);
+      $notifications = $this->notificationModel->getAllNotificationsPaginated($perPage, $offset, $userId, $role);
+      $totalItems = $this->notificationModel->getTotalNotificationsCount($userId, $role);
+      $totalPages = ceil($totalItems / $perPage);
+
       require_once '../app/Views/dashboard/teacher/notifications.php';
     } elseif ($role === 'admin') {
-      $notifications = $this->notificationModel->getAllNotifications();
+      $notifications = $this->notificationModel->getAllNotificationsPaginated($perPage, $offset, null, null);
+      $totalItems = $this->notificationModel->getTotalNotificationsCount();
+      $totalPages = ceil($totalItems / $perPage);
+
       require_once '../app/Views/dashboard/admin/notifications.php';
     } elseif ($role === 'owner') {
-      $notifications = $this->notificationModel->getAllNotifications();
+      $notifications = $this->notificationModel->getAllNotificationsPaginated($perPage, $offset, null, null);
+      $totalItems = $this->notificationModel->getTotalNotificationsCount();
+      $totalPages = ceil($totalItems / $perPage);
+
       require_once '../app/Views/dashboard/owner/notifications.php';
     } else {
       show403();
@@ -164,5 +176,99 @@ class NotificationController
 
     $count = $this->notificationModel->getUnreadCount($_SESSION['user_id']);
     echo json_encode(['count' => $count]);
+  }
+
+  // Get notifications list for AJAX pagination
+  // public function getNotificationsList()
+  // {
+  //   header('Content-Type: application/json');
+
+  //   if (!isset($_SESSION['user_id'])) {
+  //     echo json_encode(['success' => false, 'message' => 'Unauthorized']);
+  //     return;
+  //   }
+
+  //   $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+  //   $perPage = 12;
+  //   $offset = ($page - 1) * $perPage;
+
+  //   $userId = $_SESSION['user_id'];
+  //   $role = $_SESSION['role'] ?? 'student';
+
+  //   if ($role === 'student') {
+  //     $items = $this->notificationModel->getUserNotificationsPaginated($userId, $perPage, $offset);
+  //     $totalItems = $this->notificationModel->getUserNotificationsCount($userId);
+  //   } else {
+  //     $items = $this->notificationModel->getAllNotificationsPaginated($userId, $role, $perPage, $offset);
+  //     $totalItems = $this->notificationModel->getTotalNotificationsCount($userId, $role);
+  //   }
+
+  //   $totalPages = ceil($totalItems / $perPage);
+
+  //   $formattedItems = [];
+  //   foreach ($items as $item) {
+  //     $formattedItems[] = [
+  //       'id' => $item['id'],
+  //       'title' => $item['title'],
+  //       'message' => $item['message'],
+  //       'created_at_fa' => toJalali($item['created_at'], 'Y/m/d'),
+  //       'is_read' => $item['user_read'] ?? false
+  //     ];
+  //   }
+
+  //   echo json_encode([
+  //     'success' => true,
+  //     'items' => $formattedItems,
+  //     'page' => $page,
+  //     'totalPages' => $totalPages,
+  //     'totalItems' => $totalItems
+  //   ]);
+  // }
+
+  // Get notifications list for AJAX pagination
+  public function getNotificationsList()
+  {
+    header('Content-Type: application/json');
+
+    if (!isset($_SESSION['user_id'])) {
+      echo json_encode(['success' => false, 'message' => 'Unauthorized']);
+      return;
+    }
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $userId = $_SESSION['user_id'];
+    $role = $_SESSION['role'] ?? 'student';
+
+    if ($role === 'student') {
+      $items = $this->notificationModel->getUserNotificationsPaginated($userId, $perPage, $offset);
+      $totalItems = $this->notificationModel->getUserNotificationsCount($userId);
+    } else {
+      $items = $this->notificationModel->getAllNotificationsPaginated($perPage, $offset, $userId, $role);
+      $totalItems = $this->notificationModel->getTotalNotificationsCount($userId, $role);
+    }
+
+    $totalPages = ceil($totalItems / $perPage);
+
+    $formattedItems = [];
+    foreach ($items as $item) {
+      $formattedItems[] = [
+        'id' => $item['id'],
+        'title' => $item['title'],
+        'message' => mb_substr($item['message'], 0, 100),
+        'created_at_fa' => toJalali($item['created_at'], 'Y/m/d'),
+        'is_read' => $item['user_read'] ?? false
+      ];
+    }
+
+    echo json_encode([
+      'success' => true,
+      'items' => $formattedItems,
+      'page' => $page,
+      'totalPages' => $totalPages,
+      'totalItems' => $totalItems
+    ]);
   }
 }

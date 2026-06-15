@@ -24,7 +24,7 @@ class Notification
       $query .= " WHERE n.created_by = :user_id";
     }
 
-    $query .= " ORDER BY n.created_at DESC";
+    $query .= " ORDER BY n.created_at ASC";
 
     $stmt = $this->db->prepare($query);
     if ($role === 'teacher' && $userId) {
@@ -129,5 +129,101 @@ class Notification
     }
     $stmt->execute($params);
     return $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+
+  // Get all notifications with pagination
+  public function getAllNotificationsPaginated($limit, $offset, $userId = null, $role = null)
+  {
+    $query = "SELECT n.*, 
+              CASE 
+                  WHEN u.full_name IS NOT NULL THEN u.full_name 
+                  ELSE 'سیستم' 
+              END as creator_name
+              FROM notifications n
+              LEFT JOIN users u ON n.created_by = u.id";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " WHERE n.created_by = :user_id";
+    }
+
+    $query .= " ORDER BY n.created_at DESC LIMIT :limit OFFSET :offset";
+
+    $stmt = $this->db->prepare($query);
+
+    if ($role === 'teacher' && $userId) {
+      $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    }
+
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // Get total notifications count
+  // public function getTotalNotificationsCount($userId = null, $role = null)
+  // {
+  //   $query = "SELECT COUNT(*) as total FROM notifications n";
+
+  //   if ($role === 'teacher' && $userId) {
+  //     $query .= " WHERE n.created_by = :user_id";
+  //   }
+
+  //   $stmt = $this->db->prepare($query);
+  //   if ($role === 'teacher' && $userId) {
+  //     $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+  //   }
+  //   $stmt->execute();
+  //   $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  //   return $result['total'] ?? 0;
+  // }
+
+  // Get total notifications count
+  public function getTotalNotificationsCount($userId = null, $role = null)
+  {
+    $query = "SELECT COUNT(*) as total FROM notifications n";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " WHERE n.created_by = :user_id";
+      $stmt = $this->db->prepare($query);
+      $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    } else {
+      $stmt = $this->db->prepare($query);
+    }
+
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'] ?? 0;
+  }
+
+  // Get user notifications with pagination (for students)
+  public function getUserNotificationsPaginated($userId, $limit, $offset)
+  {
+    $query = "SELECT n.*, 
+                  CASE WHEN unr.id IS NOT NULL THEN unr.is_read ELSE 0 END as user_read
+                  FROM notifications n
+                  LEFT JOIN user_notification_read unr ON n.id = unr.notification_id AND unr.user_id = :user_id
+                  WHERE n.target_role = 'student'
+                  ORDER BY n.created_at DESC
+                  LIMIT :limit OFFSET :offset";
+    $stmt = $this->db->prepare($query);
+    $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // Get total user notifications count
+  public function getUserNotificationsCount($userId)
+  {
+    $query = "SELECT COUNT(*) as count 
+              FROM notifications n
+              LEFT JOIN user_notification_read unr ON n.id = unr.notification_id AND unr.user_id = :user_id
+              WHERE n.target_role = 'student'";
+    $stmt = $this->db->prepare($query);
+    $stmt->execute([':user_id' => $userId]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['count'] ?? 0;
   }
 }
