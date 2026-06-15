@@ -67,31 +67,14 @@ class NotificationController
   // Display create form notification
   public function showCreateForm()
   {
-    if (!isset($_SESSION['user_id'])) {
-      redirect('/');
-    }
-
-    $role = $_SESSION['role'] ?? 'student';
-
-    if ($role !== 'teacher' && $role !== 'admin' && $role !== 'owner') {
-      show403();
-    }
-
+    $this->checkTeacherAuth();
     require_once '../app/Views/dashboard/teacher/notification-create.php';
   }
 
   // Save new notification
   public function store()
   {
-    if (!isset($_SESSION['user_id'])) {
-      redirect('/');
-    }
-
-    $role = $_SESSION['role'] ?? 'student';
-
-    if ($role !== 'teacher' && $role !== 'admin' && $role !== 'owner') {
-      show403();
-    }
+    $this->checkTeacherAuth();
 
     $title = trim($_POST['title'] ?? '');
     $message = trim($_POST['message'] ?? '');
@@ -136,16 +119,10 @@ class NotificationController
   // Delete notification
   public function delete($id)
   {
-    if (!isset($_SESSION['user_id'])) {
-      redirect('/');
-    }
+    $this->checkAdminOrTeacherAuth();
 
     $userId = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 'student';
-
-    if ($role !== 'owner' && $role !== 'admin' && $role !== 'teacher') {
-      show403();
-    }
 
     $notification = $this->notificationModel->getById($id, $userId, $role);
     if (!$notification) {
@@ -270,5 +247,24 @@ class NotificationController
       'totalPages' => $totalPages,
       'totalItems' => $totalItems
     ]);
+  }
+
+  private function checkTeacherAuth()
+  {
+    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'teacher') {
+      show403();
+    }
+  }
+
+  private function checkAdminOrTeacherAuth()
+  {
+    if (!isset($_SESSION['user_id'])) {
+      redirect('/');
+    }
+
+    $role = $_SESSION['role'] ?? 'student';
+    if ($role !== 'owner' && $role !== 'admin' && $role !== 'teacher') {
+      show403();
+    }
   }
 }
