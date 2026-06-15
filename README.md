@@ -1,4 +1,4 @@
-# KHU Computer Association Website
+# Scientific-Association-website
 A simple PHP MVC website for the university computer science association.
 
 ## Installation
