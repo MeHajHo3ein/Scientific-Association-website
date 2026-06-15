@@ -142,7 +142,6 @@ $router->post('/panel/settings/social/add', [SettingController::class, 'addSocia
 
 // Panel - Exam (Teacher Only)
 $router->get('/panel/quests', [ExamController::class, 'index']);
-$router->get('/api/quests/list', [ExamController::class, 'getExamsList']);
 $router->get('/panel/quests/create', [ExamController::class, 'showCreateForm']);
 $router->post('/panel/quests/store', [ExamController::class, 'store']);
 $router->get('/panel/quests/delete/{id}', [ExamController::class, 'delete']);
@@ -164,8 +163,17 @@ $router->get('/api/live-search', [SearchController::class, 'liveSearch']);
 
 $router->post('/panel/update-profile', [ProfileController::class, 'update']);
 
-// Panel - Certificates (*** Student ***)
-// $router->get('/panel/certificates', [DashboardController::class, 'certificates']);
+// API Routes for AJAX pagination
+$router->get('/api/admins/list', [AdminManagementController::class, 'getAdminsList']);
+$router->get('/api/teachers/list', [TeacherManagementController::class, 'getTeachersList']);
+$router->get('/api/students/list', [StudentManagementController::class, 'getStudentsList']);
+$router->get('/api/articles/list', [ArticleController::class, 'getArticlesList']);
+$router->get('/api/courses/list', [CourseController::class, 'getCoursesList']);
+$router->get('/api/quests/list', [ExamController::class, 'getExamsList']);
+$router->get('/api/neas/list', [NeasController::class, 'getItemsList']);
+$router->get('/api/notifications/list', [NotificationController::class, 'getNotificationsList']);
+$router->get('/api/offline-courses/list', [OfflineFileController::class, 'getOfflineCoursesList']);
+$router->get('/api/certificates/list', [ExamController::class, 'getCertificatesList']);
 
 // Logout route
 $router->get('/logout', [AuthController::class, 'logout']);
