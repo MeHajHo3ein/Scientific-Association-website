@@ -2,6 +2,10 @@
 $pageTitle = 'پنل شخصی - دانشجویان';
 include '../app/Views/layouts/dashboard/header.php';
 include '../app/Views/layouts/dashboard/sidebar.php';
+
+$totalPages = $totalPages ?? 1;
+$page = $page ?? 1;
+$perPage = 12;
 ?>
 
 <!-- Alert -->
@@ -28,35 +32,204 @@ include '../app/Views/layouts/dashboard/sidebar.php';
   <h3 class="text-primary">دانشجویان</h3>
   <div class="container overflow-auto">
     <table class="table table-bordered table-hover table-striped">
-      <tr>
-        <th>شماره</th>
-        <th>نام و نام خانوادگی</th>
-        <th>شماره موبایل</th>
-        <th>ایمیل</th>
-        <th>عملیات</th>
-      </tr>
-      <?php if (empty($students)): ?>
+      <thead>
         <tr>
-          <td colspan="7" class="text-center">هیچ دانشجویی یافت نشد.</td>
+          <th>شماره</th>
+          <th>نام و نام خانوادگی</th>
+          <th>شماره موبایل</th>
+          <th>ایمیل</th>
+          <th>عملیات</th>
         </tr>
-      <?php else: ?>
-        <?php foreach ($students as $index => $student): ?>
+      </thead>
+      <tbody id="studentsTableBody">
+        <?php if (empty($students)): ?>
           <tr>
-            <td><?= $index + 1; ?></td>
-            <td><?= htmlspecialchars($student['full_name']); ?></td>
-            <td><?= htmlspecialchars($student['mobile']); ?></td>
-            <td><?= htmlspecialchars($student['email']); ?></td>
-            <td class="">
-              <a href="/panel/students/edit/<?= $student['id'] ?>" class="btn btn-primary">ویرایش</a>
-              <a href="/panel/students/edit/<?= $student['id'] ?>" class="btn btn-warning">تغییر سطح</a>
-              <a href="/panel/students/delete/<?= $student['id'] ?>" class="btn btn-danger" onclick="return confirm('آیا از حذف این دانشجو مطمئن هستید؟')">حذف</a>
-            </td>
+            <td colspan="7" class="text-center">هیچ دانشجویی یافت نشد.</td>
           </tr>
-        <?php endforeach; ?>
-      <?php endif; ?>
+        <?php else: ?>
+          <?php foreach ($students as $index => $student): ?>
+            <tr id="student-row-<?= $student['id'] ?>">
+              <td><?= $index + 1 + (($page - 1) * $perPage) ?></td>
+              <td><?= htmlspecialchars($student['full_name']); ?></td>
+              <td><?= htmlspecialchars($student['mobile']); ?></td>
+              <td><?= htmlspecialchars($student['email']); ?></td>
+              <td class="">
+                <a href="/panel/students/edit/<?= $student['id'] ?>" class="btn btn-primary">ویرایش</a>
+                <a href="/panel/students/edit/<?= $student['id'] ?>" class="btn btn-warning">تغییر سطح</a>
+                <a href="/panel/students/delete/<?= $student['id'] ?>" class="btn btn-danger" onclick="return confirm('آیا از حذف این دانشجو مطمئن هستید؟')">حذف</a>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        <?php endif; ?>
+      </tbody>
     </table>
   </div>
+
+  <!--Pagination-->
+  <div id="paginationContainer">
+    <?php if ($totalPages > 1): ?>
+      <nav aria-label="Page navigation example" class="mt-3">
+        <ul class="pagination justify-content-center">
+          <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
+            <a class="page-link" href="#" data-page="<?= $page - 1 ?>">قبلی</a>
+          </li>
+
+          <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+              <a class="page-link" href="#" data-page="<?= $i ?>"><?= toPersianNumber($i) ?></a>
+            </li>
+          <?php endfor; ?>
+
+          <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
+            <a class="page-link" href="#" data-page="<?= $page + 1 ?>">بعدی</a>
+          </li>
+        </ul>
+      </nav>
+    <?php endif; ?>
+  </div>
 </div>
+
+<script>
+  const PER_PAGE = 12;
+  let currentPage = <?= (int)$page ?>;
+  const currentUserId = <?= (int)$_SESSION['user_id'] ?>;
+
+  function toPersianNumberJS(num) {
+    const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    return String(num).split('').map(d => persianDigits[d] ?? d).join('');
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function renderTable(students, page, perPage) {
+    const tbody = document.getElementById('studentsTableBody');
+
+    if (!students || students.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="7" class="text-center">هیچ دانشجویی یافت نشد.</td></tr>`;
+      return;
+    }
+
+    let html = '';
+    students.forEach((student, idx) => {
+      const number = (page - 1) * perPage + idx + 1;
+
+      let actions = `<a href="/panel/students/edit/${student.id}" class="btn btn-primary">ویرایش</a>`;
+
+      if (student.id != currentUserId) {
+        actions += `
+          <a href="/panel/students/edit/${student.id}" class="btn btn-warning">تغییر سطح</a>
+          <a href="/panel/students/delete/${student.id}" class="btn btn-danger" onclick="return confirm('آیا از حذف این ادمین مطمئن هستید؟')">حذف</a>
+        `;
+      } else {
+        actions += `<button class="btn btn-secondary" disabled>حذف</button>`;
+      }
+
+      html += `
+        <tr id="student-row-${student.id}">
+          <td>${escapeHtml(number)}</td>
+          <td>${escapeHtml(student.full_name)}</td>
+          <td>${escapeHtml(student.mobile)}</td>
+          <td>${escapeHtml(student.email)}</td>
+          <td>${actions}</td>
+        </tr>
+      `;
+    });
+    tbody.innerHTML = html;
+  }
+
+  function renderPagination(page, totalPages) {
+    const container = document.getElementById('paginationContainer');
+
+    if (totalPages <= 1) {
+      container.innerHTML = '';
+      return;
+    }
+
+    let html = '<nav class="mt-3"><ul class="pagination justify-content-center">';
+
+    html += `<li class="page-item ${page <= 1 ? 'disabled' : ''}">
+              <a class="page-link" href="#" data-page="${page - 1}">قبلی</a>
+            </li>`;
+
+    const startPage = Math.max(1, page - 2);
+    const endPage = Math.min(totalPages, page + 2);
+
+    if (startPage > 1) {
+      html += `<li class="page-item"><a class="page-link" href="#" data-page="1">${toPersianNumberJS(1)}</a></li>`;
+      if (startPage > 2) html += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      html += `<li class="page-item ${i === page ? 'active' : ''}">
+                <a class="page-link" href="#" data-page="${i}">${toPersianNumberJS(i)}</a>
+              </li>`;
+    }
+
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) html += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
+      html += `<li class="page-item"><a class="page-link" href="#" data-page="${totalPages}">${toPersianNumberJS(totalPages)}</a></li>`;
+    }
+
+    html += `<li class="page-item ${page >= totalPages ? 'disabled' : ''}">
+              <a class="page-link" href="#" data-page="${page + 1}">بعدی</a>
+            </li>`;
+
+    html += '</ul></nav>';
+    container.innerHTML = html;
+  }
+
+  function loadPage(page) {
+    if (page < 1) return;
+    if (page === currentPage) return;
+
+    const tbody = document.getElementById('studentsTableBody');
+
+    fetch(`/api/students/list?page=${page}`)
+      .then(res => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+      })
+      .then(data => {
+        if (data.success === false) {
+          throw new Error(data.message || 'خطا در بارگذاری');
+        }
+        currentPage = data.page;
+        renderTable(data.items, data.page, PER_PAGE);
+        renderPagination(data.page, data.totalPages);
+
+        document.querySelector('.container.overflow-auto').scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      })
+      .catch(err => {
+        console.error('خطا در بارگذاری لیست:', err);
+        tbody.innerHTML = `<tr><td colspan="5" class="text-center">خطا در بارگذاری داده‌ها</td></tr>`;
+      });
+  }
+
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('#paginationContainer a[data-page]');
+    if (!link) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const parentLi = link.closest('.page-item');
+    if (parentLi && parentLi.classList.contains('disabled')) return;
+
+    const page = parseInt(link.dataset.page);
+    if (isNaN(page)) return;
+    if (page === currentPage) return;
+
+    loadPage(page);
+  });
+</script>
 
 <?php
 include '../app/Views/layouts/dashboard/footer.php';

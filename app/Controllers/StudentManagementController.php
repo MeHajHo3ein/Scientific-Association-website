@@ -25,7 +25,13 @@ class StudentManagementController
   // Show students list
   public function index()
   {
-    $students = $this->studentModel->getAllStudents();
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $students = $this->studentModel->getAllStudentsPaginated($perPage, $offset);
+    $totalStudents = $this->studentModel->getTotalStudentsCount();
+    $totalPages = ceil($totalStudents / $perPage);
     $role = $_SESSION['role'] ?? 'admin';
 
     switch ($role) {
@@ -245,5 +251,38 @@ class StudentManagementController
     }
 
     redirect('/panel/students');
+  }
+
+  // Get students list for AJAX pagination
+  public function getStudentsList()
+  {
+    header('Content-Type: application/json');
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $students = $this->studentModel->getAllStudentsPaginated($perPage, $offset);
+    $totalStudents = $this->studentModel->getTotalStudentsCount();
+    $totalPages = ceil($totalStudents / $perPage);
+
+    // Format data for JSON response
+    $formattedStudents = [];
+    foreach ($students as $student) {
+      $formattedStudents[] = [
+        'id' => $student['id'],
+        'full_name' => $student['full_name'],
+        'mobile' => $student['mobile'],
+        'email' => $student['email']
+      ];
+    }
+
+    echo json_encode([
+      'success' => true,
+      'items' => $formattedStudents,
+      'page' => $page,
+      'totalPages' => $totalPages,
+      'totalItems' => $totalStudents
+    ]);
   }
 }
