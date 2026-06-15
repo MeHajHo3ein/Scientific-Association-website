@@ -80,6 +80,27 @@ class TeacherManagement
     return $stmt->execute([':id' => $id]);
   }
 
+  // Get all teachers with pagination
+  public function getAllTeachersPaginated($limit, $offset)
+  {
+    $query = "SELECT * FROM users WHERE role = 'teacher' ORDER BY id ASC LIMIT :limit OFFSET :offset";
+    $stmt = $this->db->prepare($query);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // Get total teachers count
+  public function getTotalTeachersCount()
+  {
+    $query = "SELECT COUNT(*) as total FROM users WHERE role = 'teacher'";
+    $stmt = $this->db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'] ?? 0;
+  }
+
   // Is email exist
   public function isEmailExist($email, $userId = null)
   {

@@ -25,7 +25,13 @@ class TeacherManagementController
   // Show teachers list
   public function index()
   {
-    $teachers = $this->teacherModel->getAllTeachers();
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $teachers = $this->teacherModel->getAllTeachersPaginated($perPage, $offset);
+    $totalStudents = $this->teacherModel->getTotalTeachersCount();
+    $totalPages = ceil($totalStudents / $perPage);
     $role = $_SESSION['role'] ?? 'admin';
 
     switch ($role) {
@@ -271,5 +277,39 @@ class TeacherManagementController
     }
 
     redirect('/panel/teachers');
+  }
+
+  // Get teachers list for AJAX pagination
+  public function getTeachersList()
+  {
+    header('Content-Type: application/json');
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $teachers = $this->teacherModel->getAllTeachersPaginated($perPage, $offset);
+    $totalTeachers = $this->teacherModel->getTotalTeachersCount();
+    $totalPages = ceil($totalTeachers / $perPage);
+
+    // Format data for JSON response
+    $formattedTeachers = [];
+    foreach ($teachers as $teacher) {
+      $formattedTeachers[] = [
+        'id' => $teacher['id'],
+        'image' => $teacher['image'],
+        'full_name' => $teacher['full_name'],
+        'mobile' => $teacher['mobile'],
+        'email' => $teacher['email']
+      ];
+    }
+
+    echo json_encode([
+      'success' => true,
+      'items' => $formattedTeachers,
+      'page' => $page,
+      'totalPages' => $totalPages,
+      'totalItems' => $totalTeachers
+    ]);
   }
 }
