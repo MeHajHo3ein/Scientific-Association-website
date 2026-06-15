@@ -327,7 +327,14 @@ class ExamController
       redirect('/');
     }
 
-    $certificates = $this->examModel->getStudentCertificates($_SESSION['user_id']);
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $certificates = $this->examModel->getStudentCertificatesPaginated($_SESSION['user_id'], $perPage, $offset);
+    $totalCertificates = $this->examModel->getStudentCertificatesCount($_SESSION['user_id']);
+    $totalPages = ceil($totalCertificates / $perPage);
+
     require_once '../app/Views/dashboard/student/certificates.php';
   }
 
@@ -408,6 +415,43 @@ class ExamController
       'page' => $page,
       'totalPages' => $totalPages,
       'totalExams' => $totalExams
+    ]);
+  }
+
+  // Get certificates list for AJAX pagination
+  public function getCertificatesList()
+  {
+    header('Content-Type: application/json');
+
+    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
+      echo json_encode(['success' => false, 'message' => 'Unauthorized']);
+      return;
+    }
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $items = $this->examModel->getStudentCertificatesPaginated($_SESSION['user_id'], $perPage, $offset);
+    $totalItems = $this->examModel->getStudentCertificatesCount($_SESSION['user_id']);
+    $totalPages = ceil($totalItems / $perPage);
+
+    $formattedItems = [];
+    foreach ($items as $item) {
+      $formattedItems[] = [
+        'id' => $item['id'],
+        'exam_title' => $item['exam_title'],
+        'percentage' => $item['percentage'],
+        'completed_at_fa' => toJalali($item['completed_at'], 'Y/m/d'),
+      ];
+    }
+
+    echo json_encode([
+      'success' => true,
+      'items' => $formattedItems,
+      'page' => $page,
+      'totalPages' => $totalPages,
+      'totalItems' => $totalItems
     ]);
   }
 

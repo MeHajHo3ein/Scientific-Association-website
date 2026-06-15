@@ -243,4 +243,33 @@ class Exam
     }
     return $code;
   }
+
+  // Get student certificates with pagination
+  public function getStudentCertificatesPaginated($studentId, $limit, $offset)
+  {
+    $query = "SELECT er.id, er.percentage, er.completed_at, e.title as exam_title, e.course_name, e.pass_score,
+              t.full_name as teacher_name
+              FROM exam_results er
+              LEFT JOIN exams e ON er.exam_id = e.id
+              LEFT JOIN users t ON e.teacher_id = t.id
+              WHERE er.student_id = :student_id AND er.is_passed = 1
+              ORDER BY er.completed_at DESC
+              LIMIT :limit OFFSET :offset";
+    $stmt = $this->db->prepare($query);
+    $stmt->bindParam(':student_id', $studentId, PDO::PARAM_INT);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // Get total student certificates count
+  public function getStudentCertificatesCount($studentId)
+  {
+    $query = "SELECT COUNT(*) as total FROM exam_results WHERE student_id = :student_id AND is_passed = 1";
+    $stmt = $this->db->prepare($query);
+    $stmt->execute([':student_id' => $studentId]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'] ?? 0;
+  }
 }
