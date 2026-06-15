@@ -51,10 +51,15 @@ class ArticleController
   {
     $this->checkAdminOrTeacherAuth();
 
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
     $userId = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 'teacher';
 
-    $articles = $this->articleModel->getAllArticles($userId, $role);
+    $articles = $this->articleModel->getAllArticlesPaginated($userId, $role, $perPage, $offset);
+    $totalCourses = $this->articleModel->getTotalArticlesCount($userId, $role);
+    $totalPages = ceil($totalCourses / $perPage);
 
     switch ($role) {
       case 'owner':
@@ -161,6 +166,44 @@ class ArticleController
     }
 
     redirect('/panel/articles');
+  }
+
+  // Get articles list for AJAX pagination
+  public function getArticlesList()
+  {
+    header('Content-Type: application/json');
+
+    $this->checkAdminOrTeacherAuth();
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $userId = $_SESSION['user_id'];
+    $role = $_SESSION['role'] ?? 'teacher';
+
+    $articles = $this->articleModel->getAllArticlesPaginated($userId, $role, $perPage, $offset);
+    $totalArticles = $this->articleModel->getTotalArticlesCount($userId, $role);
+    $totalPages = ceil($totalArticles / $perPage);
+
+    // Format data for JSON response
+    $formattedArticles = [];
+    foreach ($articles as $article) {
+      $formattedArticles[] = [
+        'id' => $article['id'],
+        'title' => $article['title'],
+        'author_name' => $article['author_name'],
+        'created_at_fa' => toJalali($article['created_at'], 'Y/m/d')
+      ];
+    }
+
+    echo json_encode([
+      'success' => true,
+      'items' => $formattedArticles,
+      'page' => $page,
+      'totalPages' => $totalPages,
+      'totalItems' => $totalArticles
+    ]);
   }
 
   private function checkTeacherAuth()

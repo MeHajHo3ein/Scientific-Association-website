@@ -183,4 +183,45 @@ class Article
     $stmt->execute($params);
     return $stmt->rowCount() > 0;
   }
+
+  // Get all articles with pagination
+  public function getAllArticlesPaginated($userId = null, $role = null, $limit, $offset)
+  {
+    $query = "SELECT a.*, u.full_name as author_name 
+              FROM articles a
+              LEFT JOIN users u ON a.author_id = u.id";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " WHERE a.author_id = :user_id";
+    }
+
+    $query .= " ORDER BY a.created_at ASC LIMIT :limit OFFSET :offset";
+
+    $stmt = $this->db->prepare($query);
+    if ($role === 'teacher' && $userId) {
+      $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    }
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // Get total articles count
+  public function getTotalArticlesCount($userId = null, $role = null)
+  {
+    $query = "SELECT COUNT(*) as total FROM articles a";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " WHERE a.author_id = :user_id";
+    }
+
+    $stmt = $this->db->prepare($query);
+    if ($role === 'teacher' && $userId) {
+      $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    }
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'] ?? 0;
+  }
 }
