@@ -21,7 +21,14 @@ class AdminManagementController
   // Show admins list
   public function index()
   {
-    $admins = $this->adminModel->getAllAdmins();
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $admins = $this->adminModel->getAllAdminsPaginated($perPage, $offset);
+    $totalAdmins = $this->adminModel->getTotalAdminsCount();
+    $totalPages = ceil($totalAdmins / $perPage);
+
     require_once '../app/Views/dashboard/owner/admins.php';
   }
 
@@ -220,5 +227,38 @@ class AdminManagementController
     }
 
     redirect('/panel/admins');
+  }
+
+  // Get admins list for AJAX pagination
+  public function getAdminsList()
+  {
+    header('Content-Type: application/json');
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $admins = $this->adminModel->getAllAdminsPaginated($perPage, $offset);
+    $totalAdmins = $this->adminModel->getTotalAdminsCount();
+    $totalPages = ceil($totalAdmins / $perPage);
+
+    // Format data for JSON response
+    $formattedAdmins = [];
+    foreach ($admins as $admin) {
+      $formattedAdmins[] = [
+        'id' => $admin['id'],
+        'full_name' => $admin['full_name'],
+        'mobile' => $admin['mobile'],
+        'email' => $admin['email']
+      ];
+    }
+
+    echo json_encode([
+      'success' => true,
+      'items' => $formattedAdmins,
+      'page' => $page,
+      'totalPages' => $totalPages,
+      'totalItems' => $totalAdmins
+    ]);
   }
 }
