@@ -22,10 +22,15 @@ class OfflineFileController
   {
     $this->checkAdminOrTeacherAuth();
 
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
     $userId = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 'teacher';
 
-    $files = $this->fileModel->getAllFiles($userId, $role);
+    $files = $this->fileModel->getAllFilesPaginated($userId, $role, $perPage, $offset);
+    $totalFiles = $this->fileModel->getTotalFilesCount($userId, $role);
+    $totalPages = ceil($totalFiles / $perPage);
 
     if ($role === 'admin') {
       require_once '../app/Views/dashboard/admin/offline-courses.php';
@@ -131,6 +136,46 @@ class OfflineFileController
     }
 
     redirect('/panel/offline-courses');
+  }
+
+  // Get offline courses list for AJAX pagination
+  public function getOfflineCoursesList()
+  {
+    header('Content-Type: application/json');
+
+    $this->checkAdminOrTeacherAuth();
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $userId = $_SESSION['user_id'];
+    $role = $_SESSION['role'] ?? 'teacher';
+
+    $items = $this->fileModel->getAllFilesPaginated($userId, $role, $perPage, $offset);
+    $totalItems = $this->fileModel->getTotalFilesCount($userId, $role);
+    $totalPages = ceil($totalItems / $perPage);
+
+    $formattedItems = [];
+    foreach ($items as $item) {
+      $formattedItems[] = [
+        'id' => $item['id'],
+        'title' => $item['title'],
+        'lesson' => $item['lesson'],
+        'teacher_name' => $item['teacher_name'],
+        'file_type' => $item['file_type'],
+        'price' => $item['price'] > 0 ? number_format($item['price']) . ' تومان' : 'رایگان',
+        'created_at_fa' => toJalali($item['created_at'], 'Y/m/d')
+      ];
+    }
+
+    echo json_encode([
+      'success' => true,
+      'items' => $formattedItems,
+      'page' => $page,
+      'totalPages' => $totalPages,
+      'totalItems' => $totalItems
+    ]);
   }
 
   private function checkTeacherAuth()

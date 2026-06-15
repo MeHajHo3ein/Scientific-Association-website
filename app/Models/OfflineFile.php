@@ -119,4 +119,45 @@ class OfflineFile
 
     return 'FILE';
   }
+
+  // Get all files with pagination (for admin/teacher panel)
+  public function getAllFilesPaginated($userId = null, $role = null, $limit, $offset)
+  {
+    $query = "SELECT f.*, u.full_name as teacher_name 
+              FROM offline_files f
+              LEFT JOIN users u ON f.teacher_id = u.id";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " WHERE f.teacher_id = :user_id";
+    }
+
+    $query .= " ORDER BY f.created_at ASC LIMIT :limit OFFSET :offset";
+
+    $stmt = $this->db->prepare($query);
+    if ($role === 'teacher' && $userId) {
+      $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    }
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // Get total files count
+  public function getTotalFilesCount($userId = null, $role = null)
+  {
+    $query = "SELECT COUNT(*) as total FROM offline_files f";
+
+    if ($role === 'teacher' && $userId) {
+      $query .= " WHERE f.teacher_id = :user_id";
+    }
+
+    $stmt = $this->db->prepare($query);
+    if ($role === 'teacher' && $userId) {
+      $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    }
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'] ?? 0;
+  }
 }
