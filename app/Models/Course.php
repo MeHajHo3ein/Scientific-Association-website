@@ -290,4 +290,30 @@ class Course
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result['total'] ?? 0;
   }
+
+  // Get all courses for public page with pagination
+  public function getAllCoursesForPublic($limit, $offset)
+  {
+    $query = "SELECT c.*, u.full_name as instructor_name
+              FROM courses c
+              LEFT JOIN users u ON c.created_by = u.id
+              ORDER BY c.created_at DESC
+              LIMIT :limit OFFSET :offset";
+
+    $stmt = $this->db->prepare($query);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // Get total courses count for public
+  public function getTotalCoursesCountForPublic()
+  {
+    $query = "SELECT COUNT(*) as total FROM courses";
+    $stmt = $this->db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'] ?? 0;
+  }
 }

@@ -26,10 +26,40 @@ class CourseController
   // Display courses in courses page
   public function index()
   {
-    $webdevCourses = $this->courseModel->getCoursesByCategory('webdev');
-    $networkCourses = $this->courseModel->getCoursesByCategory('network');
-    $aiCourses = $this->courseModel->getCoursesByCategory('ai');
-    $programmingCourses = $this->courseModel->getCoursesByCategory('programming');
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $allCourses = $this->courseModel->getAllCoursesForPublic($perPage, $offset);
+    $totalCourses = $this->courseModel->getTotalCoursesCountForPublic();
+    $totalPages = ceil($totalCourses / $perPage);
+
+    $webdevCourses = [];
+    $networkCourses = [];
+    $aiCourses = [];
+    $programmingCourses = [];
+
+    foreach ($allCourses as $course) {
+      switch ($course['category']) {
+        case 'webdev':
+          $webdevCourses[] = $course;
+          break;
+        case 'network':
+          $networkCourses[] = $course;
+          break;
+        case 'ai':
+          $aiCourses[] = $course;
+          break;
+        case 'programming':
+          $programmingCourses[] = $course;
+          break;
+      }
+    }
+
+    // $webdevCourses = $this->courseModel->getCoursesByCategory('webdev');
+    // $networkCourses = $this->courseModel->getCoursesByCategory('network');
+    // $aiCourses = $this->courseModel->getCoursesByCategory('ai');
+    // $programmingCourses = $this->courseModel->getCoursesByCategory('programming');
 
     require_once '../app/Views/pages/courses.php';
   }
@@ -255,6 +285,43 @@ class CourseController
       'page' => $page,
       'totalPages' => $totalPages,
       'totalItems' => $totalCourses
+    ]);
+  }
+
+  // Get public courses list for AJAX pagination
+  public function getPublicCoursesList()
+  {
+    header('Content-Type: application/json');
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $items = $this->courseModel->getAllCoursesForPublic($perPage, $offset);
+    $totalItems = $this->courseModel->getTotalCoursesCountForPublic();
+    $totalPages = ceil($totalItems / $perPage);
+
+    $formattedItems = [];
+    foreach ($items as $item) {
+      $formattedItems[] = [
+        'id' => $item['id'],
+        'title' => $item['title'],
+        'slug' => $item['slug'],
+        'category' => $item['category'],
+        'level' => $item['level'],
+        'price' => $item['price'],
+        'duration' => $item['duration'],
+        'image' => $item['image'],
+        'instructor_name' => $item['instructor_name']
+      ];
+    }
+
+    echo json_encode([
+      'success' => true,
+      'items' => $formattedItems,
+      'page' => $page,
+      'totalPages' => $totalPages,
+      'totalItems' => $totalItems
     ]);
   }
 
