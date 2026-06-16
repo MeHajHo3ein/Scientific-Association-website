@@ -18,7 +18,7 @@
         <div id="registerToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
           <div class="d-flex">
             <div class="toast-body">
-              <?= htmlspecialchars($_SESSION['registered_name'] ?? 'کاربر') ?> عزیز، ثبت‌نام شما با موفقیت انجام شد! به انجمن علمی کامپیوتر خوش آمدید.
+              <?= htmlspecialchars($_SESSION['registered_name'] ?? 'کاربر') ?> عزیز، ثبت‌نام شما با موفقیت‌ انجام شد! به <?= setting('site_name', 'انجمن علمی دانشگاه خوارزمی(شهرضا)') ?> خوش آمدید.
             </div>
             <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>
