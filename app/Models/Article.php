@@ -224,4 +224,30 @@ class Article
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result['total'] ?? 0;
   }
+
+  // Get published articles with pagination
+  public function getPublishedArticlesPaginated($limit, $offset)
+  {
+    $query = "SELECT a.*, u.full_name as author_name 
+              FROM articles a
+              LEFT JOIN users u ON a.author_id = u.id
+              ORDER BY a.created_at DESC
+              LIMIT :limit OFFSET :offset";
+
+    $stmt = $this->db->prepare($query);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // Get total published articles count
+  public function getTotalPublishedArticlesCount()
+  {
+    $query = "SELECT COUNT(*) as total FROM articles";
+    $stmt = $this->db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'] ?? 0;
+  }
 }

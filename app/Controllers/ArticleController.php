@@ -26,7 +26,14 @@ class ArticleController
   // Show articles in articles page
   public function index()
   {
-    $articles = $this->articleModel->getPublishedArticles();
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $articles = $this->articleModel->getPublishedArticlesPaginated($perPage, $offset);
+    $totalArticles = $this->articleModel->getTotalPublishedArticlesCount();
+    $totalPages = ceil($totalArticles / $perPage);
+
     require_once '../app/Views/pages/articles.php';
   }
 
@@ -203,6 +210,40 @@ class ArticleController
       'page' => $page,
       'totalPages' => $totalPages,
       'totalItems' => $totalArticles
+    ]);
+  }
+
+  // Get public articles list for AJAX pagination
+  public function getPublicArticlesList()
+  {
+    header('Content-Type: application/json');
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $items = $this->articleModel->getPublishedArticlesPaginated($perPage, $offset);
+    $totalItems = $this->articleModel->getTotalPublishedArticlesCount();
+    $totalPages = ceil($totalItems / $perPage);
+
+    $formattedItems = [];
+    foreach ($items as $item) {
+      $formattedItems[] = [
+        'id' => $item['id'],
+        'title' => $item['title'],
+        'slug' => $item['slug'],
+        'summary' => mb_substr($item['summary'] ?? $item['content'], 0, 200),
+        'author_name' => $item['author_name'],
+        'created_at_fa' => toJalali($item['created_at'], 'Y/m/d')
+      ];
+    }
+
+    echo json_encode([
+      'success' => true,
+      'items' => $formattedItems,
+      'page' => $page,
+      'totalPages' => $totalPages,
+      'totalItems' => $totalItems
     ]);
   }
 
