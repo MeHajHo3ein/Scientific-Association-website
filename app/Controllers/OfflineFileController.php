@@ -51,7 +51,14 @@ class OfflineFileController
   // Display files for public index
   public function publicIndex()
   {
-    $publicFiles = $this->fileModel->getPublishedFiles();
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $publicFiles = $this->fileModel->getPublishedFilesPaginated($perPage, $offset);
+    $totalFiles = $this->fileModel->getTotalPublishedFilesCount();
+    $totalPages = ceil($totalFiles / $perPage);
+
     require_once '../app/Views/pages/offline-courses.php';
   }
 
@@ -166,6 +173,42 @@ class OfflineFileController
         'file_type' => $item['file_type'],
         'price' => $item['price'] > 0 ? number_format($item['price']) . ' تومان' : 'رایگان',
         'created_at_fa' => toJalali($item['created_at'], 'Y/m/d')
+      ];
+    }
+
+    echo json_encode([
+      'success' => true,
+      'items' => $formattedItems,
+      'page' => $page,
+      'totalPages' => $totalPages,
+      'totalItems' => $totalItems
+    ]);
+  }
+
+  // Get public offline courses list for AJAX pagination
+  public function getPublicOfflineCoursesList()
+  {
+    header('Content-Type: application/json');
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 12;
+    $offset = ($page - 1) * $perPage;
+
+    $items = $this->fileModel->getPublishedFilesPaginated($perPage, $offset);
+    $totalItems = $this->fileModel->getTotalPublishedFilesCount();
+    $totalPages = ceil($totalItems / $perPage);
+
+    $formattedItems = [];
+    foreach ($items as $item) {
+      $formattedItems[] = [
+        'id' => $item['id'],
+        'title' => $item['title'],
+        'lesson' => $item['lesson'],
+        'teacher_name' => $item['teacher_name'],
+        'file_type' => $item['file_type'],
+        'file_link' => $item['file_link'],
+        'price_formatted' => $item['price'] > 0 ? number_format($item['price']) . ' تومان' : 'رایگان',
+        'price' => $item['price']
       ];
     }
 

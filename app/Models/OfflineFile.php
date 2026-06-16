@@ -160,4 +160,30 @@ class OfflineFile
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result['total'] ?? 0;
   }
+
+  // Get all files for public page with pagination
+  public function getPublishedFilesPaginated($limit, $offset)
+  {
+    $query = "SELECT f.*, u.full_name as teacher_name 
+              FROM offline_files f
+              LEFT JOIN users u ON f.teacher_id = u.id
+              ORDER BY f.created_at DESC
+              LIMIT :limit OFFSET :offset";
+
+    $stmt = $this->db->prepare($query);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // Get total published files count for public page
+  public function getTotalPublishedFilesCount()
+  {
+    $query = "SELECT COUNT(*) as total FROM offline_files";
+    $stmt = $this->db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'] ?? 0;
+  }
 }
