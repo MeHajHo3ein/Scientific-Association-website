@@ -188,7 +188,7 @@ $perPage = 12;
 
     const container = document.getElementById('filesContainer');
 
-    fetch(`/api/offline-courses/list?page=${page}`)
+    fetch(`/api/public/offline-courses/list?page=${page}`)
       .then(res => res.json())
       .then(data => {
         if (data.success === false) throw new Error(data.message || 'خطا در بارگذاری');
