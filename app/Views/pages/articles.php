@@ -199,7 +199,7 @@ $perPage = 12;
 
     const container = document.getElementById('articlesContainer');
 
-    fetch(`/api/articles/list?page=${page}`)
+    fetch(`/api/public/articles/list?page=${page}`)
       .then(res => res.json())
       .then(data => {
         if (data.success === false) throw new Error(data.message || 'خطا در بارگذاری');
