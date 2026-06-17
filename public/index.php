@@ -168,15 +168,17 @@ $router->get('/api/admins/list', [AdminManagementController::class, 'getAdminsLi
 $router->get('/api/teachers/list', [TeacherManagementController::class, 'getTeachersList']);
 $router->get('/api/students/list', [StudentManagementController::class, 'getStudentsList']);
 $router->get('/api/articles/list', [ArticleController::class, 'getArticlesList']);
-$router->get('/api/articles/list', [ArticleController::class, 'getPublicArticlesList']);
 $router->get('/api/courses/list', [CourseController::class, 'getCoursesList']);
-$router->get('/api/courses/list', [CourseController::class, 'getPublicCoursesList']);
 $router->get('/api/quests/list', [ExamController::class, 'getExamsList']);
 $router->get('/api/neas/list', [NeasController::class, 'getItemsList']);
 $router->get('/api/notifications/list', [NotificationController::class, 'getNotificationsList']);
 $router->get('/api/offline-courses/list', [OfflineFileController::class, 'getOfflineCoursesList']);
-$router->get('/api/offline-courses/list', [OfflineFileController::class, 'getPublicOfflineCoursesList']);
 $router->get('/api/certificates/list', [ExamController::class, 'getCertificatesList']);
+
+// API Routes for AJAX public apges pagination
+$router->get('/api/public/courses/list', [CourseController::class, 'getPublicCoursesList']);
+$router->get('/api/public/articles/list', [ArticleController::class, 'getPublicArticlesList']);
+$router->get('/api/public/offline-courses/list', [OfflineFileController::class, 'getPublicOfflineCoursesList']);
 
 // Logout route
 $router->get('/logout', [AuthController::class, 'logout']);
