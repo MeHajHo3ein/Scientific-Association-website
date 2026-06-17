@@ -28,38 +28,17 @@ class CourseController
   {
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $perPage = 12;
-    $offset = ($page - 1) * $perPage;
 
-    $allCourses = $this->courseModel->getAllCoursesForPublic($perPage, $offset);
-    $totalCourses = $this->courseModel->getTotalCoursesCountForPublic();
-    $totalPages = ceil($totalCourses / $perPage);
+    $categorized = $this->courseModel->getAllCategoriesPaginated($page, $perPage);
 
-    $webdevCourses = [];
-    $networkCourses = [];
-    $aiCourses = [];
-    $programmingCourses = [];
+    $webdevCourses = $categorized['webdev'];
+    $networkCourses = $categorized['network'];
+    $aiCourses = $categorized['ai'];
+    $programmingCourses = $categorized['programming'];
 
-    foreach ($allCourses as $course) {
-      switch ($course['category']) {
-        case 'webdev':
-          $webdevCourses[] = $course;
-          break;
-        case 'network':
-          $networkCourses[] = $course;
-          break;
-        case 'ai':
-          $aiCourses[] = $course;
-          break;
-        case 'programming':
-          $programmingCourses[] = $course;
-          break;
-      }
-    }
-
-    // $webdevCourses = $this->courseModel->getCoursesByCategory('webdev');
-    // $networkCourses = $this->courseModel->getCoursesByCategory('network');
-    // $aiCourses = $this->courseModel->getCoursesByCategory('ai');
-    // $programmingCourses = $this->courseModel->getCoursesByCategory('programming');
+    $countsByCategory = $this->courseModel->getCoursesCountByCategory();
+    $maxCategoryCount = max($countsByCategory);
+    $totalPages = max(1, ceil($maxCategoryCount / $perPage));
 
     require_once '../app/Views/pages/courses.php';
   }
@@ -295,15 +274,14 @@ class CourseController
 
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $perPage = 12;
-    $offset = ($page - 1) * $perPage;
 
-    $items = $this->courseModel->getAllCoursesForPublic($perPage, $offset);
-    $totalItems = $this->courseModel->getTotalCoursesCountForPublic();
-    $totalPages = ceil($totalItems / $perPage);
+    $categorized = $this->courseModel->getAllCategoriesPaginated($page, $perPage);
+    $countsByCategory = $this->courseModel->getCoursesCountByCategory();
+    $maxCategoryCount = max($countsByCategory);
+    $totalPages = max(1, ceil($maxCategoryCount / $perPage));
 
-    $formattedItems = [];
-    foreach ($items as $item) {
-      $formattedItems[] = [
+    $formatItem = function ($item) {
+      return [
         'id' => $item['id'],
         'title' => $item['title'],
         'slug' => $item['slug'],
@@ -314,14 +292,20 @@ class CourseController
         'image' => $item['image'],
         'instructor_name' => $item['instructor_name']
       ];
-    }
+    };
+
+    $formattedCategories = [
+      'webdev' => array_map($formatItem, $categorized['webdev']),
+      'network' => array_map($formatItem, $categorized['network']),
+      'ai' => array_map($formatItem, $categorized['ai']),
+      'programming' => array_map($formatItem, $categorized['programming']),
+    ];
 
     echo json_encode([
       'success' => true,
-      'items' => $formattedItems,
+      'categories' => $formattedCategories,
       'page' => $page,
-      'totalPages' => $totalPages,
-      'totalItems' => $totalItems
+      'totalPages' => $totalPages
     ]);
   }
 

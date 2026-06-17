@@ -316,4 +316,59 @@ class Course
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result['total'] ?? 0;
   }
+
+  // Get courses by category paginated
+  public function getCoursesByCategoryPaginated($category, $limit, $offset)
+  {
+    $query = "SELECT c.*, u.full_name as instructor_name
+              FROM courses c
+              LEFT JOIN users u ON c.created_by = u.id
+              WHERE c.category = :category
+              ORDER BY c.created_at DESC
+              LIMIT :limit OFFSET :offset";
+
+    $stmt = $this->db->prepare($query);
+    $stmt->bindParam(':category', $category, PDO::PARAM_STR);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // Get courses count by category
+  public function getCoursesCountByCategory()
+  {
+    $query = "SELECT category, COUNT(*) as total FROM courses GROUP BY category";
+    $stmt = $this->db->prepare($query);
+    $stmt->execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $counts = [
+      'webdev' => 0,
+      'network' => 0,
+      'ai' => 0,
+      'programming' => 0,
+    ];
+
+    foreach ($rows as $row) {
+      $counts[$row['category']] = (int)$row['total'];
+    }
+
+    return $counts;
+  }
+
+  // Get all categories paginated
+  public function getAllCategoriesPaginated($page, $perPage)
+  {
+    $offset = ($page - 1) * $perPage;
+
+    $categories = ['webdev', 'network', 'ai', 'programming'];
+    $result = [];
+
+    foreach ($categories as $category) {
+      $result[$category] = $this->getCoursesByCategoryPaginated($category, $perPage, $offset);
+    }
+
+    return $result;
+  }
 }
