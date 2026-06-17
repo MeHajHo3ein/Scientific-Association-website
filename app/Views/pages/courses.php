@@ -245,7 +245,6 @@ $perPage = 12;
 
 <script src="/assets/js/notification-api.js"></script>
 <script>
-  const PER_PAGE = 8;
   let currentPage = <?= (int)$page ?>;
 
   function toPersianNumberJS(num) {
@@ -260,39 +259,8 @@ $perPage = 12;
     return div.innerHTML;
   }
 
-  function renderCourses(data, page) {
+  function renderCourses(categories) {
     const container = document.getElementById('coursesContainer');
-
-    if (!data || data.length === 0) {
-      container.innerHTML = '<div class="text-center">هیچ دوره‌ای یافت نشد.</div>';
-      return;
-    }
-
-    // دسته‌بندی دوره‌ها
-    const categories = {
-      webdev: {
-        title: 'توسعه وب',
-        courses: []
-      },
-      network: {
-        title: 'شبکه',
-        courses: []
-      },
-      ai: {
-        title: 'هوش مصنوعی',
-        courses: []
-      },
-      programming: {
-        title: 'برنامه نویسی',
-        courses: []
-      }
-    };
-
-    data.forEach(course => {
-      if (categories[course.category]) {
-        categories[course.category].courses.push(course);
-      }
-    });
 
     let html = '';
     const categoryIds = ['webdev', 'network', 'ai', 'programming'];
@@ -309,13 +277,13 @@ $perPage = 12;
     };
 
     categoryIds.forEach(catId => {
-      const catData = categories[catId];
-      html += `<h4 id="${catId}" class="my-3">${catData.title}</h4><div class="row">`;
+      const courses = categories[catId] || [];
+      html += `<h4 id="${catId}" class="my-3">${categoryLabels[catId]}</h4><div class="row">`;
 
-      if (catData.courses.length === 0) {
+      if (courses.length === 0) {
         html += `<div class="col-12 text-center">در حال حاضر هیچ دوره‌ای در این دسته وجود ندارد.</div>`;
       } else {
-        catData.courses.forEach(course => {
+        courses.forEach(course => {
           const priceText = course.price > 0 ? Number(course.price).toLocaleString() + ' تومان' : 'رایگان';
           const levelText = levels[course.level] || 'متوسط';
           const imageSrc = course.image ? '/uploads/courses/' + escapeHtml(course.image) : '/assets/img/logo.png';
@@ -396,12 +364,12 @@ $perPage = 12;
 
     const container = document.getElementById('coursesContainer');
 
-    fetch(`/api/courses/list?page=${page}`)
+    fetch(`/api/public/courses/list?page=${page}`)
       .then(res => res.json())
       .then(data => {
         if (data.success === false) throw new Error(data.message || 'خطا در بارگذاری');
         currentPage = data.page;
-        renderCourses(data.items, data.page);
+        renderCourses(data.categories);
         renderPagination(data.page, data.totalPages);
         window.scrollTo({
           top: 0,
