@@ -554,3 +554,8 @@ h5 {
   border-radius: 3px;
   font-weight: bold;
 }
+
+.email-text {
+  word-break: break-all;
+  display: inline-block;
+}

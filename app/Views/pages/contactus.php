@@ -24,7 +24,7 @@ include '../app/Views/partials/navbar.php';
       <div class="bg-white p-5 rounded-3 w-100 h-100">
         <h4 class="text-primary">اطلاعات تماس</h4>
         <h5 class="">ایمیل رسمی:</h5>
-        <p class="h4 text-secondary text-wrap"><?= htmlspecialchars(setting('contact_email', 'cs.science.association@university.ac.ir')) ?></p>
+        <p class="h4 text-secondary text-wrap email-text"><?= htmlspecialchars(setting('contact_email', 'cs.science.association@university.ac.ir')) ?></p>
         <h5 class="">آدرس:</h5>
         <p class="text-secondary"><?= htmlspecialchars(setting('contact_address', 'دانشکده مهندسی کامپیوتر – طبقه دوم – دفتر انجمن علمی')) ?></p>
         <h5 class="">تلفن:</h5>
